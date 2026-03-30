@@ -14,6 +14,8 @@ import ManagerManageChildren from './Manager/ManagerManageChildren';
 import ManagerManageInstructors from './Manager/ManagerManageInstructors';
 import ParentHomepage from './Parent/ParentHomepage';
 import ParentChat from './Parent/ParentChat';
+import ParentProgressReport from './Parent/ParentProgressReport';
+import ParentScheduleMeeting from './Parent/ParentScheduleMeeting';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +36,8 @@ export default function App() {
         <Stack.Screen name="ManagerManageInstructors" component={ManagerManageInstructors} />
         <Stack.Screen name="ParentHomepage" component={ParentHomepage} />
         <Stack.Screen name="ParentChat" component={ParentChat} />
+        <Stack.Screen name="ParentProgressReport" component={ParentProgressReport} />
+        <Stack.Screen name="ParentScheduleMeeting" component={ParentScheduleMeeting} />
       </Stack.Navigator>
     </NavigationContainer>
   );
