@@ -329,6 +329,18 @@ export default function App() {
               <Text style={styles.primaryBtnText}>לוח מנהל</Text>
             </LinearGradient>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            onPress={() => navigation.navigate("ParentHomepage")}
+          >
+            <LinearGradient
+              colors={["#00d4ff", "#0099cc"]}
+              style={styles.btnGradient}
+            >
+              <Text style={styles.primaryBtnText}>לוח הורה</Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
 
         {/* FEATURES SECTION */}
