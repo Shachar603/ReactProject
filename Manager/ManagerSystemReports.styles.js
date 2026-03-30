@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    zIndex: 12,
   },
   iconButton: {
     width: 36,
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: '#1F8FD7',
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: '700',
     writingDirection: 'rtl',
   },
@@ -76,35 +75,6 @@ const styles = StyleSheet.create({
     marginTop: 2,
     color: '#7D95AA',
     fontSize: 12,
-    writingDirection: 'rtl',
-  },
-  menuBackdrop: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 11,
-  },
-  menuPanel: {
-    position: 'absolute',
-    top: 74,
-    left: 12,
-    width: 164,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#A3D2EF',
-    backgroundColor: '#F2FBFF',
-    shadowColor: '#0D4C7A',
-    shadowOpacity: 0.18,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 6,
-  },
-  menuItem: {
-    paddingVertical: 12,
-    paddingHorizontal: 14,
-  },
-  menuItemText: {
-    color: '#1F8FD7',
-    fontSize: 18,
-    textAlign: 'right',
     writingDirection: 'rtl',
   },
   scrollContent: {
@@ -122,102 +92,46 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: '#2B6D9F',
-    fontSize: 24,
+    fontSize: 28,
     textAlign: 'right',
     writingDirection: 'rtl',
   },
-  statsRow: {
-    marginTop: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 10,
-  },
-  statCard: {
-    flex: 1,
-    borderRadius: 16,
-    height: 92,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  statCardCool: {
-    backgroundColor: '#D9EAF6',
-  },
-  statCardWarm: {
-    backgroundColor: '#EEE1D8',
-  },
-  statNumber: {
-    fontSize: 32,
-    fontWeight: '700',
-  },
-  statNumberCool: {
-    color: '#2C8CCB',
-  },
-  statNumberWarm: {
-    color: '#E28328',
-  },
-  statLabel: {
-    color: '#89939B',
-    fontSize: 16,
-    writingDirection: 'rtl',
-  },
-  groupsTitle: {
-    marginTop: 18,
-  },
-  groupRow: {
+  reportCard: {
     marginTop: 10,
     borderRadius: 14,
     backgroundColor: '#E7E9EE',
-    paddingVertical: 13,
+    paddingVertical: 15,
     paddingHorizontal: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  editButton: {
+  openButton: {
     backgroundColor: '#2994DD',
     borderRadius: 16,
-    minWidth: 64,
+    minWidth: 74,
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  editButtonText: {
+  openButtonText: {
     color: '#FFFFFF',
     fontSize: 13,
     fontWeight: '700',
     writingDirection: 'rtl',
   },
-  groupTextWrap: {
+  reportTextWrap: {
     alignItems: 'flex-end',
   },
-  groupTitle: {
+  reportTitle: {
     color: '#2C75AE',
-    fontSize: 22,
+    fontSize: 28,
     writingDirection: 'rtl',
   },
-  groupSubtitle: {
-    color: '#A2A7AE',
-    fontSize: 15,
+  reportSubtitle: {
+    color: '#9AA3AB',
+    fontSize: 16,
     marginTop: 2,
-    writingDirection: 'rtl',
-  },
-  reportButtonShell: {
-    marginTop: 16,
-    borderRadius: 20,
-    overflow: 'hidden',
-    alignSelf: 'center',
-    width: '78%',
-    maxWidth: 320,
-  },
-  reportButton: {
-    height: 56,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  reportButtonText: {
-    color: '#FFFFFF',
-    fontSize: 24,
-    fontWeight: '700',
     writingDirection: 'rtl',
   },
 });
