@@ -3,6 +3,7 @@ import { SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View } fro
 import { useNavigation } from '@react-navigation/native';
 import styles from './InstructorHomepage.styles';
 
+
 const children = [
   { name: 'אור', class: 'כיתה ח', status: 'פעיל' },
   { name: 'מאיה', class: 'כיתה ז', status: 'פעיל' },

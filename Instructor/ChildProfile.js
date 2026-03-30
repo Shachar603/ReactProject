@@ -3,6 +3,7 @@ import { SafeAreaView, StatusBar, Text, TouchableOpacity, View, ScrollView } fro
 import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './InstructorHomepage.styles';
 
+
 export default function ChildProfile() {
   const navigation = useNavigation();
   const route = useRoute();
