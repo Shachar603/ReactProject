@@ -5,6 +5,8 @@ import Homepage from './Homepage';
 import InstructorHomepage from './Instructor/InstructorHomepage';
 import SelectGroup from './Instructor/SelectGroup';
 import ManagerHomepage from './Manager/ManagerHomepage';
+import ManagerCenterSettings from './Manager/ManagerCenterSettings';
+import ManagerSystemReports from './Manager/ManagerSystemReports';
 import ParentHomepage from './Parent/ParentHomepage';
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +19,8 @@ export default function App() {
         <Stack.Screen name="InstructorHomepage" component={InstructorHomepage} />
         <Stack.Screen name="SelectGroup" component={SelectGroup} />
         <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
+        <Stack.Screen name="ManagerCenterSettings" component={ManagerCenterSettings} />
+        <Stack.Screen name="ManagerSystemReports" component={ManagerSystemReports} />
         <Stack.Screen name="ParentHomepage" component={ParentHomepage} />
       </Stack.Navigator>
     </NavigationContainer>
