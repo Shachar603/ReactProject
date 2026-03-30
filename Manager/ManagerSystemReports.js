@@ -23,6 +23,7 @@ const reportCards = [
   {
     title: 'ניהול מדריכים',
     subtitle: 'זמני משמרת, הכשרה ומשובים',
+    route: 'ManagerManageInstructors',
   },
   {
     title: 'דו"ח קבוצות',
