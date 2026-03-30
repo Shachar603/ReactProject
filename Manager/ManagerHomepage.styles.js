@@ -5,6 +5,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D9DEE3',
   },
+  aquaticBackground: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  waterGlowLarge: {
+    position: 'absolute',
+    top: -70,
+    right: -40,
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    backgroundColor: 'rgba(255, 255, 255, 0.28)',
+  },
+  waterGlowSmall: {
+    position: 'absolute',
+    top: 180,
+    left: -50,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    backgroundColor: 'rgba(128, 208, 247, 0.24)',
+  },
   headerWaveBack: {
     position: 'absolute',
     top: 86,
