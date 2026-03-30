@@ -404,6 +404,7 @@ export default function App() {
                 style={styles.input}
                 placeholder="הכניסו אימייל"
                 placeholderTextColor="rgba(255,255,255,0.4)"
+                textAlign="right"
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
@@ -416,6 +417,7 @@ export default function App() {
                   style={[styles.input, { flex: 1, borderBottomWidth: 0 }]}
                   placeholder="הכניסו סיסמה"
                   placeholderTextColor="rgba(255,255,255,0.4)"
+                  textAlign="right"
                   secureTextEntry={!showPassword}
                 />
                 <TouchableOpacity
