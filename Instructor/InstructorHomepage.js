@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './InstructorHomepage.styles';
 
@@ -36,6 +37,8 @@ const GroupRow = ({ title, time }) => (
 );
 
 export default function InstructorHomepage() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -74,7 +77,11 @@ export default function InstructorHomepage() {
           ))}
 
           <View style={styles.bottomActions}>
-            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}>
+          <TouchableOpacity
+            activeOpacity={0.85}
+            style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
+            onPress={() => navigation.navigate('SelectGroup')}
+          >
               <Text style={styles.actionButtonText}>הצג את כלל הקבוצות</Text>
             </TouchableOpacity>
 
