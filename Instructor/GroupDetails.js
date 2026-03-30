@@ -69,12 +69,11 @@ export default function GroupDetails() {
             { name: 'דניאל יוסף', note: 'ביצועים טובים' },
             { name: 'עומר אברם', note: 'היענות טובה' },
           ].map((member) => (
-            <View key={member.name} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-              <View>
+            <View key={member.name} style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 10 }}>
+              <View style={{ alignItems: 'flex-end' }}>
                 <Text style={{ color: '#233F5B', fontWeight: '700' }}>{member.name}</Text>
                 <Text style={{ color: '#627789', fontSize: 12 }}>{member.note}</Text>
               </View>
-              <Text style={{ color: '#A2B5C8', fontSize: 12 }}>◉</Text>
             </View>
           ))}
         </View>

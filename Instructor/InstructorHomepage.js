@@ -111,7 +111,7 @@ export default function InstructorHomepage() {
 
             <TouchableOpacity
               activeOpacity={0.85}
-              style={[styles.actionButton, { backgroundColor: '#1A79D3' }]}
+              style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
               onPress={() => setShowBroadcastModal(true)}
             >
               <Text style={styles.actionButtonText}>שדר הודעה</Text>
