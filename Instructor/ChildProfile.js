@@ -51,18 +51,8 @@ export default function ChildProfile() {
 
           {events.map((item, idx) => {
             return (
-              <TouchableOpacity
+              <View
                 key={idx}
-                activeOpacity={0.75}
-                onPress={() => {
-                  navigation.navigate('EditAchievement', {
-                    achievement: item,
-                    index: idx,
-                    onSave: (updatedItem) => {
-                      setEvents((prev) => prev.map((ev, i) => (i === idx ? updatedItem : ev)));
-                    },
-                  });
-                }}
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -72,14 +62,52 @@ export default function ChildProfile() {
                   borderBottomWidth: 1,
                 }}
               >
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                  <TouchableOpacity
+                    activeOpacity={0.75}
+                    onPress={() => {
+                      navigation.navigate('EditAchievement', {
+                        achievement: item,
+                        index: idx,
+                        onSave: (updatedItem) => {
+                          setEvents((prev) => prev.map((ev, i) => (i === idx ? updatedItem : ev)));
+                        },
+                      });
+                    }}
+                    style={{
+                      minWidth: 70,
+                      height: 30,
+                      borderRadius: 15,
+                      backgroundColor: '#1A79D3',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      paddingHorizontal: 12,
+                    }}
+                  >
+                    <Text style={{ color: 'white', fontSize: 12, fontWeight: '700', writingDirection: 'rtl' }}>עדכן</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.75}
+                    onPress={() => setEvents((prev) => prev.filter((_, i) => i !== idx))}
+                    style={{
+                      minWidth: 70,
+                      height: 30,
+                      borderRadius: 15,
+                      backgroundColor: '#D33C40',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      paddingHorizontal: 12,
+                    }}
+                  >
+                    <Text style={{ color: 'white', fontSize: 12, fontWeight: '700', writingDirection: 'rtl' }}>מחק</Text>
+                  </TouchableOpacity>
+                </View>
+
                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                   <Text style={{ color: '#2F78C9', fontWeight: '700', writingDirection: 'rtl' }}>{item.label}</Text>
                   <Text style={{ color: '#5F7D9E', fontSize: 13, writingDirection: 'rtl' }}>{item.info}</Text>
                 </View>
-                <View style={{ width: 86, height: 26, borderRadius: 13, backgroundColor: item.color, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ color: 'white', fontSize: 12, fontWeight: '700', writingDirection: 'rtl' }}>עדכן</Text>
-                </View>
-              </TouchableOpacity>
+              </View>
             );
           })}
         </View>

@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './InstructorHomepage.styles';
 
-const classGroups = [
+const initialClassGroups = [
   { name: 'קבוצת השיטור', time: '10:00 - 10:30' },
   { name: 'קבוצת צבי ים', time: '11:00 - 11:30' },
   { name: 'קבוצת דגים', time: '12:00 - 12:30' },
@@ -23,21 +23,22 @@ const StatChip = ({ label, value, color, textColor }) => (
   </View>
 );
 
-const GroupRow = ({ title, time }) => (
+const GroupRow = ({ title, time, onCancel }) => (
   <View style={styles.groupRow}>
+    <TouchableOpacity style={styles.cancelButton} activeOpacity={0.8} onPress={onCancel}>
+      <Text style={styles.cancelButtonText}>ביטול השיעור</Text>
+    </TouchableOpacity>
+
     <View style={styles.groupTextWrap}>
       <Text style={styles.groupTitle}>{title}</Text>
       <Text style={styles.groupSubtitle}>{time}</Text>
     </View>
-
-    <TouchableOpacity style={styles.cancelButton} activeOpacity={0.8}>
-      <Text style={styles.cancelButtonText}>ביטול השיעור</Text>
-    </TouchableOpacity>
   </View>
 );
 
 export default function InstructorHomepage() {
   const navigation = useNavigation();
+  const [classGroups, setClassGroups] = React.useState(initialClassGroups);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -73,7 +74,12 @@ export default function InstructorHomepage() {
         <View style={styles.mainCard}>
           <Text style={styles.sectionTitle}>קבוצות ושיעורים היום</Text>
           {classGroups.map((group) => (
-            <GroupRow key={group.name} title={group.name} time={group.time} />
+            <GroupRow
+              key={group.name}
+              title={group.name}
+              time={group.time}
+              onCancel={() => setClassGroups((prev) => prev.filter((g) => g.name !== group.name))}
+            />
           ))}
 
           <View style={styles.bottomActions}>
@@ -89,7 +95,7 @@ export default function InstructorHomepage() {
               <Text style={styles.actionButtonText}>שלח הודעה לכלל הקבוצות</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#1C74DE' }]}>
+            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#1C74DE' }]} onPress={() => navigation.navigate('CreateGroup')}>
               <Text style={styles.actionButtonText}>יצירת קבוצה חדשה</Text>
             </TouchableOpacity>
           </View>

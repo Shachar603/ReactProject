@@ -18,6 +18,7 @@ import ParentChat from './Parent/ParentChat';
 import ParentProgressReport from './Parent/ParentProgressReport';
 import ParentScheduleMeeting from './Parent/ParentScheduleMeeting';
 import EditAchievement from './Instructor/EditAchievement';
+import CreateGroup from './Instructor/CreateGroup';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,7 @@ export default function App() {
         <Stack.Screen name="ParentProgressReport" component={ParentProgressReport} />
         <Stack.Screen name="ParentScheduleMeeting" component={ParentScheduleMeeting} />
         <Stack.Screen name="EditAchievement" component={EditAchievement} />
+        <Stack.Screen name="CreateGroup" component={CreateGroup} />
       </Stack.Navigator>
     </NavigationContainer>
   );
