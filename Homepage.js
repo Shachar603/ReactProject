@@ -311,13 +311,13 @@ export default function Homepage() {
 
           <TouchableOpacity
             style={[styles.primaryBtn, styles.secondaryHeroBtn]}
-            onPress={() => navigation.navigate("ManagerHomepage")}
+            onPress={() => navigation.navigate("Login")}
           >
             <LinearGradient
               colors={["#00d4ff", "#0099cc"]}
               style={styles.btnGradient}
             >
-              <Text style={styles.primaryBtnText}>לוח מנהל</Text>
+              <Text style={styles.primaryBtnText}>התחברות מנהל</Text>
             </LinearGradient>
           </TouchableOpacity>
 
