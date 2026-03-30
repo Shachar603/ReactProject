@@ -14,6 +14,7 @@ const reportCards = [
   {
     title: 'ניהול ילדים',
     subtitle: 'מעקב אחר סדרי משמעת וחידושים',
+    route: 'ManagerManageChildren',
   },
   {
     title: 'דו"ח נוכחות',
@@ -29,9 +30,9 @@ const reportCards = [
   },
 ];
 
-const ReportCard = ({ title, subtitle }) => (
+const ReportCard = ({ title, subtitle, onOpen }) => (
   <View style={styles.reportCard}>
-    <TouchableOpacity activeOpacity={0.85} style={styles.openButton}>
+    <TouchableOpacity activeOpacity={0.85} style={styles.openButton} onPress={onOpen}>
       <Text style={styles.openButtonText}>פתיחה</Text>
     </TouchableOpacity>
 
@@ -42,7 +43,7 @@ const ReportCard = ({ title, subtitle }) => (
   </View>
 );
 
-export default function ManagerSystemReports() {
+export default function ManagerSystemReports({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -79,7 +80,12 @@ export default function ManagerSystemReports() {
           <Text style={styles.sectionTitle}>דו"חות זמינים</Text>
 
           {reportCards.map((card) => (
-            <ReportCard key={card.title} title={card.title} subtitle={card.subtitle} />
+            <ReportCard
+              key={card.title}
+              title={card.title}
+              subtitle={card.subtitle}
+              onOpen={() => card.route && navigation.navigate(card.route)}
+            />
           ))}
         </View>
       </ScrollView>
