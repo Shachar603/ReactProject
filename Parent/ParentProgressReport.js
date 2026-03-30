@@ -11,10 +11,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentProgressReport.styles';
 
 const reportRows = [
-  { label: 'ציפה וביטחון במים', value: 'התקדמות טובה מאוד' },
-  { label: 'שליטה נשימתית', value: 'שיפור יציב משבוע לשבוע' },
-  { label: 'כניסה ויציאה עצמאית', value: 'זקוקה לעוד חיזוק קל' },
-  { label: 'שיתוף פעולה בשיעור', value: 'מצוין' },
+  { label: 'שליטה בנשימות', value: 0.8, percent: '80%' },
+  { label: 'ציפה על הגב', value: 0.65, percent: '65%' },
+  { label: 'ציפה על הבטן', value: 0.9, percent: '90%' },
+  { label: 'תנועות ידיים', value: 0.72, percent: '72%' },
+  { label: 'תנועות רגליים', value: 0.6, percent: '60%' },
 ];
 
 const ProgressBar = ({ label, value, percent }) => (
@@ -64,16 +65,19 @@ export default function ParentProgressReport({ navigation }) {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.headerIcon}>‹</Text>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
+          <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
         <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>דו"ח התקדמות</Text>
-          <Text style={styles.headerSubtitle}>סיכום החודש האחרון</Text>
+          <Text style={styles.headerTitle}>דו״ח התקדמות מפורט</Text>
+          <Text style={styles.headerSubtitle}>ניתוח ביצועי ילד לפי תרגילי השחיה</Text>
         </View>
 
-        <View style={styles.iconButton} />
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
+          <Text style={styles.headerIcon}>⌕</Text>
+          <Text style={styles.searchLabel}>חיפוש</Text>
+        </TouchableOpacity>
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -83,17 +87,28 @@ export default function ParentProgressReport({ navigation }) {
             <Text style={styles.reportDate}>תאריכים: החודש האחרון</Text>
           </View>
 
-          <TouchableOpacity activeOpacity={0.88} style={styles.buttonShell} onPress={() => navigation.goBack()}>
-            <LinearGradient
-              colors={['#38AEEF', '#2E95E3']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>חזרה ללוח הורה</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <Text style={styles.sectionTitle}>מדדי התקדמות</Text>
+
+          {reportRows.map((item) => (
+            <ProgressBar
+              key={item.label}
+              label={item.label}
+              value={item.value}
+              percent={item.percent}
+            />
+          ))}
+
+          <Text style={styles.sectionTitle}>הערות מהמדריך</Text>
+          <View style={styles.notesBox}>
+            <Text style={styles.notesText}>נעמת מראה שיפור עקבי...</Text>
+          </View>
+
+          <ActionButton label='הורדת דו״ח PDF' />
         </View>
+
+        <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.goBack()}>
+          <Text style={styles.bottomLink}>חזרה ללוח הורה</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
