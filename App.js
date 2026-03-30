@@ -11,6 +11,7 @@ import ManagerCenterSettings from './Manager/ManagerCenterSettings';
 import ManagerSystemReports from './Manager/ManagerSystemReports';
 import ManagerManageChildren from './Manager/ManagerManageChildren';
 import ManagerManageInstructors from './Manager/ManagerManageInstructors';
+import ManagerAttendanceReport from './Manager/ManagerAttendanceReport';
 import ParentHomepage from './Parent/ParentHomepage';
 import ParentChat from './Parent/ParentChat';
 import ParentProgressReport from './Parent/ParentProgressReport';
@@ -30,6 +31,7 @@ export default function App() {
         <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
         <Stack.Screen name="ManagerCenterSettings" component={ManagerCenterSettings} />
         <Stack.Screen name="ManagerSystemReports" component={ManagerSystemReports} />
+        <Stack.Screen name="ManagerAttendanceReport" component={ManagerAttendanceReport} />
         <Stack.Screen name="ManagerManageChildren" component={ManagerManageChildren} />
         <Stack.Screen name="ManagerManageInstructors" component={ManagerManageInstructors} />
         <Stack.Screen name="ParentHomepage" component={ParentHomepage} />
