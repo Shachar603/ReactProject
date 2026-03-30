@@ -113,7 +113,10 @@ export default function ParentHomepage() {
           <Text style={styles.instructorText}>שם המדריך: שי שוורצנגר</Text>
 
           <ActionButton label="צ'אט עם מדריך" onPress={() => navigation.navigate('ParentChat')} />
-          <ActionButton label='דו"ח התקדמות של הילד' />
+          <ActionButton
+            label='דו"ח התקדמות של הילד'
+            onPress={() => navigation.navigate('ParentProgressReport')}
+          />
           <ActionButton label="קביעת מפגש" />
         </View>
       </ScrollView>
