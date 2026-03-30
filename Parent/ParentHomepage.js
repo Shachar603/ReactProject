@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentHomepage.styles';
 
@@ -39,8 +40,8 @@ const ActivityCard = ({ date, title, desc }) => (
   </View>
 );
 
-const ActionButton = ({ label }) => (
-  <TouchableOpacity activeOpacity={0.86} style={styles.actionButtonShell}>
+const ActionButton = ({ label, onPress }) => (
+  <TouchableOpacity activeOpacity={0.86} style={styles.actionButtonShell} onPress={onPress}>
     <LinearGradient
       colors={['#38AEEF', '#2E95E3']}
       start={{ x: 0, y: 0 }}
@@ -53,6 +54,8 @@ const ActionButton = ({ label }) => (
 );
 
 export default function ParentHomepage() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -109,7 +112,7 @@ export default function ParentHomepage() {
 
           <Text style={styles.instructorText}>שם המדריך: שי שוורצנגר</Text>
 
-          <ActionButton label="צ'אט עם מדריך" />
+          <ActionButton label="צ'אט עם מדריך" onPress={() => navigation.navigate('ParentChat')} />
           <ActionButton label='דו"ח התקדמות של הילד' />
           <ActionButton label="קביעת מפגש" />
         </View>
