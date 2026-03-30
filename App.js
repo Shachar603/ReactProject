@@ -7,6 +7,8 @@ import SelectGroup from './Instructor/SelectGroup';
 import GroupDetails from './Instructor/GroupDetails';
 import ChildList from './Instructor/ChildList';
 import ManagerHomepage from './Manager/ManagerHomepage';
+import ManagerCenterSettings from './Manager/ManagerCenterSettings';
+import ManagerSystemReports from './Manager/ManagerSystemReports';
 import ParentHomepage from './Parent/ParentHomepage';
 import ParentChat from './Parent/ParentChat';
 
@@ -22,6 +24,8 @@ export default function App() {
         <Stack.Screen name="GroupDetails" component={GroupDetails} />
         <Stack.Screen name="ChildList" component={ChildList} />
         <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
+        <Stack.Screen name="ManagerCenterSettings" component={ManagerCenterSettings} />
+        <Stack.Screen name="ManagerSystemReports" component={ManagerSystemReports} />
         <Stack.Screen name="ParentHomepage" component={ParentHomepage} />
         <Stack.Screen name="ParentChat" component={ParentChat} />
       </Stack.Navigator>
