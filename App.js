@@ -6,6 +6,7 @@ import InstructorHomepage from './Instructor/InstructorHomepage';
 import SelectGroup from './Instructor/SelectGroup';
 import GroupDetails from './Instructor/GroupDetails';
 import ChildList from './Instructor/ChildList';
+import ChildProfile from './Instructor/ChildProfile';
 import ManagerHomepage from './Manager/ManagerHomepage';
 import ManagerCenterSettings from './Manager/ManagerCenterSettings';
 import ManagerSystemReports from './Manager/ManagerSystemReports';
@@ -16,6 +17,7 @@ import ParentHomepage from './Parent/ParentHomepage';
 import ParentChat from './Parent/ParentChat';
 import ParentProgressReport from './Parent/ParentProgressReport';
 import ParentScheduleMeeting from './Parent/ParentScheduleMeeting';
+import EditAchievement from './Instructor/EditAchievement';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,7 @@ export default function App() {
         <Stack.Screen name="SelectGroup" component={SelectGroup} />
         <Stack.Screen name="GroupDetails" component={GroupDetails} />
         <Stack.Screen name="ChildList" component={ChildList} />
+        <Stack.Screen name="ChildProfile" component={ChildProfile} />
         <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
         <Stack.Screen name="ManagerCenterSettings" component={ManagerCenterSettings} />
         <Stack.Screen name="ManagerSystemReports" component={ManagerSystemReports} />
@@ -38,6 +41,7 @@ export default function App() {
         <Stack.Screen name="ParentChat" component={ParentChat} />
         <Stack.Screen name="ParentProgressReport" component={ParentProgressReport} />
         <Stack.Screen name="ParentScheduleMeeting" component={ParentScheduleMeeting} />
+        <Stack.Screen name="EditAchievement" component={EditAchievement} />
       </Stack.Navigator>
     </NavigationContainer>
   );
