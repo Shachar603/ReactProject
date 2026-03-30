@@ -1,0 +1,156 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#D9DEE3',
+  },
+  aquaticBackground: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  waterGlowLarge: {
+    position: 'absolute',
+    top: -70,
+    right: -40,
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    backgroundColor: 'rgba(255, 255, 255, 0.27)',
+  },
+  waterGlowSmall: {
+    position: 'absolute',
+    top: 182,
+    left: -48,
+    width: 148,
+    height: 148,
+    borderRadius: 74,
+    backgroundColor: 'rgba(128, 208, 247, 0.22)',
+  },
+  headerWaveBack: {
+    position: 'absolute',
+    top: 86,
+    left: -40,
+    right: -40,
+    height: 86,
+    borderRadius: 90,
+    backgroundColor: '#9CCEF1',
+    opacity: 0.6,
+  },
+  headerWaveFront: {
+    position: 'absolute',
+    top: 102,
+    left: -25,
+    right: -25,
+    height: 78,
+    borderRadius: 90,
+    backgroundColor: '#BEE0F7',
+  },
+  header: {
+    marginTop: 12,
+    paddingHorizontal: 18,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  iconButton: {
+    width: 36,
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerIcon: {
+    fontSize: 28,
+    color: '#1D2935',
+  },
+  headerCenter: {
+    alignItems: 'center',
+  },
+  headerTitle: {
+    color: '#1F8FD7',
+    fontSize: 32,
+    fontWeight: '700',
+    writingDirection: 'rtl',
+  },
+  headerSubtitle: {
+    marginTop: 2,
+    color: '#7D95AA',
+    fontSize: 12,
+    writingDirection: 'rtl',
+  },
+  scrollContent: {
+    paddingHorizontal: 12,
+    paddingTop: 24,
+    paddingBottom: 24,
+  },
+  mainCard: {
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: '#8CC6ED',
+    backgroundColor: '#F3F5F8',
+    padding: 16,
+    paddingBottom: 20,
+  },
+  sectionTitle: {
+    color: '#2B6D9F',
+    fontSize: 28,
+    textAlign: 'right',
+    writingDirection: 'rtl',
+  },
+  fieldLabel: {
+    color: '#A1A8B0',
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 6,
+    textAlign: 'right',
+    writingDirection: 'rtl',
+  },
+  input: {
+    minHeight: 48,
+    borderRadius: 12,
+    backgroundColor: '#ECEFF4',
+    paddingHorizontal: 14,
+    color: '#2F3B48',
+    fontSize: 17,
+  },
+  inputMultiline: {
+    minHeight: 62,
+    textAlignVertical: 'top',
+    paddingTop: 10,
+  },
+  systemSectionTitle: {
+    marginTop: 12,
+  },
+  toggleRow: {
+    marginTop: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  toggleLabel: {
+    color: '#2D73AB',
+    fontSize: 22,
+    textAlign: 'right',
+    writingDirection: 'rtl',
+  },
+  saveButtonShell: {
+    marginTop: 24,
+    borderRadius: 21,
+    overflow: 'hidden',
+    alignSelf: 'center',
+    width: '84%',
+    maxWidth: 340,
+  },
+  saveButton: {
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  saveButtonText: {
+    color: '#FFFFFF',
+    fontSize: 30,
+    fontWeight: '700',
+    writingDirection: 'rtl',
+  },
+});
+
+export default styles;
