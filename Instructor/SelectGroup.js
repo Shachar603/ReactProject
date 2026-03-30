@@ -3,11 +3,11 @@ import { SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View } fro
 import styles from './InstructorHomepage.styles';
 
 const groups = [
-  { title: 'קבוצת השיטור', subtitle: 'פעם ב׳ וש׳, 10:00 - 11:00' },
-  { title: 'קבוצת צבי ים', subtitle: 'פעם ג׳ וח׳, 11:30 - 12:30' },
-  { title: 'קבוצת דגים', subtitle: 'פעם ד׳ וש׳, 12:45 - 13:45' },
-  { title: 'קבוצת כרישים', subtitle: 'פעם ה׳, 14:00 - 15:00' },
-  { title: 'קבוצת לווייתנים', subtitle: 'פעם ו׳, 15:15 - 16:15' },
+  { title: 'קבוצת השיטור', subtitle: 'יום ב׳ וש׳, 10:00 - 11:00' },
+  { title: 'קבוצת צבי ים', subtitle: 'יום ג׳ , 11:30 - 12:30' },
+  { title: 'קבוצת דגים', subtitle: 'יום ד׳ וש׳, 12:45 - 13:45' },
+  { title: 'קבוצת כרישים', subtitle: 'יום ה׳, 14:00 - 15:00' },
+  { title: 'קבוצת לווייתנים', subtitle: 'יום ו׳, 15:15 - 16:15' },
 ];
 
 export default function SelectGroup({ navigation }) {
