@@ -84,9 +84,9 @@ export default function InstructorHomepage() {
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 20 }} showsVerticalScrollIndicator={false}>
         <View style={styles.chipRow}>
-          <StatChip label="פעילים" value="5" color="#27B73C" textColor="#FFFFFF" />
-          <StatChip label="מוגבל" value="1" color="#F19DBA" textColor="#7D2D52" />
-          <StatChip label="פעילים" value="3" color="#A4D3F1" textColor="#1F5784" />
+          <StatChip label="פעילים" value="5" color="#3C96F0" textColor="#FFFFFF" />
+          <StatChip label="מוגבל" value="1" color="#3C96F0" textColor="#FFFFFF" />
+          <StatChip label="פעילים" value="3" color="#3C96F0" textColor="#FFFFFF" />
         </View>
 
         <View style={styles.mainCard}>
@@ -119,7 +119,7 @@ export default function InstructorHomepage() {
 
             <TouchableOpacity
               activeOpacity={0.85}
-              style={[styles.actionButton, { backgroundColor: '#0F8D1E' }]}
+              style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
               onPress={() => setShowCreateGroupModal(true)}
             >
               <Text style={styles.actionButtonText}>צור קבוצה חדשה</Text>
