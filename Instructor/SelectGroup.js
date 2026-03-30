@@ -31,7 +31,12 @@ export default function SelectGroup({ navigation }) {
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 24 }}>
         {groups.map((g) => (
-          <TouchableOpacity key={g.title} style={[styles.groupRow, { marginBottom: 12 }]} activeOpacity={0.82} onPress={() => alert(`נבחרה ${g.title}`)}>
+          <TouchableOpacity
+            key={g.title}
+            style={[styles.groupRow, { marginBottom: 12 }]}
+            activeOpacity={0.82}
+            onPress={() => navigation.navigate('GroupDetails', { group: g })}
+          >
             <View style={styles.groupTextWrap}>
               <Text style={styles.groupTitle}>{g.title}</Text>
               <Text style={styles.groupSubtitle}>{g.subtitle}</Text>
