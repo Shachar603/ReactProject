@@ -6,9 +6,13 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import Svg, { Path } from 'react-native-svg';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ManagerHomepage from './Manager/ManagerHomepage';
 
 const { width, height } = Dimensions.get('window');
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
+const Stack = createNativeStackNavigator();
 
 // ========================================
 // 1. SEAMLESS ANIMATED WAVES
@@ -138,7 +142,7 @@ const Bubble = ({ size, left, duration, delay }) => {
 // ========================================
 // 3. MAIN APP COMPONENT
 // ========================================
-export default function App() {
+function HomeScreen({ navigation }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showPassword, setShowPassword] = useState(false);
 
@@ -220,7 +224,10 @@ export default function App() {
           <Text style={styles.heroSubtitle}>
             Experience the perfect blend of ocean depths and poolside paradise. Your tranquil escape awaits.
           </Text>
-          <TouchableOpacity style={styles.primaryBtn}>
+          <TouchableOpacity
+            style={styles.primaryBtn}
+            onPress={() => navigation.navigate('ManagerHomepage')}
+          >
             <LinearGradient colors={['#00d4ff', '#0099cc']} style={styles.btnGradient}>
               <Text style={styles.primaryBtnText}>Explore Features</Text>
             </LinearGradient>
@@ -298,6 +305,17 @@ export default function App() {
 
       </Animated.ScrollView>
     </View>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Homepage" component={HomeScreen} />
+        <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
