@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(149, 207, 244, 0.45)',
   },
 
-  header: {
+  headerDate: {
     paddingTop: (StatusBar.currentHeight || 0) + 14,
     paddingHorizontal: 18,
     flexDirection: 'row',
@@ -52,29 +52,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     writingDirection: 'rtl',
   },
-  headerCenter: {
-    flex: 1,
+  headerCenterDate: {
     alignItems: 'center',
   },
-  headerTitle: {
+  headerTitleDate: {
     color: '#1E7FC0',
-    fontSize: 34,
-    fontWeight: '700',
+    fontSize: 48,
+    fontWeight: '500',
     textAlign: 'center',
     writingDirection: 'rtl',
-  },
-  headerSubtitle: {
-    color: '#5E7B95',
-    marginTop: 6,
-    fontSize: 14,
-    textAlign: 'center',
-    writingDirection: 'rtl',
-    paddingHorizontal: 8,
   },
 
   scrollContent: {
     paddingHorizontal: 22,
-    paddingBottom: 34,
+    paddingBottom: 30,
     paddingTop: 20,
   },
   mainCard: {
@@ -85,20 +76,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 16,
     paddingBottom: 22,
-    shadowColor: '#5AADE0',
-    shadowOpacity: 0.14,
-    shadowRadius: 10,
-    elevation: 2,
-  },
-
-  monthRow: {
-    alignItems: 'flex-end',
-    marginBottom: 12,
-  },
-  monthLabel: {
-    color: '#1B68A6',
-    fontSize: 18,
-    writingDirection: 'rtl',
+    minHeight: 760,
   },
 
   weekdayRow: {
@@ -110,16 +88,15 @@ const styles = StyleSheet.create({
     width: '14.285%',
     textAlign: 'center',
     color: '#246CA8',
-    fontSize: 22,
+    fontSize: 34,
     writingDirection: 'rtl',
   },
-
   calendarGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     rowGap: 10,
-    marginBottom: 18,
+    marginBottom: 26,
   },
   dayOuter: {
     width: '14.285%',
@@ -127,11 +104,11 @@ const styles = StyleSheet.create({
   },
   dayPlaceholder: {
     width: '14.285%',
-    height: 40,
+    height: 56,
   },
   dayChip: {
-    minWidth: 40,
-    height: 40,
+    minWidth: 44,
+    height: 44,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -142,56 +119,19 @@ const styles = StyleSheet.create({
   },
   dayText: {
     color: '#0D5E9C',
-    fontSize: 26,
-    lineHeight: 28,
+    fontSize: 34,
+    lineHeight: 36,
   },
   dayTextSelected: {
     color: '#0D5E9C',
     fontWeight: '700',
   },
-
-  timeTitle: {
-    color: '#1B68A6',
-    fontSize: 24,
-    textAlign: 'right',
-    writingDirection: 'rtl',
-    marginBottom: 10,
-    marginTop: 4,
-  },
-  timeSlotsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-end',
-    gap: 8,
-    marginBottom: 26,
-  },
-  timeChip: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#B2D9F4',
-    backgroundColor: '#EAF5FC',
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-  },
-  timeChipSelected: {
-    backgroundColor: '#D3EEFF',
-    borderColor: '#2D96E3',
-  },
-  timeText: {
-    color: '#1C6DAA',
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  timeTextSelected: {
-    color: '#105F9A',
-    fontWeight: '700',
-  },
-
   confirmButtonShell: {
     borderRadius: 30,
     overflow: 'hidden',
     alignSelf: 'center',
     width: '72%',
+    marginTop: 'auto',
   },
   confirmButton: {
     alignItems: 'center',
@@ -201,8 +141,164 @@ const styles = StyleSheet.create({
   },
   confirmButtonText: {
     color: '#EFF9FF',
-    fontSize: 32,
+    fontSize: 42,
     fontWeight: '500',
+    writingDirection: 'rtl',
+  },
+
+  bigCircleLeft: {
+    position: 'absolute',
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    left: -34,
+    top: 56,
+    backgroundColor: 'rgba(207, 232, 250, 0.9)',
+  },
+  bigCircleRight: {
+    position: 'absolute',
+    width: 210,
+    height: 210,
+    borderRadius: 105,
+    right: -78,
+    top: -18,
+    backgroundColor: 'rgba(196, 224, 245, 0.6)',
+  },
+
+  headerTime: {
+    paddingTop: (StatusBar.currentHeight || 0) + 14,
+    paddingHorizontal: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+  },
+  backButton: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backButtonIcon: {
+    fontSize: 56,
+    color: '#1A1A1A',
+    lineHeight: 56,
+  },
+  timeHeaderCenter: {
+    flex: 1,
+    alignItems: 'center',
+    paddingRight: 18,
+  },
+  timeHeaderTitle: {
+    color: '#101010',
+    fontSize: 58,
+    fontWeight: '700',
+    writingDirection: 'rtl',
+  },
+  timeHeaderSub: {
+    marginTop: 6,
+    color: '#365A7A',
+    fontSize: 20,
+    writingDirection: 'rtl',
+  },
+
+  scrollContentTime: {
+    paddingHorizontal: 22,
+    paddingBottom: 30,
+    paddingTop: 18,
+  },
+  mainCardTime: {
+    backgroundColor: '#F5F6F8',
+    borderRadius: 36,
+    borderWidth: 2,
+    borderColor: '#A5D4F6',
+    paddingHorizontal: 18,
+    paddingTop: 18,
+    paddingBottom: 24,
+    minHeight: 760,
+    alignItems: 'center',
+  },
+  timeStepTitle: {
+    color: '#313131',
+    fontSize: 56,
+    fontWeight: '700',
+    writingDirection: 'rtl',
+    alignSelf: 'flex-end',
+    marginBottom: 6,
+  },
+  clockWrap: {
+    marginTop: 8,
+    marginBottom: 10,
+  },
+
+  selectedTimeBox: {
+    marginTop: 8,
+    width: 210,
+    height: 56,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#A5D4F6',
+    backgroundColor: '#EDF6FD',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selectedTimeBig: {
+    color: '#1575E8',
+    fontSize: 28,
+    fontWeight: '800',
+  },
+  chevron: {
+    marginLeft: 8,
+    color: '#101010',
+    fontSize: 24,
+    fontWeight: '700',
+  },
+
+  timeOptionsList: {
+    marginTop: 8,
+    width: 210,
+    maxHeight: 210,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#A5D4F6',
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 6,
+  },
+  timeOptionItem: {
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  timeOptionItemSelected: {
+    backgroundColor: '#E6F3FF',
+  },
+  timeOptionText: {
+    color: '#2D79C3',
+    fontSize: 22,
+    fontWeight: '600',
+  },
+  timeOptionTextSelected: {
+    color: '#1575E8',
+    fontWeight: '800',
+  },
+
+  confirmTimeButtonShell: {
+    borderRadius: 30,
+    overflow: 'hidden',
+    alignSelf: 'center',
+    width: '88%',
+    marginTop: 18,
+  },
+  confirmTimeButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 30,
+  },
+  confirmTimeButtonText: {
+    color: '#EFF9FF',
+    fontSize: 46,
+    fontWeight: '700',
     writingDirection: 'rtl',
   },
 });

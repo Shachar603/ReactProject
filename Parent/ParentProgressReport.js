@@ -7,69 +7,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentProgressReport.styles';
 
-const progressItems = [
-  {
-    label: 'שליטה בנשימות',
-    value: 0.8,
-    percent: '80%',
-  },
-  {
-    label: 'ציפה על הגב',
-    value: 0.65,
-    percent: '65%',
-  },
-  {
-    label: 'ציפה על הבטן',
-    value: 0.9,
-    percent: '90%',
-  },
-  {
-    label: 'תנועות ידיים',
-    value: 0.72,
-    percent: '72%',
-  },
-  {
-    label: 'תנועות רגליים',
-    value: 0.6,
-    percent: '60%',
-  },
+const reportRows = [
+  { label: 'ציפה וביטחון במים', value: 'התקדמות טובה מאוד' },
+  { label: 'שליטה נשימתית', value: 'שיפור יציב משבוע לשבוע' },
+  { label: 'כניסה ויציאה עצמאית', value: 'זקוקה לעוד חיזוק קל' },
+  { label: 'שיתוף פעולה בשיעור', value: 'מצוין' },
 ];
 
-const ProgressBar = ({ label, value, percent }) => (
-  <View style={styles.progressItem}>
-    <View style={styles.progressLabelRow}>
-      <Text style={styles.progressLabel}>{label}</Text>
-      <Text style={styles.progressPercent}>{percent}</Text>
-    </View>
+export default function ParentProgressReport() {
+  const navigation = useNavigation();
 
-    <View style={styles.progressTrack}>
-      <LinearGradient
-        colors={['#39A9EA', '#2293DE']}
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0.5 }}
-        style={[styles.progressFill, { width: `${value * 100}%` }]}
-      />
-    </View>
-  </View>
-);
-
-const ActionButton = ({ label }) => (
-  <TouchableOpacity activeOpacity={0.86} style={styles.actionButtonShell}>
-    <LinearGradient
-      colors={['#38AEEF', '#2E95E3']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.actionButton}
-    >
-      <Text style={styles.actionButtonText}>{label}</Text>
-    </LinearGradient>
-  </TouchableOpacity>
-);
-
-export default function ParentProgressReport({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -86,44 +37,39 @@ export default function ParentProgressReport({ navigation }) {
 
       <View style={styles.header}>
         <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.headerIcon}>☰</Text>
+          <Text style={styles.headerIcon}>‹</Text>
         </TouchableOpacity>
 
         <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>דו״ח התקדמות מפורט</Text>
-          <Text style={styles.headerSubtitle}>ניתוח ביצועי ילד לפי תרגילי השיטה</Text>
+          <Text style={styles.headerTitle}>דו"ח התקדמות</Text>
+          <Text style={styles.headerSubtitle}>סיכום החודש האחרון</Text>
         </View>
 
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-          <Text style={styles.searchLabel}>חיפוש</Text>
-        </TouchableOpacity>
+        <View style={styles.iconButton} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>
-          <View style={styles.reportHeader}>
-            <Text style={styles.reportChild}>עומר - קבוצת דולפינים</Text>
-            <Text style={styles.reportDate}>תאריכים: החודש האחרון</Text>
-          </View>
+          <Text style={styles.childName}>נעמה שוורצנגר</Text>
+          <Text style={styles.reportDate}>תאריכים: החודש האחרון</Text>
 
-          <Text style={styles.sectionTitle}>מדדי התקדמות</Text>
-
-          {progressItems.map((item) => (
-            <ProgressBar
-              key={item.label}
-              label={item.label}
-              value={item.value}
-              percent={item.percent}
-            />
+          {reportRows.map((row) => (
+            <View key={row.label} style={styles.reportRow}>
+              <Text style={styles.reportLabel}>{row.label}</Text>
+              <Text style={styles.reportValue}>{row.value}</Text>
+            </View>
           ))}
 
-          <Text style={styles.feedbackTitle}>הערות מהמדריך</Text>
-          <View style={styles.feedbackBox}>
-            <Text style={styles.feedbackText}>נעמה מראה שיפור עקבי...</Text>
-          </View>
-
-          <ActionButton label='הורדת דו״ח PDF' />
+          <TouchableOpacity activeOpacity={0.88} style={styles.buttonShell} onPress={() => navigation.goBack()}>
+            <LinearGradient
+              colors={['#38AEEF', '#2E95E3']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>חזרה ללוח הורה</Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
