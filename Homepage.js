@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { registerRootComponent } from 'expo';
 import {
   StyleSheet, Text, View, Animated, Dimensions, TouchableOpacity,
   TextInput, StatusBar, Easing, KeyboardAvoidingView, Platform
@@ -394,5 +393,3 @@ const styles = StyleSheet.create({
 });
 
 function clamp(min, val, max) { return Math.min(Math.max(val, min), max); }
-
-registerRootComponent(App);
