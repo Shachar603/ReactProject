@@ -6,10 +6,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import Svg, { Path } from 'react-native-svg';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ManagerHomepage from './Manager/ManagerHomepage';
-import InstructorHomepage from './Instructor/InstructorHomepage';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -182,7 +179,7 @@ const Bubble = () => {
 // ========================================
 // 3. MAIN APP COMPONENT
 // ========================================
-export default function App() {
+export default function HomeScreen() {
   const navigation = useNavigation();
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showPassword, setShowPassword] = useState(false);
@@ -462,18 +459,6 @@ export default function App() {
         </View>
       </Animated.ScrollView>
     </View>
-  );
-}
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Homepage" component={HomeScreen} />
-        <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
-        <Stack.Screen name="InstructorHomepage" component={InstructorHomepage} />
-      </Stack.Navigator>
-    </NavigationContainer>
   );
 }
 
