@@ -76,7 +76,7 @@ const Bubble = () => {
     left: Math.random() * width,
   });
 
-  const durationRef = useRef(Math.random() * 12000 + 8000);
+  const durationRef = useRef(Math.random() * 16000 + 14000);
   const isFirstRun = useRef(true);
 
   const startFloat = () => {
@@ -97,7 +97,7 @@ const Bubble = () => {
     ]).start(({ finished }) => {
       if (finished) {
         // REINCARNATION: Generate entirely new random properties for the next cycle
-        durationRef.current = Math.random() * 12000 + 8000; // New speed
+        durationRef.current = Math.random() * 16000 + 14000; // New speed
         setConfig({
           size: Math.random() * 30 + 10, // New size
           left: Math.random() * width, // New horizontal position
@@ -193,9 +193,9 @@ export default function App() {
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showPassword, setShowPassword] = useState(false);
 
-  // Mount a fixed pool of 15 bubbles for a sparser, more natural flow.
+  // Mount a smaller fixed pool so fewer bubbles are visible at once.
   const bubblePool = useMemo(
-    () => Array.from({ length: 15 }).map((_, i) => i),
+    () => Array.from({ length: 6 }).map((_, i) => i),
     [],
   );
 
