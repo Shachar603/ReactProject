@@ -19,6 +19,7 @@ const reportCards = [
   {
     title: 'דו"ח נוכחות',
     subtitle: 'הופעות, חיסורים ואיחורים',
+    route: 'ManagerAttendanceReport',
   },
   {
     title: 'ניהול מדריכים',

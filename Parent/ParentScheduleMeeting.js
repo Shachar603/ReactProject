@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Svg, { Circle, Line, Text as SvgText } from 'react-native-svg';
 import styles from './ParentScheduleMeeting.styles';
 
 const weekdayHeaders = ['ש', 'ו', 'ה', 'ד', 'ג', 'ב', 'א'];
-const timeSlots = ['09:00', '10:30', '12:00', '13:30', '15:00'];
 const dayPalette = ['#F2DDDE', '#EEE9BD', '#BFE6D8'];
+const timeOptions = ['09:00', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00'];
 
 const getMonthConfig = () => {
   const now = new Date();
@@ -48,34 +49,77 @@ const getMonthConfig = () => {
   };
 };
 
+const TimeClock = ({ selectedTime }) => {
+  const [hourPart, minutePart] = selectedTime.split(':');
+  const hour = parseInt(hourPart, 10);
+  const minute = parseInt(minutePart, 10);
+
+  const center = 140;
+  const radius = 95;
+
+  const hourAngle = ((hour % 12) + minute / 60) * 30 - 90;
+  const minuteAngle = minute * 6 - 90;
+
+  const hourX = center + Math.cos((hourAngle * Math.PI) / 180) * 46;
+  const hourY = center + Math.sin((hourAngle * Math.PI) / 180) * 46;
+
+  const minuteX = center + Math.cos((minuteAngle * Math.PI) / 180) * 66;
+  const minuteY = center + Math.sin((minuteAngle * Math.PI) / 180) * 66;
+
+  return (
+    <View style={styles.clockWrap}>
+      <Svg width={280} height={280}>
+        <Circle cx={center} cy={center} r={radius + 12} fill="#E0EDF7" stroke="#9CCCF2" strokeWidth="3" />
+        <Circle cx={center} cy={center} r={radius} fill="#D8E4EC" />
+
+        <SvgText x={center} y={58} fill="#2B74C2" fontSize="40" textAnchor="middle">12</SvgText>
+        <SvgText x={center + 86} y={center + 12} fill="#2B74C2" fontSize="40" textAnchor="middle">3</SvgText>
+        <SvgText x={center} y={center + 98} fill="#2B74C2" fontSize="40" textAnchor="middle">6</SvgText>
+        <SvgText x={center - 86} y={center + 12} fill="#2B74C2" fontSize="40" textAnchor="middle">9</SvgText>
+
+        <Line x1={center} y1={center} x2={hourX} y2={hourY} stroke="#1E78DF" strokeWidth="8" strokeLinecap="round" />
+        <Line x1={center} y1={center} x2={minuteX} y2={minuteY} stroke="#59A5EE" strokeWidth="5" strokeLinecap="round" />
+        <Circle cx={center} cy={center} r={8} fill="#1E78DF" />
+      </Svg>
+    </View>
+  );
+};
+
 export default function ParentScheduleMeeting() {
   const navigation = useNavigation();
   const { monthLabel, cells } = useMemo(() => getMonthConfig(), []);
+
+  const [step, setStep] = useState('date');
   const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedTime, setSelectedTime] = useState('10:00');
+  const [showTimeOptions, setShowTimeOptions] = useState(false);
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+  const onBackPress = () => {
+    if (step === 'time') {
+      setStep('date');
+      setShowTimeOptions(false);
+      return;
+    }
+    navigation.goBack();
+  };
 
-      <LinearGradient
-        colors={['#E3F6FF', '#D7EFFC', '#C5E7FA']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
-      />
+  const onDayPress = (day) => {
+    setSelectedDay(day);
+    setStep('time');
+  };
 
+  const renderDateStep = () => (
+    <>
       <View style={styles.headerWaveBack} />
       <View style={styles.headerWaveFront} />
 
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => navigation.goBack()}>
+      <View style={styles.headerDate}>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={onBackPress}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>קביעת מפגש</Text>
-          <Text style={styles.headerSubtitle}>בחרו תאריך ושעה לפגישה עם המדריך</Text>
+        <View style={styles.headerCenterDate}>
+          <Text style={styles.headerTitleDate}>בחירת תאריך</Text>
         </View>
 
         <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
@@ -86,10 +130,6 @@ export default function ParentScheduleMeeting() {
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>
-          <View style={styles.monthRow}>
-            <Text style={styles.monthLabel}>חודש: {monthLabel}</Text>
-          </View>
-
           <View style={styles.weekdayRow}>
             {weekdayHeaders.map((weekday) => (
               <Text key={weekday} style={styles.weekdayText}>
@@ -111,7 +151,7 @@ export default function ParentScheduleMeeting() {
                   key={cell.key}
                   activeOpacity={0.85}
                   style={styles.dayOuter}
-                  onPress={() => setSelectedDay(cell.day)}
+                  onPress={() => onDayPress(cell.day)}
                 >
                   <View
                     style={[
@@ -127,41 +167,103 @@ export default function ParentScheduleMeeting() {
             })}
           </View>
 
-          <Text style={styles.timeTitle}>בחרו שעה</Text>
-
-          <View style={styles.timeSlotsRow}>
-            {timeSlots.map((slot) => {
-              const isSelected = selectedTime === slot;
-              return (
-                <TouchableOpacity
-                  key={slot}
-                  activeOpacity={0.86}
-                  style={[styles.timeChip, isSelected && styles.timeChipSelected]}
-                  onPress={() => setSelectedTime(slot)}
-                >
-                  <Text style={[styles.timeText, isSelected && styles.timeTextSelected]}>{slot}</Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-
-          <TouchableOpacity
-            activeOpacity={0.88}
-            style={styles.confirmButtonShell}
-            onPress={() => navigation.goBack()}
-            disabled={!selectedDay || !selectedTime}
-          >
+          <TouchableOpacity activeOpacity={0.88} style={styles.confirmButtonShell}>
             <LinearGradient
-              colors={selectedDay && selectedTime ? ['#38AEEF', '#2E95E3'] : ['#9DCBE7', '#8CB6D4']}
+              colors={['#38AEEF', '#2E95E3']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.confirmButton}
             >
-              <Text style={styles.confirmButtonText}>קביעת מפגש</Text>
+              <Text style={styles.confirmButtonText}>בחירת תאריך</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
       </ScrollView>
+    </>
+  );
+
+  const renderTimeStep = () => (
+    <>
+      <View style={styles.bigCircleLeft} />
+      <View style={styles.bigCircleRight} />
+
+      <View style={styles.headerTime}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.backButton} onPress={onBackPress}>
+          <Text style={styles.backButtonIcon}>‹</Text>
+        </TouchableOpacity>
+
+        <View style={styles.timeHeaderCenter}>
+          <Text style={styles.timeHeaderTitle}>קביעת מפגש חדש</Text>
+          <Text style={styles.timeHeaderSub}>תאריך נבחר: {selectedDay}.{monthLabel}</Text>
+        </View>
+      </View>
+
+      <ScrollView contentContainerStyle={styles.scrollContentTime} showsVerticalScrollIndicator={false}>
+        <View style={styles.mainCardTime}>
+          <Text style={styles.timeStepTitle}>בחירת שעה</Text>
+
+          <TimeClock selectedTime={selectedTime} />
+
+          <TouchableOpacity
+            activeOpacity={0.86}
+            style={styles.selectedTimeBox}
+            onPress={() => setShowTimeOptions((prev) => !prev)}
+          >
+            <Text style={styles.selectedTimeBig}>{selectedTime}</Text>
+            <Text style={styles.chevron}>⌄</Text>
+          </TouchableOpacity>
+
+          {showTimeOptions && (
+            <View style={styles.timeOptionsList}>
+              {timeOptions.map((option) => (
+                <TouchableOpacity
+                  key={option}
+                  activeOpacity={0.8}
+                  style={[styles.timeOptionItem, selectedTime === option && styles.timeOptionItemSelected]}
+                  onPress={() => {
+                    setSelectedTime(option);
+                    setShowTimeOptions(false);
+                  }}
+                >
+                  <Text style={[styles.timeOptionText, selectedTime === option && styles.timeOptionTextSelected]}>
+                    {option}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+
+          <TouchableOpacity
+            activeOpacity={0.88}
+            style={styles.confirmTimeButtonShell}
+            onPress={() => navigation.goBack()}
+          >
+            <LinearGradient
+              colors={['#3D8FE9', '#1575E8']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.confirmTimeButton}
+            >
+              <Text style={styles.confirmTimeButtonText}>בחירת שעה</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </>
+  );
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+
+      <LinearGradient
+        colors={['#E3F6FF', '#D7EFFC', '#C5E7FA']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.aquaticBackground}
+      />
+
+      {step === 'date' ? renderDateStep() : renderTimeStep()}
     </SafeAreaView>
   );
 }
