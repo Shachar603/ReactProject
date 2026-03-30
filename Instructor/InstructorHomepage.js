@@ -41,6 +41,7 @@ const GroupRow = ({ title, time, onCancel }) => (
 export default function InstructorHomepage() {
   const navigation = useNavigation();
   const [classGroups, setClassGroups] = React.useState(initialClassGroups);
+  const [showNavMenu, setShowNavMenu] = React.useState(false);
   const [showCreateGroupModal, setShowCreateGroupModal] = React.useState(false);
   const [showBroadcastModal, setShowBroadcastModal] = React.useState(false);
   const [broadcastMessage, setBroadcastMessage] = React.useState('');
@@ -66,7 +67,7 @@ export default function InstructorHomepage() {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
@@ -126,6 +127,39 @@ export default function InstructorHomepage() {
             </TouchableOpacity>
           </View>
         </View>
+
+        <Modal visible={showNavMenu} transparent animationType="slide">
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-start' }}>
+            <View style={{ marginTop: 80, marginHorizontal: 10, borderRadius: 16, backgroundColor: '#fff', padding: 16, minHeight: 260 }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                <Text style={{ fontSize: 18, fontWeight: '700', color: '#1D2935' }}>תפריט מדריך</Text>
+                <TouchableOpacity onPress={() => setShowNavMenu(false)} style={{ padding: 6 }}>
+                  <Text style={{ fontSize: 18 }}>✕</Text>
+                </TouchableOpacity>
+              </View>
+              {[
+                { label: 'דף הבית של מדריך', screen: 'InstructorHomepage' },
+                { label: 'בחר קבוצה', screen: 'SelectGroup' },
+                { label: 'פרטי קבוצה', screen: 'GroupDetails', params: { group: { title: 'קבוצה', subtitle: '' } } },
+                { label: 'רשימת ילדים', screen: 'ChildList' },
+                { label: 'פרופיל ילד', screen: 'ChildProfile', params: { child: { name: 'עידו כהן' } } },
+                { label: 'עריכת הישג', screen: 'EditAchievement' },
+              ].map((item) => (
+                <TouchableOpacity
+                  key={item.screen}
+                  onPress={() => {
+                    setShowNavMenu(false);
+                    navigation.navigate(item.screen, item.params || {});
+                  }}
+                  style={{ paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: '#E0E8F2' }}
+                >
+                  <Text style={{ textAlign: 'right', color: '#1A79D3', fontSize: 16, fontWeight: '700' }}>{item.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        </Modal>
+
         <Modal visible={showCreateGroupModal} transparent animationType="slide">
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', padding: 16 }}>
             <View style={{ backgroundColor: '#fff', borderRadius: 18, padding: 16 }}>

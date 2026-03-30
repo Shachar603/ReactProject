@@ -19,8 +19,8 @@ export default function SelectGroup({ navigation }) {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>←</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('InstructorHomepage')} activeOpacity={0.75} style={styles.iconButton}>
+          <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           <Text style={[styles.headerTitle, { fontSize: 28 }]}>בחר קבוצה</Text>
