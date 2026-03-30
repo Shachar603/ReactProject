@@ -117,7 +117,7 @@ export default function ParentHomepage() {
             label='דו"ח התקדמות של הילד'
             onPress={() => navigation.navigate('ParentProgressReport')}
           />
-          <ActionButton label="קביעת מפגש" onPress={() => navigation.navigate('ParentScheduleMeeting')} />
+          <ActionButton label="קביעת מפגש" onPress={() => navigation.navigate('ParentScheduleMeetingNew')} />
         </View>
       </ScrollView>
     </SafeAreaView>
