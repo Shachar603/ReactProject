@@ -9,6 +9,8 @@ import Svg, { Path } from 'react-native-svg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ManagerHomepage from './Manager/ManagerHomepage';
+import ManagerCenterSettings from './Manager/ManagerCenterSettings';
+import ManagerSystemReports from './Manager/ManagerSystemReports';
 import InstructorHomepage from './Instructor/InstructorHomepage';
 
 const { width, height } = Dimensions.get('window');
@@ -333,6 +335,8 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Homepage" component={HomeScreen} />
         <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
+        <Stack.Screen name="ManagerCenterSettings" component={ManagerCenterSettings} />
+        <Stack.Screen name="ManagerSystemReports" component={ManagerSystemReports} />
         <Stack.Screen name="InstructorHomepage" component={InstructorHomepage} />
       </Stack.Navigator>
     </NavigationContainer>
