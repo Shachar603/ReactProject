@@ -6,6 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Modal,
+  TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,6 +41,20 @@ const GroupRow = ({ title, time, onCancel }) => (
 export default function InstructorHomepage() {
   const navigation = useNavigation();
   const [classGroups, setClassGroups] = React.useState(initialClassGroups);
+  const [showCreateGroupModal, setShowCreateGroupModal] = React.useState(false);
+  const [newGroupName, setNewGroupName] = React.useState('קבוצת דגים');
+  const [newLessonTime, setNewLessonTime] = React.useState('12:00 - 12:30');
+  const [newAge, setNewAge] = React.useState('10');
+  const [newParticipants, setNewParticipants] = React.useState('5');
+
+  const createGroup = () => {
+    if (!newGroupName.trim()) {
+      alert('נא להזין שם קבוצה');
+      return;
+    }
+    setClassGroups((prev) => [...prev, { name: newGroupName, time: newLessonTime }]);
+    setShowCreateGroupModal(false);
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -95,11 +111,76 @@ export default function InstructorHomepage() {
               <Text style={styles.actionButtonText}>שלח הודעה לכלל הקבוצות</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#1C74DE' }]} onPress={() => navigation.navigate('CreateGroup')}>
+            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#1C74DE' }]} onPress={() => setShowCreateGroupModal(true)}>
               <Text style={styles.actionButtonText}>יצירת קבוצה חדשה</Text>
             </TouchableOpacity>
           </View>
         </View>
+
+        <Modal visible={showCreateGroupModal} transparent animationType="slide">
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', padding: 16 }}>
+            <View style={{ backgroundColor: '#fff', borderRadius: 18, padding: 16 }}>
+              <Text style={{ fontSize: 20, fontWeight: '700', marginBottom: 10 }}>יצירת קבוצה חדשה</Text>
+
+              <Text style={{ marginBottom: 6, fontWeight: '700' }}>שם קבוצה</Text>
+              <TextInput
+                value={newGroupName}
+                onChangeText={setNewGroupName}
+                style={{ backgroundColor: '#F7FAFF', borderRadius: 10, padding: 10, marginBottom: 10, borderWidth: 1, borderColor: '#D1E5FD' }}
+              />
+
+              <Text style={{ marginBottom: 6, fontWeight: '700' }}>זמן שיעור</Text>
+              <TextInput
+                value={newLessonTime}
+                onChangeText={setNewLessonTime}
+                placeholder="12:00 - 12:30"
+                style={{ backgroundColor: '#F7FAFF', borderRadius: 10, padding: 10, marginBottom: 10, borderWidth: 1, borderColor: '#D1E5FD' }}
+              />
+
+              <Text style={{ marginBottom: 6, fontWeight: '700' }}>גיל</Text>
+              <TextInput
+                value={newAge}
+                onChangeText={(value) => setNewAge(value.replace(/[^0-9]/g, ''))}
+                keyboardType="numeric"
+                style={{ backgroundColor: '#F7FAFF', borderRadius: 10, padding: 10, marginBottom: 10, borderWidth: 1, borderColor: '#D1E5FD' }}
+              />
+
+              <Text style={{ marginBottom: 6, fontWeight: '700' }}>מספר משתתפים</Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginBottom: 14, gap: 6 }}>
+                {['5','6','7','8','9','10','11','12'].map((n) => (
+                  <TouchableOpacity
+                    key={n}
+                    onPress={() => setNewParticipants(n)}
+                    style={{
+                      paddingVertical: 8,
+                      paddingHorizontal: 12,
+                      borderRadius: 10,
+                      backgroundColor: newParticipants === n ? '#1A79D3' : '#EAF2FB',
+                    }}
+                  >
+                    <Text style={{ color: newParticipants === n ? '#fff' : '#1A79D3', fontWeight: '700' }}>{n}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
+                <TouchableOpacity
+                  onPress={() => setShowCreateGroupModal(false)}
+                  style={{ flex: 1, backgroundColor: '#CCC', borderRadius: 12, padding: 12, alignItems: 'center' }}
+                >
+                  <Text>ביטול</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={createGroup}
+                  style={{ flex: 1, backgroundColor: '#1A79D3', borderRadius: 12, padding: 12, alignItems: 'center' }}
+                >
+                  <Text style={{ color: '#fff', fontWeight: '700' }}>שמור</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+
       </ScrollView>
     </SafeAreaView>
   );
