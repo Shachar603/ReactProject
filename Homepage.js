@@ -9,6 +9,7 @@ import Svg, { Path } from 'react-native-svg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ManagerHomepage from './Manager/ManagerHomepage';
+import InstructorHomepage from './Instructor/InstructorHomepage';
 
 const { width, height } = Dimensions.get('window');
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -225,8 +226,26 @@ function HomeScreen({ navigation }) {
             Experience the perfect blend of ocean depths and poolside paradise. Your tranquil escape awaits.
           </Text>
           <TouchableOpacity
-            style={styles.primaryBtn}
+            style={[styles.primaryBtn, { marginBottom: 12 }]}
+            onPress={() => navigation.navigate('InstructorHomepage')}
+          >
+            <LinearGradient colors={['#00d4ff', '#0099cc']} style={styles.btnGradient}>
+              <Text style={styles.primaryBtnText}>לוח מדריך</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.primaryBtn, { marginBottom: 12, backgroundColor: '#327ACD' }]}
             onPress={() => navigation.navigate('ManagerHomepage')}
+          >
+            <LinearGradient colors={['#1D7FD0', '#185FA4']} style={styles.btnGradient}>
+              <Text style={styles.primaryBtnText}>לוח מנהל</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.primaryBtn}
+            onPress={() => alert('בחרת לחקור עוד תכונות')}
           >
             <LinearGradient colors={['#00d4ff', '#0099cc']} style={styles.btnGradient}>
               <Text style={styles.primaryBtnText}>Explore Features</Text>
@@ -314,6 +333,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Homepage" component={HomeScreen} />
         <Stack.Screen name="ManagerHomepage" component={ManagerHomepage} />
+        <Stack.Screen name="InstructorHomepage" component={InstructorHomepage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
