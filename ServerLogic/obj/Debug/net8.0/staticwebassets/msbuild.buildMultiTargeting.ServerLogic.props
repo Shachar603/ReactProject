@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\ServerLogic.props" />
-</Project>

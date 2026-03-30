@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServerLogic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06ea77c727bb3542d607aecb9b441276d73edbe8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServerLogic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServerLogic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
