@@ -85,27 +85,44 @@ const TimeClock = ({ selectedTime }) => {
   );
 };
 
-export default function ParentScheduleMeeting() {
+export default function ParentScheduleMeeting({ route }) {
   const navigation = useNavigation();
   const { monthLabel, cells } = useMemo(() => getMonthConfig(), []);
+  const mode = route?.params?.mode || 'date';
+  const onSelectDate = route?.params?.onSelectDate;
+  const onSelectTime = route?.params?.onSelectTime;
 
-  const [step, setStep] = useState('date');
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedTime, setSelectedTime] = useState('10:00');
+  const [selectedDay, setSelectedDay] = useState(route?.params?.selectedDay || null);
+  const [selectedTime, setSelectedTime] = useState(route?.params?.selectedTime || '10:00');
   const [showTimeOptions, setShowTimeOptions] = useState(false);
 
   const onBackPress = () => {
-    if (step === 'time') {
-      setStep('date');
-      setShowTimeOptions(false);
-      return;
-    }
+    setShowTimeOptions(false);
     navigation.goBack();
   };
 
   const onDayPress = (day) => {
     setSelectedDay(day);
-    setStep('time');
+  };
+
+  const onConfirmDate = () => {
+    if (!selectedDay) {
+      return;
+    }
+
+    if (typeof onSelectDate === 'function') {
+      onSelectDate({ day: selectedDay, monthLabel });
+    }
+
+    navigation.goBack();
+  };
+
+  const onConfirmTime = () => {
+    if (typeof onSelectTime === 'function') {
+      onSelectTime(selectedTime);
+    }
+
+    navigation.goBack();
   };
 
   const renderDateStep = () => (
@@ -167,7 +184,7 @@ export default function ParentScheduleMeeting() {
             })}
           </View>
 
-          <TouchableOpacity activeOpacity={0.88} style={styles.confirmButtonShell}>
+          <TouchableOpacity activeOpacity={0.88} style={styles.confirmButtonShell} onPress={onConfirmDate}>
             <LinearGradient
               colors={['#38AEEF', '#2E95E3']}
               start={{ x: 0, y: 0 }}
@@ -236,7 +253,7 @@ export default function ParentScheduleMeeting() {
           <TouchableOpacity
             activeOpacity={0.88}
             style={styles.confirmTimeButtonShell}
-            onPress={() => navigation.goBack()}
+            onPress={onConfirmTime}
           >
             <LinearGradient
               colors={['#3D8FE9', '#1575E8']}
@@ -263,7 +280,7 @@ export default function ParentScheduleMeeting() {
         style={styles.aquaticBackground}
       />
 
-      {step === 'date' ? renderDateStep() : renderTimeStep()}
+      {mode === 'date' ? renderDateStep() : renderTimeStep()}
     </SafeAreaView>
   );
 }
