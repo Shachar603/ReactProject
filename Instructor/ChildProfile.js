@@ -47,17 +47,33 @@ export default function ChildProfile() {
             { label: 'משימת בית חדשה', info: 'קריאה באורך 20 דקות', color: '#FF4D61' },
             { label: 'נוכחות מלאה', info: '10/10 שיעורים', color: '#27B73C' },
             { label: 'ציון מבחן', info: '95%', color: '#3C9EF4' },
-          ].map((item, idx) => (
-            <View key={idx} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 10, borderBottomColor: idx < 2 ? '#E5F1FB' : 'transparent', borderBottomWidth: 1 }}>
-              <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                <Text style={{ color: '#2F78C9', fontWeight: '700', writingDirection: 'rtl' }}>{item.label}</Text>
-                <Text style={{ color: '#5F7D9E', fontSize: 13, writingDirection: 'rtl' }}>{item.info}</Text>
-              </View>
-              <View style={{ width: 86, height: 26, borderRadius: 13, backgroundColor: item.color, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: 'white', fontSize: 12, fontWeight: '700', writingDirection: 'rtl' }}>עדכן</Text>
-              </View>
-            </View>
-          ))}
+          ].map((item, idx) => {
+            return (
+              <TouchableOpacity
+                key={idx}
+                activeOpacity={0.75}
+                onPress={() => {
+                  navigation.navigate('EditAchievement', { achievement: item });
+                }}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingVertical: 10,
+                  borderBottomColor: idx < 2 ? '#E5F1FB' : 'transparent',
+                  borderBottomWidth: 1,
+                }}
+              >
+                <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                  <Text style={{ color: '#2F78C9', fontWeight: '700', writingDirection: 'rtl' }}>{item.label}</Text>
+                  <Text style={{ color: '#5F7D9E', fontSize: 13, writingDirection: 'rtl' }}>{item.info}</Text>
+                </View>
+                <View style={{ width: 86, height: 26, borderRadius: 13, backgroundColor: item.color, justifyContent: 'center', alignItems: 'center' }}>
+                  <Text style={{ color: 'white', fontSize: 12, fontWeight: '700', writingDirection: 'rtl' }}>עדכן</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         <View style={{ marginTop: 16, gap: 10 }}>
@@ -65,7 +81,10 @@ export default function ChildProfile() {
             <Text style={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}>צ׳אט עם ההורה</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#3C96F0' }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ParentProgressReport', { child })}
+            style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#3C96F0' }}
+          >
             <Text style={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}>דיווח התקדמות הילד</Text>
           </TouchableOpacity>
 

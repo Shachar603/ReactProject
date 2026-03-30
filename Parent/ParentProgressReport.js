@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentProgressReport.styles';
 
@@ -70,6 +71,9 @@ const ActionButton = ({ label }) => (
 );
 
 export default function ParentProgressReport({ navigation }) {
+  const route = useRoute();
+  const child = route.params?.child || { name: 'עומר', group: 'קבוצת דולפינים' };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -103,7 +107,7 @@ export default function ParentProgressReport({ navigation }) {
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>
           <View style={styles.reportHeader}>
-            <Text style={styles.reportChild}>עומר - קבוצת דולפינים</Text>
+            <Text style={styles.reportChild}>{`${child.name} - ${child.group}`}</Text>
             <Text style={styles.reportDate}>תאריכים: החודש האחרון</Text>
           </View>
 
