@@ -4,6 +4,19 @@
     "title": "ServerLogic",
     "version": "1.0"
   },
-  "paths": { },
+  "paths": {
+    "/api/health/db": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
   "components": { }
 }
