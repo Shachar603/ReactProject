@@ -6,6 +6,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import Svg, { Path } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -178,7 +179,8 @@ const Bubble = () => {
 // ========================================
 // 3. HOME SCREEN COMPONENT
 // ========================================
-export default function Homepage({ navigation }) {
+export default function Homepage() {
+  const navigation = useNavigation();
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showPassword, setShowPassword] = useState(false);
 
@@ -459,6 +461,9 @@ export default function Homepage({ navigation }) {
     </View>
   );
 }
+
+// `Homepage` is the main component for this file; navigator lives in App.js.
+// App-level navigation is now handled in `App.js`, so we don't need another default export here.
 
 // ========================================
 // STYLES
