@@ -42,6 +42,8 @@ export default function InstructorHomepage() {
   const navigation = useNavigation();
   const [classGroups, setClassGroups] = React.useState(initialClassGroups);
   const [showCreateGroupModal, setShowCreateGroupModal] = React.useState(false);
+  const [showBroadcastModal, setShowBroadcastModal] = React.useState(false);
+  const [broadcastMessage, setBroadcastMessage] = React.useState('');
   const [newGroupName, setNewGroupName] = React.useState('קבוצת דגים');
   const [newLessonTime, setNewLessonTime] = React.useState('12:00 - 12:30');
   const [newAge, setNewAge] = React.useState('10');
@@ -99,24 +101,31 @@ export default function InstructorHomepage() {
           ))}
 
           <View style={styles.bottomActions}>
-          <TouchableOpacity
-            activeOpacity={0.85}
-            style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
-            onPress={() => navigation.navigate('SelectGroup')}
-          >
+            <TouchableOpacity
+              activeOpacity={0.85}
+              style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
+              onPress={() => navigation.navigate('SelectGroup')}
+            >
               <Text style={styles.actionButtonText}>הצג את כלל הקבוצות</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#1A79D3' }]}>
-              <Text style={styles.actionButtonText}>שלח הודעה לכלל הקבוצות</Text>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              style={[styles.actionButton, { backgroundColor: '#1A79D3' }]}
+              onPress={() => setShowBroadcastModal(true)}
+            >
+              <Text style={styles.actionButtonText}>שדר הודעה</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.85} style={[styles.actionButton, { backgroundColor: '#1C74DE' }]} onPress={() => setShowCreateGroupModal(true)}>
-              <Text style={styles.actionButtonText}>יצירת קבוצה חדשה</Text>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              style={[styles.actionButton, { backgroundColor: '#0F8D1E' }]}
+              onPress={() => setShowCreateGroupModal(true)}
+            >
+              <Text style={styles.actionButtonText}>צור קבוצה חדשה</Text>
             </TouchableOpacity>
           </View>
         </View>
-
         <Modal visible={showCreateGroupModal} transparent animationType="slide">
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', padding: 16 }}>
             <View style={{ backgroundColor: '#fff', borderRadius: 18, padding: 16 }}>
@@ -175,6 +184,43 @@ export default function InstructorHomepage() {
                   style={{ flex: 1, backgroundColor: '#1A79D3', borderRadius: 12, padding: 12, alignItems: 'center' }}
                 >
                   <Text style={{ color: '#fff', fontWeight: '700' }}>שמור</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+
+        <Modal visible={showBroadcastModal} transparent animationType="fade">
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', padding: 16 }}>
+            <View style={{ backgroundColor: '#fff', borderRadius: 18, padding: 16 }}>
+              <Text style={{ fontSize: 20, fontWeight: '700', marginBottom: 10 }}>שידור הודעה לכל קבוצות</Text>
+              <TextInput
+                value={broadcastMessage}
+                onChangeText={setBroadcastMessage}
+                placeholder="הקלד הודעה..."
+                multiline
+                style={{ minHeight: 90, backgroundColor: '#F7FAFF', borderRadius: 10, padding: 10, marginBottom: 10, borderWidth: 1, borderColor: '#D1E5FD' }}
+              />
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
+                <TouchableOpacity
+                  onPress={() => setShowBroadcastModal(false)}
+                  style={{ flex: 1, backgroundColor: '#CCC', borderRadius: 12, padding: 12, alignItems: 'center' }}
+                >
+                  <Text>ביטול</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    if (!broadcastMessage.trim()) {
+                      alert('נא להזין הודעה');
+                      return;
+                    }
+                    alert('ההודעה נשלחה בהצלחה!');
+                    setBroadcastMessage('');
+                    setShowBroadcastModal(false);
+                  }}
+                  style={{ flex: 1, backgroundColor: '#1A79D3', borderRadius: 12, padding: 12, alignItems: 'center' }}
+                >
+                  <Text style={{ color: '#fff', fontWeight: '700' }}>שלח</Text>
                 </TouchableOpacity>
               </View>
             </View>
