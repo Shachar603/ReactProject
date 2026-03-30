@@ -10,6 +10,8 @@ export default function EditAchievement() {
   const [title, setTitle] = useState(achievement.label);
   const [info, setInfo] = useState(achievement.info);
 
+  const onSave = route.params?.onSave;
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#E8ECEF' }}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -51,7 +53,14 @@ export default function EditAchievement() {
 
               <TouchableOpacity
                 onPress={() => {
-                  // TODO: save logic - integrate with your backend/state as needed
+                  const updated = {
+                    label: title,
+                    info: info,
+                    color: achievement.color || '#FF4D61',
+                  };
+                  if (onSave) {
+                    onSave(updated);
+                  }
                   navigation.goBack();
                 }}
                 style={{ flex: 1, marginLeft: 8, backgroundColor: '#4DA7FF', borderRadius: 14, height: 46, justifyContent: 'center', alignItems: 'center' }}

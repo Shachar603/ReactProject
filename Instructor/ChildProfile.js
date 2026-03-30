@@ -9,6 +9,12 @@ export default function ChildProfile() {
   const child = route.params?.child || { name: 'אור', class: 'כיתה ח', status: 'פעיל' };
   const initial = child.name[0] || 'א';
 
+  const [events, setEvents] = React.useState([
+    { label: 'משימת בית חדשה', info: 'קריאה באורך 20 דקות', color: '#FF4D61' },
+    { label: 'נוכחות מלאה', info: '10/10 שיעורים', color: '#27B73C' },
+    { label: 'ציון מבחן', info: '95%', color: '#3C9EF4' },
+  ]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -43,17 +49,19 @@ export default function ChildProfile() {
         <View style={{ borderRadius: 20, backgroundColor: '#F5FAFF', borderWidth: 1, borderColor: '#C9E4FD', padding: 14, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 2 }, shadowRadius: 6, elevation: 3 }}>
           <Text style={{ fontSize: 18, fontWeight: '700', color: '#2B6D9F', marginBottom: 10, writingDirection: 'rtl' }}>אירועים אחרונים</Text>
 
-          {[
-            { label: 'משימת בית חדשה', info: 'קריאה באורך 20 דקות', color: '#FF4D61' },
-            { label: 'נוכחות מלאה', info: '10/10 שיעורים', color: '#27B73C' },
-            { label: 'ציון מבחן', info: '95%', color: '#3C9EF4' },
-          ].map((item, idx) => {
+          {events.map((item, idx) => {
             return (
               <TouchableOpacity
                 key={idx}
                 activeOpacity={0.75}
                 onPress={() => {
-                  navigation.navigate('EditAchievement', { achievement: item });
+                  navigation.navigate('EditAchievement', {
+                    achievement: item,
+                    index: idx,
+                    onSave: (updatedItem) => {
+                      setEvents((prev) => prev.map((ev, i) => (i === idx ? updatedItem : ev)));
+                    },
+                  });
                 }}
                 style={{
                   flexDirection: 'row',
@@ -77,7 +85,10 @@ export default function ChildProfile() {
         </View>
 
         <View style={{ marginTop: 16, gap: 10 }}>
-          <TouchableOpacity style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1A79D3' }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ParentChat', { child, fromInstructor: true })}
+            style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1A79D3' }}
+          >
             <Text style={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}>צ׳אט עם ההורה</Text>
           </TouchableOpacity>
 

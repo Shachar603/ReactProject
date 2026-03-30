@@ -8,6 +8,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentChat.styles';
 
@@ -44,6 +45,8 @@ const MessageBubble = ({ side, text }) => {
 };
 
 export default function ParentChat({ navigation }) {
+  const route = useRoute();
+  const fromInstructor = route.params?.fromInstructor ?? false;
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState('');
 
@@ -57,7 +60,7 @@ export default function ParentChat({ navigation }) {
       ...prev,
       {
         id: String(prev.length + 1),
-        side: 'right',
+        side: fromInstructor ? 'left' : 'right',
         text: trimmed,
       },
     ]);
