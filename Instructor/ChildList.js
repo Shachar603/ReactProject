@@ -39,9 +39,13 @@ export default function ChildList() {
           <Text style={{ color: '#2B6D9F', fontWeight: '700', fontSize: 16 }}>רשימת הילדים</Text>
           {children.map((child) => (
             <View key={child.name} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 12, paddingVertical: 10, paddingHorizontal: 12, borderRadius: 12, borderWidth: 1, borderColor: '#E6F0FF', backgroundColor: '#FAFDFF' }}>
-              <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: '#C4E4FF', justifyContent: 'center', alignItems: 'center', marginRight: 10 }}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('ChildProfile', { child })}
+                activeOpacity={0.7}
+                style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: '#C4E4FF', justifyContent: 'center', alignItems: 'center', marginRight: 10 }}
+              >
                 <Text style={{ color: '#2F78C9', fontWeight: '700' }}>{child.name[0]}</Text>
-              </View>
+              </TouchableOpacity>
               <View style={{ flex: 1, alignItems: 'flex-end' }}>
                 <Text style={{ color: '#233F5B', fontWeight: '700' }}>{child.name}</Text>
                 <Text style={{ color: '#6A7C9A', fontSize: 12 }}>{child.class} • {child.status}</Text>

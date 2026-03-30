@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentProgressReport.styles';
 
@@ -18,9 +17,38 @@ const reportRows = [
   { label: 'שיתוף פעולה בשיעור', value: 'מצוין' },
 ];
 
-export default function ParentProgressReport() {
-  const navigation = useNavigation();
+const ProgressBar = ({ label, value, percent }) => (
+  <View style={styles.progressItem}>
+    <View style={styles.progressLabelRow}>
+      <Text style={styles.progressLabel}>{label}</Text>
+      <Text style={styles.progressPercent}>{percent}</Text>
+    </View>
 
+    <View style={styles.progressTrack}>
+      <LinearGradient
+        colors={['#39A9EA', '#2293DE']}
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={[styles.progressFill, { width: `${value * 100}%` }]}
+      />
+    </View>
+  </View>
+);
+
+const ActionButton = ({ label }) => (
+  <TouchableOpacity activeOpacity={0.86} style={styles.actionButtonShell}>
+    <LinearGradient
+      colors={['#38AEEF', '#2E95E3']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.actionButton}
+    >
+      <Text style={styles.actionButtonText}>{label}</Text>
+    </LinearGradient>
+  </TouchableOpacity>
+);
+
+export default function ParentProgressReport({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -50,15 +78,10 @@ export default function ParentProgressReport() {
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>
-          <Text style={styles.childName}>נעמה שוורצנגר</Text>
-          <Text style={styles.reportDate}>תאריכים: החודש האחרון</Text>
-
-          {reportRows.map((row) => (
-            <View key={row.label} style={styles.reportRow}>
-              <Text style={styles.reportLabel}>{row.label}</Text>
-              <Text style={styles.reportValue}>{row.value}</Text>
-            </View>
-          ))}
+          <View style={styles.reportHeader}>
+            <Text style={styles.reportChild}>עומר - קבוצת דולפינים</Text>
+            <Text style={styles.reportDate}>תאריכים: החודש האחרון</Text>
+          </View>
 
           <TouchableOpacity activeOpacity={0.88} style={styles.buttonShell} onPress={() => navigation.goBack()}>
             <LinearGradient
