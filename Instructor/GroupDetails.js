@@ -2,11 +2,14 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './InstructorHomepage.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { instructorMenuItems, instructorMenuTitle } from '../roleMenus';
 
 export default function GroupDetails() {
   const navigation = useNavigation();
   const route = useRoute();
   const { group } = route.params || { group: { title: 'קבוצה', subtitle: '' } };
+  const [showNavMenu, setShowNavMenu] = React.useState(false);
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: '#F2F8FF' }]}>
@@ -16,7 +19,7 @@ export default function GroupDetails() {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('InstructorHomepage')} activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity onPress={() => setShowNavMenu(true)} activeOpacity={0.75} style={styles.iconButton}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
         <View style={styles.headerCenter}>
@@ -25,6 +28,14 @@ export default function GroupDetails() {
         </View>
         <View style={styles.iconButton} />
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={instructorMenuTitle}
+        items={instructorMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 18, paddingBottom: 24 }}>
         <View style={{ borderRadius: 16, backgroundColor: '#fff', padding: 16, marginBottom: 16, borderWidth: 1, borderColor: '#D8E9FA' }}>

@@ -12,6 +12,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './InstructorHomepage.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { instructorMenuItems, instructorMenuTitle } from '../roleMenus';
 
 const initialClassGroups = [
   { name: 'קבוצת השיטור', time: '10:00 - 10:30' },
@@ -128,37 +130,13 @@ export default function InstructorHomepage() {
           </View>
         </View>
 
-        <Modal visible={showNavMenu} transparent animationType="slide">
-          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-start' }}>
-            <View style={{ marginTop: 80, marginHorizontal: 10, borderRadius: 16, backgroundColor: '#fff', padding: 16, minHeight: 260 }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                <Text style={{ fontSize: 18, fontWeight: '700', color: '#1D2935' }}>תפריט מדריך</Text>
-                <TouchableOpacity onPress={() => setShowNavMenu(false)} style={{ padding: 6 }}>
-                  <Text style={{ fontSize: 18 }}>✕</Text>
-                </TouchableOpacity>
-              </View>
-              {[
-                { label: 'דף הבית של מדריך', screen: 'InstructorHomepage' },
-                { label: 'בחר קבוצה', screen: 'SelectGroup' },
-                { label: 'פרטי קבוצה', screen: 'GroupDetails', params: { group: { title: 'קבוצה', subtitle: '' } } },
-                { label: 'רשימת ילדים', screen: 'ChildList' },
-                { label: 'פרופיל ילד', screen: 'ChildProfile', params: { child: { name: 'עידו כהן' } } },
-                { label: 'עריכת הישג', screen: 'EditAchievement' },
-              ].map((item) => (
-                <TouchableOpacity
-                  key={item.screen}
-                  onPress={() => {
-                    setShowNavMenu(false);
-                    navigation.navigate(item.screen, item.params || {});
-                  }}
-                  style={{ paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: '#E0E8F2' }}
-                >
-                  <Text style={{ textAlign: 'right', color: '#1A79D3', fontSize: 16, fontWeight: '700' }}>{item.label}</Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-        </Modal>
+        <RoleMenuModal
+          visible={showNavMenu}
+          onClose={() => setShowNavMenu(false)}
+          title={instructorMenuTitle}
+          items={instructorMenuItems}
+          navigation={navigation}
+        />
 
         <Modal visible={showCreateGroupModal} transparent animationType="slide">
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', padding: 16 }}>

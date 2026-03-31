@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -10,6 +9,8 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerHomepage.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { managerMenuItems, managerMenuTitle } from '../roleMenus';
 
 const groupCards = [
   'קבוצת אלופונים',
@@ -41,12 +42,7 @@ const GroupRow = ({ title }) => (
 );
 
 export default function ManagerHomepage({ navigation }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navigateToCenterSettings = () => {
-    setIsMenuOpen(false);
-    navigation.navigate('ManagerCenterSettings');
-  };
+  const [showNavMenu, setShowNavMenu] = useState(false);
 
   const navigateToSystemReports = () => {
     navigation.navigate('ManagerSystemReports');
@@ -72,7 +68,7 @@ export default function ManagerHomepage({ navigation }) {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.iconButton}
-          onPress={() => setIsMenuOpen((prev) => !prev)}
+          onPress={() => setShowNavMenu(true)}
         >
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
@@ -87,19 +83,13 @@ export default function ManagerHomepage({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {isMenuOpen ? (
-        <Pressable style={styles.menuBackdrop} onPress={() => setIsMenuOpen(false)}>
-          <View style={styles.menuPanel}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={styles.menuItem}
-              onPress={navigateToCenterSettings}
-            >
-              <Text style={styles.menuItemText}>הגדרות מרכז</Text>
-            </TouchableOpacity>
-          </View>
-        </Pressable>
-      ) : null}
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={managerMenuTitle}
+        items={managerMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>

@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerCenterSettings.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { managerMenuItems, managerMenuTitle } from '../roleMenus';
 
 const ToggleRow = ({ label, value, onValueChange, disabled = false }) => (
   <View style={styles.toggleRow}>
@@ -26,10 +28,11 @@ const ToggleRow = ({ label, value, onValueChange, disabled = false }) => (
   </View>
 );
 
-export default function ManagerCenterSettings() {
+export default function ManagerCenterSettings({ navigation }) {
   const [sendAutoReports, setSendAutoReports] = useState(true);
   const [receiveAlerts, setReceiveAlerts] = useState(true);
   const [showKidsAdvanced, setShowKidsAdvanced] = useState(false);
+  const [showNavMenu, setShowNavMenu] = useState(false);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -48,7 +51,7 @@ export default function ManagerCenterSettings() {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
@@ -61,6 +64,14 @@ export default function ManagerCenterSettings() {
           <Text style={styles.headerIcon}>⌕</Text>
         </TouchableOpacity>
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={managerMenuTitle}
+        items={managerMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>

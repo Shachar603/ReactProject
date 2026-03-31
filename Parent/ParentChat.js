@@ -11,6 +11,8 @@ import {
 import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentChat.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { parentMenuItems, parentMenuTitle } from '../roleMenus';
 
 const initialMessages = [
   {
@@ -49,6 +51,7 @@ export default function ParentChat({ navigation }) {
   const fromInstructor = route.params?.fromInstructor ?? false;
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState('');
+  const [showNavMenu, setShowNavMenu] = useState(false);
 
   const handleSend = () => {
     const trimmed = input.trim();
@@ -82,7 +85,7 @@ export default function ParentChat({ navigation }) {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => navigation.goBack()}>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
@@ -96,6 +99,14 @@ export default function ParentChat({ navigation }) {
           <Text style={styles.searchLabel}>חיפוש</Text>
         </TouchableOpacity>
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={parentMenuTitle}
+        items={parentMenuItems}
+        navigation={navigation}
+      />
 
       <View style={styles.chatCard}>
         <ScrollView contentContainerStyle={styles.messagesContainer} showsVerticalScrollIndicator={false}>

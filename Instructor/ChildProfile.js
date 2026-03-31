@@ -2,6 +2,8 @@ import React from 'react';
 import { SafeAreaView, StatusBar, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './InstructorHomepage.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { instructorMenuItems, instructorMenuTitle } from '../roleMenus';
 
 
 export default function ChildProfile() {
@@ -9,6 +11,7 @@ export default function ChildProfile() {
   const route = useRoute();
   const child = route.params?.child || { name: 'אור', class: 'כיתה ח', status: 'פעיל' };
   const initial = child.name[0] || 'א';
+  const [showNavMenu, setShowNavMenu] = React.useState(false);
 
   const [events, setEvents] = React.useState([
     { label: 'משימת בית חדשה', info: 'קריאה באורך 20 דקות', color: '#FF4D61' },
@@ -24,7 +27,7 @@ export default function ChildProfile() {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('InstructorHomepage')} activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity onPress={() => setShowNavMenu(true)} activeOpacity={0.75} style={styles.iconButton}>
           <Text style={[styles.headerIcon, { color: '#1A79D3' }]}>☰</Text>
         </TouchableOpacity>
 
@@ -37,6 +40,14 @@ export default function ChildProfile() {
           <Text style={[styles.headerIcon, { color: '#1A79D3' }]}>🔍</Text>
         </TouchableOpacity>
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={instructorMenuTitle}
+        items={instructorMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}>
         <View style={{ marginTop: 16, marginBottom: 12, alignItems: 'center' }}>
