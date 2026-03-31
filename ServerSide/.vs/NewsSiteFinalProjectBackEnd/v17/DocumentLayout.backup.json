@@ -1,0 +1,206 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\dal\\dbget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\dal\\dbget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\reactserverside.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\reactserverside.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\models\\parent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\models\\parent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\models\\instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\models\\instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\models\\children.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\models\\children.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\controllers\\instructorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\controllers\\instructorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\controllers\\childrencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\controllers\\childrencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\second year coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\finalproject!\\serverfinalproject\\newssitefinalprojectbackend\\newssitefinalprojectbackend\\controllers\\parentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B455D1A8-4A45-4BF9-AF0F-0B3694D75398}|NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj|solutionrelative:newssitefinalprojectbackend\\controllers\\parentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Properties\\launchSettings.json",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-31T16:03:21.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Children.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Models\\Children.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Models\\Children.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Models\\Children.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Models\\Children.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:41:41.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DBGet.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\DAL\\DBGet.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\DAL\\DBGet.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\DAL\\DBGet.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\DAL\\DBGet.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:39:37.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InstructorController.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Controllers\\InstructorController.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Controllers\\InstructorController.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Controllers\\InstructorController.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Controllers\\InstructorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:41:20.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ChildrenController.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Controllers\\ChildrenController.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Controllers\\ChildrenController.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Controllers\\ChildrenController.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Controllers\\ChildrenController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:40:58.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ParentController.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Controllers\\ParentController.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Controllers\\ParentController.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Controllers\\ParentController.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Controllers\\ParentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:41:25.811Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\appsettings.json",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\appsettings.json",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-31T15:41:50.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Instructor.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Models\\Instructor.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Models\\Instructor.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Models\\Instructor.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Models\\Instructor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:41:44.939Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Parent.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Models\\Parent.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Models\\Parent.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Models\\Parent.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Models\\Parent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:41:47.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Program.cs",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\Program.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\Program.cs",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T15:59:03.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReactServerSide.csproj",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj",
+              "RelativeDocumentMoniker": "NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Second Year Coding!\\\u05E1\u05DE\u05E1\u05D8\u05E8 \u05D1\\\u05E6\u05D3 \u05E9\u05E8\u05EA\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj",
+              "RelativeToolTip": "NewsSiteFinalProjectBackEnd\\ReactServerSide.csproj",
+              "ViewState": "AgIAAAYAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-31T15:58:12.26Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\אור\\Desktop\\Second Year Coding!\\סמסטר ב\\צד שרת\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\אור\\Desktop\\Second Year Coding!\\סמסטר ב\\צד שרת\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\אור\\Desktop\\Second Year Coding!\\סמסטר ב\\צד שרת\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd.csproj",
+        "projectName": "NewsSiteFinalProjectBackEnd",
+        "projectPath": "C:\\Users\\אור\\Desktop\\Second Year Coding!\\סמסטר ב\\צד שרת\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd.csproj",
+        "packagesPath": "C:\\Users\\אור\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\אור\\Desktop\\Second Year Coding!\\סמסטר ב\\צד שרת\\FinalProject!\\ServerFinalProject\\NewsSiteFinalProjectBackEnd\\NewsSiteFinalProjectBackEnd\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\אור\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "System.Diagnostics.PerformanceCounter": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "System.Security.Permissions": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.309\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

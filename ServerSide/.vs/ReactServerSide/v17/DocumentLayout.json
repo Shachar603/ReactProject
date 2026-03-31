@@ -1,0 +1,62 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Third Year Coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\AutismSwim Backend Server\\ServerSide\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9178D1BB-774A-06DA-E683-324D12B5A3B6}|ReactServerSide\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\third year coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\autismswim backend server\\serverside\\reactserverside\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9178D1BB-774A-06DA-E683-324D12B5A3B6}|ReactServerSide\\ReactServerSide.csproj|solutionrelative:reactserverside\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9178D1BB-774A-06DA-E683-324D12B5A3B6}|ReactServerSide\\ReactServerSide.csproj|c:\\users\\\u05D0\u05D5\u05E8\\desktop\\third year coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\autismswim backend server\\serverside\\reactserverside\\controllers\\dbtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9178D1BB-774A-06DA-E683-324D12B5A3B6}|ReactServerSide\\ReactServerSide.csproj|solutionrelative:reactserverside\\controllers\\dbtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Third Year Coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\AutismSwim Backend Server\\ServerSide\\ReactServerSide\\appsettings.json",
+              "RelativeDocumentMoniker": "ReactServerSide\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Third Year Coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\AutismSwim Backend Server\\ServerSide\\ReactServerSide\\appsettings.json",
+              "RelativeToolTip": "ReactServerSide\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-31T16:15:28.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DBTest.cs",
+              "DocumentMoniker": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Third Year Coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\AutismSwim Backend Server\\ServerSide\\ReactServerSide\\Controllers\\DBTest.cs",
+              "RelativeDocumentMoniker": "ReactServerSide\\Controllers\\DBTest.cs",
+              "ToolTip": "C:\\Users\\\u05D0\u05D5\u05E8\\Desktop\\Third Year Coding!\\\u05E4\u05D9\u05EA\u05D5\u05D7 \u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D5\u05EA\\AutismSwim Backend Server\\ServerSide\\ReactServerSide\\Controllers\\DBTest.cs",
+              "RelativeToolTip": "ReactServerSide\\Controllers\\DBTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T16:14:53.748Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
