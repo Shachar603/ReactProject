@@ -11,6 +11,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerAttendanceReport.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { managerMenuItems, managerMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const summaryCards = [
   { id: 'present', value: '22', label: 'ימי נוכחות', tone: 'present' },
@@ -47,33 +50,13 @@ export default function ManagerAttendanceReport({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <LinearGradient
-        colors={['#DFF4FF', '#CDEBFA', '#B8DFF5', '#A5D6F1']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="manager" />
+      <RoleHeader
+        title={'דו"ח נוכחות מפורט'}
+        subtitle="נתוני חיסורים, איחורים ונוכחות לפי תאריכים"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
       />
-      <View style={styles.waterGlowLarge} pointerEvents="none" />
-      <View style={styles.waterGlowSmall} pointerEvents="none" />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>דו"ח נוכחות מפורט</Text>
-          <Text style={styles.headerSubtitle}>נתוני חיסורים, איחורים ונוכחות לפי תאריכים</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -100,16 +83,13 @@ export default function ManagerAttendanceReport({ navigation }) {
           ))}
         </View>
 
-        <TouchableOpacity activeOpacity={0.85} style={styles.exportButtonShell}>
-          <LinearGradient
-            colors={['#31A5EA', '#2A8FD9']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.exportButton}
-          >
-            <Text style={styles.exportButtonText}>הורדת דו"ח PDF</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <PrimaryButton
+          label={'הורדת דו"ח PDF'}
+          style={styles.exportButtonShell}
+          gradientStyle={styles.exportButton}
+          textStyle={styles.exportButtonText}
+          colorsOverride={['#2E77BC', '#255E97']}
+        />
       </ScrollView>
     </SafeAreaView>
   );

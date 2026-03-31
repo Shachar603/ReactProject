@@ -4,6 +4,10 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './InstructorHomepage.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { instructorMenuItems, instructorMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import AppCard from '../components/ui/AppCard';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 
 export default function ChildProfile() {
@@ -22,24 +26,13 @@ export default function ChildProfile() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => setShowNavMenu(true)} activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={[styles.headerIcon, { color: '#1A79D3' }]}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={[styles.headerTitle, { fontSize: 24, color: '#1C6DBE' }]}>פרופיל ילד</Text>
-          <Text style={[styles.headerSubtitle, { fontSize: 14 }]}>סקירה אישית ועדכונים לאורך זמן</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={[styles.headerIcon, { color: '#1A79D3' }]}>🔍</Text>
-        </TouchableOpacity>
-      </View>
+      <AquaticBackground variant="instructor" />
+      <RoleHeader
+        title="פרופיל ילד"
+        subtitle="סקירה אישית ועדכונים לאורך זמן"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="🔍"
+      />
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -49,17 +42,17 @@ export default function ChildProfile() {
         navigation={navigation}
       />
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}>
+      <ScrollView contentContainerStyle={styles.screenContent} showsVerticalScrollIndicator={false}>
         <View style={{ marginTop: 16, marginBottom: 12, alignItems: 'center' }}>
-          <View style={{ width: 96, height: 96, borderRadius: 48, backgroundColor: '#A9D5FF', justifyContent: 'center', alignItems: 'center', borderWidth: 3, borderColor: '#1C6DBE' }}>
-            <Text style={{ color: '#1C6DBE', fontSize: 48, fontWeight: '700' }}>{initial}</Text>
+          <View style={styles.profileAvatar}>
+            <Text style={styles.profileAvatarText}>{initial}</Text>
           </View>
-          <Text style={{ marginTop: 10, fontSize: 26, fontWeight: '800', color: '#1D3F6F', writingDirection: 'rtl' }}>{child.name}</Text>
-          <Text style={{ marginTop: 4, fontSize: 16, fontWeight: '600', color: '#3968A7', writingDirection: 'rtl' }}>{child.class} • {child.status}</Text>
+          <Text style={styles.profileName}>{child.name}</Text>
+          <Text style={styles.profileMeta}>{child.class} • {child.status}</Text>
         </View>
 
-        <View style={{ borderRadius: 20, backgroundColor: '#F5FAFF', borderWidth: 1, borderColor: '#C9E4FD', padding: 14, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 2 }, shadowRadius: 6, elevation: 3 }}>
-          <Text style={{ fontSize: 18, fontWeight: '700', color: '#2B6D9F', marginBottom: 10, writingDirection: 'rtl' }}>אירועים אחרונים</Text>
+        <AppCard style={styles.surfaceCard}>
+          <Text style={styles.helperTitle}>אירועים אחרונים</Text>
 
           {events.map((item, idx) => {
             return (
@@ -90,7 +83,7 @@ export default function ChildProfile() {
                       minWidth: 70,
                       height: 30,
                       borderRadius: 15,
-                      backgroundColor: '#1A79D3',
+                      backgroundColor: '#1F5E9B',
                       justifyContent: 'center',
                       alignItems: 'center',
                       paddingHorizontal: 12,
@@ -105,7 +98,7 @@ export default function ChildProfile() {
                       minWidth: 70,
                       height: 30,
                       borderRadius: 15,
-                      backgroundColor: '#D33C40',
+                      backgroundColor: '#B73A3C',
                       justifyContent: 'center',
                       alignItems: 'center',
                       paddingHorizontal: 12,
@@ -116,32 +109,37 @@ export default function ChildProfile() {
                 </View>
 
                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                  <Text style={{ color: '#2F78C9', fontWeight: '700', writingDirection: 'rtl' }}>{item.label}</Text>
-                  <Text style={{ color: '#5F7D9E', fontSize: 13, writingDirection: 'rtl' }}>{item.info}</Text>
+                  <Text style={{ color: '#1F5E9B', fontWeight: '700', writingDirection: 'rtl' }}>{item.label}</Text>
+                  <Text style={{ color: '#607286', fontSize: 13, writingDirection: 'rtl' }}>{item.info}</Text>
                 </View>
               </View>
             );
           })}
-        </View>
+        </AppCard>
 
         <View style={{ marginTop: 16, gap: 10 }}>
-          <TouchableOpacity
+          <PrimaryButton
+            label="צ׳אט עם ההורה"
             onPress={() => navigation.navigate('ParentChat', { child, fromInstructor: true })}
-            style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1A79D3' }}
-          >
-            <Text style={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}>צ׳אט עם ההורה</Text>
-          </TouchableOpacity>
+            style={{ borderRadius: 18 }}
+            textStyle={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}
+            colorsOverride={['#1F5E9B', '#184C7D']}
+          />
 
-          <TouchableOpacity
+          <PrimaryButton
+            label="דיווח התקדמות הילד"
             onPress={() => navigation.navigate('ParentProgressReport', { child })}
-            style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#3C96F0' }}
-          >
-            <Text style={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}>דיווח התקדמות הילד</Text>
-          </TouchableOpacity>
+            style={{ borderRadius: 18 }}
+            textStyle={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
 
-          <TouchableOpacity style={{ borderRadius: 18, height: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#7D92A7' }}>
-            <Text style={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}>ערוך פרטי פרופיל</Text>
-          </TouchableOpacity>
+          <PrimaryButton
+            label="ערוך פרטי פרופיל"
+            style={{ borderRadius: 18 }}
+            textStyle={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}
+            colorsOverride={['#6D8094', '#586A7D']}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

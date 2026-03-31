@@ -3,7 +3,7 @@ import { StyleSheet, StatusBar } from 'react-native';
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#C8E8FC',
+    backgroundColor: '#F2F6FA',
   },
   aquaticBackground: {
     ...StyleSheet.absoluteFillObject,
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   headerTitle: {
-    color: '#111111',
-    fontSize: 36,
+    color: '#204A78',
+    fontSize: 30,
     fontWeight: '700',
     writingDirection: 'rtl',
   },
@@ -63,17 +63,17 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   mainCard: {
-    backgroundColor: '#F5F6F8',
-    borderRadius: 18,
-    borderWidth: 1.5,
-    borderColor: '#9FCFF3',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(51, 110, 163, 0.12)',
     paddingHorizontal: 16,
     paddingVertical: 18,
     minHeight: 520,
   },
   sectionTitle: {
-    color: '#272727',
-    fontSize: 29,
+    color: '#204A78',
+    fontSize: 24,
     fontWeight: '700',
     writingDirection: 'rtl',
     alignSelf: 'flex-end',
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
   },
 
   fieldCard: {
-    backgroundColor: '#E8ECF2',
-    borderRadius: 8,
+    backgroundColor: '#F8FBFF',
+    borderRadius: 12,
     minHeight: 56,
     flexDirection: 'row-reverse',
     alignItems: 'center',
@@ -130,8 +130,8 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   notesInput: {
-    backgroundColor: '#E8ECF2',
-    borderRadius: 8,
+    backgroundColor: '#F8FBFF',
+    borderRadius: 12,
     minHeight: 98,
     paddingHorizontal: 12,
     paddingTop: 10,
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
 
   submitButtonShell: {
     marginTop: 16,
-    borderRadius: 28,
+    borderRadius: 14,
     overflow: 'hidden',
   },
   submitButton: {
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     color: '#EFF9FF',
-    fontSize: 28,
+    fontSize: 16,
     fontWeight: '700',
     writingDirection: 'rtl',
   },

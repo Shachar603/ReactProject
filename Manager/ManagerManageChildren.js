@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerManageChildren.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { managerMenuItems, managerMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const children = [
   { id: '1', name: 'אורי לוי', group: 'קבוצת דולפינים', initial: 'א' },
@@ -41,33 +43,13 @@ export default function ManagerManageChildren({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <LinearGradient
-        colors={['#DFF4FF', '#CDEBFA', '#B8DFF5', '#A5D6F1']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="manager" />
+      <RoleHeader
+        title="ניהול ילדים"
+        subtitle="צפייה, עריכה ושיוך לקבוצות"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
       />
-      <View style={styles.waterGlowLarge} pointerEvents="none" />
-      <View style={styles.waterGlowSmall} pointerEvents="none" />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>ניהול ילדים</Text>
-          <Text style={styles.headerSubtitle}>צפייה, עריכה ושיוך לקבוצות</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -90,16 +72,13 @@ export default function ManagerManageChildren({ navigation }) {
             />
           ))}
 
-          <TouchableOpacity activeOpacity={0.85} style={styles.addButtonShell}>
-            <LinearGradient
-              colors={['#31A5EA', '#2A8FD9']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.addButton}
-            >
-              <Text style={styles.addButtonText}>הוספת ילד חדש</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <PrimaryButton
+            label="הוספת ילד חדש"
+            style={styles.addButtonShell}
+            gradientStyle={styles.addButton}
+            textStyle={styles.addButtonText}
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

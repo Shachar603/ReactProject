@@ -7,6 +7,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import PrimaryButton from './components/ui/PrimaryButton';
+import AppCard from './components/ui/AppCard';
+import { colors, shadows } from './theme/tokens';
 
 const { width, height } = Dimensions.get('window');
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -212,7 +215,7 @@ export default function Homepage() {
 
       {/* Deep Ocean Base */}
       <LinearGradient
-        colors={["#003d5c", "#002a4d", "#001529"]}
+        colors={["#003d5c", "#002a4d", colors.bgDeep]}
         style={StyleSheet.absoluteFill}
       />
 
@@ -288,50 +291,36 @@ export default function Homepage() {
             חוו את השילוב המושלם בין עומק הים לבין חוויית בריכה חלומית.
             הבריחה השקטה שלכם מחכה.
           </Text>
-          <TouchableOpacity style={styles.primaryBtn}>
-            <LinearGradient
-              colors={["#00d4ff", "#0099cc"]}
-              style={styles.btnGradient}
-            >
-              <Text style={styles.primaryBtnText}>גלה תכונות</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <PrimaryButton
+            label="גלה תכונות"
+            style={styles.primaryBtn}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
+          />
 
-          <TouchableOpacity
+          <PrimaryButton
+            label="לוח מדריך"
             style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
             onPress={() => navigation.navigate("InstructorHomepage")}
-          >
-            <LinearGradient
-              colors={["#00d4ff", "#0099cc"]}
-              style={styles.btnGradient}
-            >
-              <Text style={styles.primaryBtnText}>לוח מדריך</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          />
 
-          <TouchableOpacity
+          <PrimaryButton
+            label="התחברות מנהל"
             style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
             onPress={() => navigation.navigate("Login")}
-          >
-            <LinearGradient
-              colors={["#00d4ff", "#0099cc"]}
-              style={styles.btnGradient}
-            >
-              <Text style={styles.primaryBtnText}>התחברות מנהל</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          />
 
-          <TouchableOpacity
+          <PrimaryButton
+            label="לוח הורה"
             style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
             onPress={() => navigation.navigate("ParentHomepage")}
-          >
-            <LinearGradient
-              colors={["#00d4ff", "#0099cc"]}
-              style={styles.btnGradient}
-            >
-              <Text style={styles.primaryBtnText}>לוח הורה</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          />
         </View>
 
         {/* FEATURES SECTION */}
@@ -366,18 +355,13 @@ export default function Homepage() {
                 desc: "עצבו את בריכת החלומות שלכם עם כלי הדמיה תלת-ממדי אינטראקטיבי",
               },
             ].map((f, i) => (
-              <BlurView
-                intensity={30}
-                tint="dark"
-                style={styles.featureCard}
-                key={i}
-              >
+              <AppCard useBlur blurIntensity={30} blurTint="dark" style={styles.featureCard} key={i}>
                 <View style={styles.featureIconContainer}>
                   <Text style={styles.featureIcon}>{f.icon}</Text>
                 </View>
                 <Text style={styles.featureTitle}>{f.title}</Text>
                 <Text style={styles.featureDesc}>{f.desc}</Text>
-              </BlurView>
+              </AppCard>
             ))}
           </View>
         </View>
@@ -387,7 +371,7 @@ export default function Homepage() {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.section}
         >
-          <BlurView intensity={40} tint="dark" style={styles.loginCard}>
+          <AppCard useBlur blurIntensity={40} blurTint="dark" style={styles.loginCard}>
             <View style={styles.loginIconContainer}>
               <LinearGradient
                 colors={["#00d4ff", "#0099cc"]}
@@ -433,15 +417,13 @@ export default function Homepage() {
               </View>
             </View>
 
-            <TouchableOpacity style={styles.loginBtn}>
-              <LinearGradient
-                colors={["#00d4ff", "#0099cc"]}
-                style={styles.btnGradient}
-              >
-                <Text style={styles.primaryBtnText}>כניסה</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </BlurView>
+            <PrimaryButton
+              label="כניסה"
+              style={styles.loginBtn}
+              gradientStyle={styles.btnGradient}
+              textStyle={styles.primaryBtnText}
+            />
+          </AppCard>
         </KeyboardAvoidingView>
 
         {/* FOOTER */}
@@ -469,7 +451,7 @@ export default function Homepage() {
 // STYLES
 // ========================================
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#001529" },
+  container: { flex: 1, backgroundColor: colors.bgDeep },
   scrollContent: { paddingTop: 100, paddingBottom: 60 },
   waveContainer: {
     position: "absolute",
@@ -561,11 +543,7 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     borderRadius: 50,
     overflow: "hidden",
-    shadowColor: "#00d4ff",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-    elevation: 5,
+    ...shadows.glowPrimary,
   },
   secondaryHeroBtn: {
     marginTop: 14,

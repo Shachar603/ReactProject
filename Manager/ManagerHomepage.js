@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerHomepage.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { managerMenuItems, managerMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import PrimaryButton from '../components/ui/PrimaryButton';
+import AquaticBackground from '../components/ui/AquaticBackground';
 
 const groupCards = [
   'קבוצת אלופונים',
@@ -52,36 +54,14 @@ export default function ManagerHomepage({ navigation }) {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-      <LinearGradient
-        colors={['#DFF4FF', '#CDEBFA', '#B8DFF5', '#A5D6F1']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="manager" />
+
+      <RoleHeader
+        title="פאנל מנהל"
+        subtitle="ניהול חכם למערכת צפייה ונתונים"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
       />
-      <View style={styles.waterGlowLarge} pointerEvents="none" />
-      <View style={styles.waterGlowSmall} pointerEvents="none" />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.iconButton}
-          onPress={() => setShowNavMenu(true)}
-        >
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>פאנל מנהל</Text>
-          <Text style={styles.headerSubtitle}>ניהול חכם למערכת צפייה ונתונים</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.7} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -106,20 +86,14 @@ export default function ManagerHomepage({ navigation }) {
             <GroupRow key={groupName} title={groupName} />
           ))}
 
-          <TouchableOpacity
-            activeOpacity={0.85}
+          <PrimaryButton
+            label={'דו"חות מערכת'}
             style={styles.reportButtonShell}
+            gradientStyle={styles.reportButton}
+            textStyle={styles.reportButtonText}
             onPress={navigateToSystemReports}
-          >
-            <LinearGradient
-              colors={['#31A5EA', '#2A8FD9']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.reportButton}
-            >
-              <Text style={styles.reportButtonText}>דו"חות מערכת</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+            colorsOverride={['#31A5EA', '#2A8FD9']}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

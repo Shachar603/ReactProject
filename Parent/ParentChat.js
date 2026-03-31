@@ -9,10 +9,12 @@ import {
   TextInput,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentChat.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { parentMenuItems, parentMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const initialMessages = [
   {
@@ -74,31 +76,14 @@ export default function ParentChat({ navigation }) {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-      <LinearGradient
-        colors={['#E3F6FF', '#D7EFFC', '#C5E7FA']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="parent" />
+      <RoleHeader
+        title="צ'אט"
+        subtitle="תקשורת בין מדריך להורה"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
+        rightLabel="חיפוש"
       />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>צ'אט</Text>
-          <Text style={styles.headerSubtitle}>תקשורת בין מדריך להורה</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-          <Text style={styles.searchLabel}>חיפוש</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -126,16 +111,14 @@ export default function ParentChat({ navigation }) {
             textAlign="right"
           />
 
-          <TouchableOpacity activeOpacity={0.86} style={styles.sendButtonShell} onPress={handleSend}>
-            <LinearGradient
-              colors={['#38AEEF', '#2E95E3']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.sendButton}
-            >
-              <Text style={styles.sendButtonText}>שליחה</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <PrimaryButton
+            label="שליחה"
+            onPress={handleSend}
+            style={styles.sendButtonShell}
+            gradientStyle={styles.sendButton}
+            textStyle={styles.sendButtonText}
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
         </View>
       </View>
     </SafeAreaView>

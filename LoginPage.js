@@ -11,7 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import PrimaryButton from './components/ui/PrimaryButton';
+import AppCard from './components/ui/AppCard';
+import { colors, radius } from './theme/tokens';
+import AquaticBackground from './components/ui/AquaticBackground';
 
 const MANAGER_USER = {
   email: 'manager@aqua.co.il',
@@ -44,13 +47,7 @@ export default function LoginPage({ navigation }) {
     <View style={styles.screen}>
       <StatusBar barStyle="dark-content" backgroundColor="#d8e6f2" />
 
-      <LinearGradient
-        colors={['#d8e6f2', '#d2e2f0', '#cddfec']}
-        style={StyleSheet.absoluteFill}
-      />
-
-      <View style={styles.waveTopBack} pointerEvents="none" />
-      <View style={styles.waveTopFront} pointerEvents="none" />
+      <AquaticBackground variant="auth" />
 
       <View style={styles.headerRow}>
         <TouchableOpacity activeOpacity={0.8} style={styles.hamburgerBtn}>
@@ -66,7 +63,7 @@ export default function LoginPage({ navigation }) {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.centerWrap}
       >
-        <View style={styles.card}>
+        <AppCard style={styles.card}>
           <Text style={styles.title}>התחברות</Text>
 
           <Text style={styles.label}>אימייל</Text>
@@ -118,26 +115,20 @@ export default function LoginPage({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            style={[styles.loginBtn, !isFormValid && styles.loginBtnDisabled]}
-            activeOpacity={isFormValid ? 0.85 : 1}
+          <PrimaryButton
+            style={styles.loginBtn}
             onPress={handleLogin}
             disabled={!isFormValid}
-          >
-            <LinearGradient
-              colors={isFormValid ? ['#3aa8eb', '#2d94dd'] : ['#91bddd', '#84b4d6']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.loginBtnGradient}
-            >
-              <Text style={styles.loginText}>התחברות</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+            label="התחברות"
+            textStyle={styles.loginText}
+            gradientStyle={styles.loginBtnGradient}
+            colorsOverride={isFormValid ? ['#3aa8eb', '#2d94dd'] : ['#91bddd', '#84b4d6']}
+          />
 
           <View style={styles.mascot}>
             <Text style={styles.mascotFace}>☺</Text>
           </View>
-        </View>
+        </AppCard>
       </KeyboardAvoidingView>
     </View>
   );
@@ -200,8 +191,8 @@ const styles = StyleSheet.create({
     paddingBottom: 42,
   },
   card: {
-    borderRadius: 24,
-    backgroundColor: '#eef1f8',
+    borderRadius: radius.lg,
+    backgroundColor: colors.loginSurface,
     borderWidth: 1,
     borderColor: '#9bc7ea',
     paddingHorizontal: 18,
@@ -224,15 +215,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   input: {
-    backgroundColor: '#dfe4ee',
+    backgroundColor: colors.loginField,
     borderRadius: 14,
     paddingHorizontal: 14,
     height: 44,
-    color: '#233041',
+    color: colors.loginText,
     marginBottom: 4,
   },
   passwordRow: {
-    backgroundColor: '#dfe4ee',
+    backgroundColor: colors.loginField,
     borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
@@ -242,7 +233,7 @@ const styles = StyleSheet.create({
   passwordInput: {
     flex: 1,
     height: 44,
-    color: '#233041',
+    color: colors.loginText,
     paddingRight: 8,
   },
   eyeButton: {
@@ -276,9 +267,6 @@ const styles = StyleSheet.create({
   loginBtn: {
     borderRadius: 20,
     overflow: 'hidden',
-  },
-  loginBtnDisabled: {
-    opacity: 0.75,
   },
   loginBtnGradient: {
     height: 44,

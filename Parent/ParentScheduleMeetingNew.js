@@ -9,10 +9,12 @@ import {
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentScheduleMeetingNew.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { parentMenuItems, parentMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const formatToday = () => {
   const now = new Date();
@@ -68,26 +70,12 @@ export default function ParentScheduleMeetingNew({ route }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <LinearGradient
-        colors={['#BFE5FF', '#AFDBF8', '#A2D4F4']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="parent" />
+      <RoleHeader
+        title="קביעת מפגש חדש"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon=""
       />
-
-      <View style={styles.bigCircleLeft} />
-      <View style={styles.bigCircleRight} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.backButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.backButtonIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>קביעת מפגש חדש</Text>
-        </View>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -136,20 +124,14 @@ export default function ParentScheduleMeetingNew({ route }) {
             />
           </View>
 
-          <TouchableOpacity
-            activeOpacity={0.88}
+          <PrimaryButton
+            label="קבע פגישה"
             style={styles.submitButtonShell}
+            gradientStyle={styles.submitButton}
+            textStyle={styles.submitButtonText}
             onPress={() => navigation.goBack()}
-          >
-            <LinearGradient
-              colors={['#3D8FE9', '#1575E8']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.submitButton}
-            >
-              <Text style={styles.submitButtonText}>קבע פגישה</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

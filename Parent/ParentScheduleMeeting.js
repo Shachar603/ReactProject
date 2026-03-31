@@ -8,11 +8,13 @@ import {
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Circle, Line, Text as SvgText } from 'react-native-svg';
 import styles from './ParentScheduleMeeting.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { parentMenuItems, parentMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const weekdayHeaders = ['ש', 'ו', 'ה', 'ד', 'ג', 'ב', 'א'];
 const dayPalette = ['#F2DDDE', '#EEE9BD', '#BFE6D8'];
@@ -133,20 +135,12 @@ export default function ParentScheduleMeeting({ route }) {
       <View style={styles.headerWaveBack} />
       <View style={styles.headerWaveFront} />
 
-      <View style={styles.headerDate}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={onBackPress}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenterDate}>
-          <Text style={styles.headerTitleDate}>בחירת תאריך</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-          <Text style={styles.searchLabel}>חיפוש</Text>
-        </TouchableOpacity>
-      </View>
+      <RoleHeader
+        title="בחירת תאריך"
+        onMenuPress={onBackPress}
+        rightIcon="⌕"
+        rightLabel="חיפוש"
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>
@@ -187,16 +181,14 @@ export default function ParentScheduleMeeting({ route }) {
             })}
           </View>
 
-          <TouchableOpacity activeOpacity={0.88} style={styles.confirmButtonShell} onPress={onConfirmDate}>
-            <LinearGradient
-              colors={['#38AEEF', '#2E95E3']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.confirmButton}
-            >
-              <Text style={styles.confirmButtonText}>בחירת תאריך</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <PrimaryButton
+            label="בחירת תאריך"
+            style={styles.confirmButtonShell}
+            gradientStyle={styles.confirmButton}
+            textStyle={styles.confirmButtonText}
+            onPress={onConfirmDate}
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
         </View>
       </ScrollView>
     </>
@@ -253,20 +245,14 @@ export default function ParentScheduleMeeting({ route }) {
             </View>
           )}
 
-          <TouchableOpacity
-            activeOpacity={0.88}
+          <PrimaryButton
+            label="בחירת שעה"
             style={styles.confirmTimeButtonShell}
+            gradientStyle={styles.confirmTimeButton}
+            textStyle={styles.confirmTimeButtonText}
             onPress={onConfirmTime}
-          >
-            <LinearGradient
-              colors={['#3D8FE9', '#1575E8']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.confirmTimeButton}
-            >
-              <Text style={styles.confirmTimeButtonText}>בחירת שעה</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
         </View>
       </ScrollView>
     </>
@@ -275,13 +261,7 @@ export default function ParentScheduleMeeting({ route }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <LinearGradient
-        colors={['#E3F6FF', '#D7EFFC', '#C5E7FA']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
-      />
+      <AquaticBackground variant="parent" />
 
       {mode === 'date' ? renderDateStep() : renderTimeStep()}
 

@@ -3,7 +3,7 @@ import { StyleSheet, StatusBar } from 'react-native';
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#D8EEFB',
+    backgroundColor: '#F2F6FA',
   },
   aquaticBackground: {
     ...StyleSheet.absoluteFillObject,
@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 22,
     paddingBottom: 34,
-    paddingTop: 20,
+    paddingTop: 16,
   },
   mainCard: {
-    backgroundColor: '#F5F6F8',
-    borderRadius: 36,
-    borderWidth: 2,
-    borderColor: '#A5D4F6',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(51, 110, 163, 0.12)',
     paddingHorizontal: 18,
     paddingTop: 16,
     paddingBottom: 18,
@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   reportChild: {
-    color: '#1A67A8',
+    color: '#1F5E9B',
     textAlign: 'right',
-    fontSize: 26,
+    fontSize: 18,
     writingDirection: 'rtl',
   },
   reportDate: {
@@ -105,9 +105,9 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    color: '#1B69A6',
+    color: '#204A78',
     textAlign: 'right',
-    fontSize: 40,
+    fontSize: 28,
     marginTop: 6,
     marginBottom: 8,
     writingDirection: 'rtl',
@@ -123,45 +123,46 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   progressLabel: {
-    color: '#1E5F95',
+    color: '#1E5086',
     textAlign: 'right',
-    fontSize: 18,
+    fontSize: 14,
     writingDirection: 'rtl',
   },
   progressPercent: {
     color: '#60768A',
     textAlign: 'right',
-    fontSize: 16,
+    fontSize: 13,
   },
   progressTrack: {
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: '#E1E6EE',
+    height: 12,
+    borderRadius: 8,
+    backgroundColor: '#E8F0F8',
     overflow: 'hidden',
   },
   progressFill: {
     height: '100%',
-    borderRadius: 12,
+    borderRadius: 8,
+    backgroundColor: '#2E77BC',
   },
 
   notesBox: {
     marginTop: 6,
     marginBottom: 12,
     minHeight: 120,
-    borderRadius: 20,
-    backgroundColor: '#DDE2EE',
+    borderRadius: 14,
+    backgroundColor: '#F7FAFD',
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
   notesText: {
-    color: '#8F9AAF',
-    fontSize: 16,
+    color: '#607286',
+    fontSize: 14,
     textAlign: 'right',
     writingDirection: 'rtl',
   },
 
   actionButtonShell: {
-    borderRadius: 30,
+    borderRadius: 14,
     overflow: 'hidden',
     marginTop: 4,
     marginBottom: 10,
@@ -174,16 +175,16 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     color: '#EFF9FF',
-    fontSize: 40,
-    fontWeight: '500',
+    fontSize: 16,
+    fontWeight: '700',
     writingDirection: 'rtl',
   },
 
   bottomLink: {
     marginTop: 8,
-    color: '#E7EEF7',
+    color: '#365A7A',
     textAlign: 'center',
-    fontSize: 28,
+    fontSize: 14,
     writingDirection: 'rtl',
   },
 });

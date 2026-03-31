@@ -10,10 +10,12 @@ import {
   TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './InstructorHomepage.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { instructorMenuItems, instructorMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import PrimaryButton from '../components/ui/PrimaryButton';
+import AquaticBackground from '../components/ui/AquaticBackground';
 
 const initialClassGroups = [
   { name: 'קבוצת השיטור', time: '10:00 - 10:30' },
@@ -65,23 +67,14 @@ export default function InstructorHomepage() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
+      <AquaticBackground variant="instructor" />
 
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>לוח מדריך</Text>
-          <Text style={styles.headerSubtitle}>ניהול שיעורים וצפייה בקבוצות</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>🔍</Text>
-        </TouchableOpacity>
-      </View>
+      <RoleHeader
+        title="לוח מדריך"
+        subtitle="ניהול שיעורים וצפייה בקבוצות"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="🔍"
+      />
 
       <Text style={styles.headerDate}>24.12.2025</Text>
 
@@ -104,29 +97,29 @@ export default function InstructorHomepage() {
           ))}
 
           <View style={styles.bottomActions}>
-            <TouchableOpacity
-              activeOpacity={0.85}
-              style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
+            <PrimaryButton
+              label="הצג את כלל הקבוצות"
+              style={styles.actionButton}
+              textStyle={styles.actionButtonText}
               onPress={() => navigation.navigate('SelectGroup')}
-            >
-              <Text style={styles.actionButtonText}>הצג את כלל הקבוצות</Text>
-            </TouchableOpacity>
+              colorsOverride={['#3C96F0', '#3C96F0']}
+            />
 
-            <TouchableOpacity
-              activeOpacity={0.85}
-              style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
+            <PrimaryButton
+              label="שדר הודעה"
+              style={styles.actionButton}
+              textStyle={styles.actionButtonText}
               onPress={() => setShowBroadcastModal(true)}
-            >
-              <Text style={styles.actionButtonText}>שדר הודעה</Text>
-            </TouchableOpacity>
+              colorsOverride={['#3C96F0', '#3C96F0']}
+            />
 
-            <TouchableOpacity
-              activeOpacity={0.85}
-              style={[styles.actionButton, { backgroundColor: '#3C96F0' }]}
+            <PrimaryButton
+              label="צור קבוצה חדשה"
+              style={styles.actionButton}
+              textStyle={styles.actionButtonText}
               onPress={() => setShowCreateGroupModal(true)}
-            >
-              <Text style={styles.actionButtonText}>צור קבוצה חדשה</Text>
-            </TouchableOpacity>
+              colorsOverride={['#3C96F0', '#3C96F0']}
+            />
           </View>
         </View>
 

@@ -3,7 +3,7 @@ import { StyleSheet, StatusBar } from 'react-native';
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#D8EEFB',
+    backgroundColor: '#F2F6FA',
   },
   aquaticBackground: {
     ...StyleSheet.absoluteFillObject,
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
   },
   headerTitleDate: {
     color: '#1E7FC0',
-    fontSize: 48,
-    fontWeight: '500',
+    fontSize: 30,
+    fontWeight: '700',
     textAlign: 'center',
     writingDirection: 'rtl',
   },
@@ -69,14 +69,14 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   mainCard: {
-    backgroundColor: '#F5F6F8',
-    borderRadius: 36,
-    borderWidth: 2,
-    borderColor: '#A5D4F6',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(51, 110, 163, 0.12)',
     paddingHorizontal: 18,
     paddingTop: 16,
     paddingBottom: 22,
-    minHeight: 760,
+    minHeight: 520,
   },
 
   weekdayRow: {
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     width: '14.285%',
     textAlign: 'center',
     color: '#246CA8',
-    fontSize: 34,
+    fontSize: 18,
     writingDirection: 'rtl',
   },
   calendarGrid: {
@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
   },
   dayChip: {
     minWidth: 44,
-    height: 44,
-    borderRadius: 12,
+    height: 36,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -119,15 +119,15 @@ const styles = StyleSheet.create({
   },
   dayText: {
     color: '#0D5E9C',
-    fontSize: 34,
-    lineHeight: 36,
+    fontSize: 16,
+    lineHeight: 20,
   },
   dayTextSelected: {
     color: '#0D5E9C',
     fontWeight: '700',
   },
   confirmButtonShell: {
-    borderRadius: 30,
+    borderRadius: 14,
     overflow: 'hidden',
     alignSelf: 'center',
     width: '72%',
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
   },
   confirmButtonText: {
     color: '#EFF9FF',
-    fontSize: 42,
-    fontWeight: '500',
+    fontSize: 16,
+    fontWeight: '700',
     writingDirection: 'rtl',
   },
 
@@ -191,14 +191,14 @@ const styles = StyleSheet.create({
   },
   timeHeaderTitle: {
     color: '#101010',
-    fontSize: 58,
+    fontSize: 28,
     fontWeight: '700',
     writingDirection: 'rtl',
   },
   timeHeaderSub: {
     marginTop: 6,
     color: '#365A7A',
-    fontSize: 20,
+    fontSize: 14,
     writingDirection: 'rtl',
   },
 
@@ -208,19 +208,19 @@ const styles = StyleSheet.create({
     paddingTop: 18,
   },
   mainCardTime: {
-    backgroundColor: '#F5F6F8',
-    borderRadius: 36,
-    borderWidth: 2,
-    borderColor: '#A5D4F6',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(51, 110, 163, 0.12)',
     paddingHorizontal: 18,
     paddingTop: 18,
     paddingBottom: 24,
-    minHeight: 760,
+    minHeight: 520,
     alignItems: 'center',
   },
   timeStepTitle: {
     color: '#313131',
-    fontSize: 56,
+    fontSize: 26,
     fontWeight: '700',
     writingDirection: 'rtl',
     alignSelf: 'flex-end',
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   },
   timeOptionText: {
     color: '#2D79C3',
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: '600',
   },
   timeOptionTextSelected: {
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
   },
 
   confirmTimeButtonShell: {
-    borderRadius: 30,
+    borderRadius: 14,
     overflow: 'hidden',
     alignSelf: 'center',
     width: '88%',
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   },
   confirmTimeButtonText: {
     color: '#EFF9FF',
-    fontSize: 46,
+    fontSize: 16,
     fontWeight: '700',
     writingDirection: 'rtl',
   },

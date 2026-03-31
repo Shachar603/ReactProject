@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentProgressReport.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { parentMenuItems, parentMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const reportRows = [
   { label: 'שליטה בנשימות', value: 0.8, percent: '80%' },
@@ -28,27 +30,19 @@ const ProgressBar = ({ label, value, percent }) => (
     </View>
 
     <View style={styles.progressTrack}>
-      <LinearGradient
-        colors={['#39A9EA', '#2293DE']}
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0.5 }}
-        style={[styles.progressFill, { width: `${value * 100}%` }]}
-      />
+      <View style={[styles.progressFill, { width: `${value * 100}%` }]} />
     </View>
   </View>
 );
 
 const ActionButton = ({ label }) => (
-  <TouchableOpacity activeOpacity={0.86} style={styles.actionButtonShell}>
-    <LinearGradient
-      colors={['#38AEEF', '#2E95E3']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.actionButton}
-    >
-      <Text style={styles.actionButtonText}>{label}</Text>
-    </LinearGradient>
-  </TouchableOpacity>
+  <PrimaryButton
+    label={label}
+    style={styles.actionButtonShell}
+    gradientStyle={styles.actionButton}
+    textStyle={styles.actionButtonText}
+    colorsOverride={['#2E77BC', '#255E97']}
+  />
 );
 
 export default function ParentProgressReport({ navigation }) {
@@ -57,32 +51,14 @@ export default function ParentProgressReport({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <LinearGradient
-        colors={['#E3F6FF', '#D7EFFC', '#C5E7FA']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="parent" />
+      <RoleHeader
+        title="דו״ח התקדמות מפורט"
+        subtitle="ניתוח ביצועי ילד לפי תרגילי השחיה"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
+        rightLabel="חיפוש"
       />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>דו״ח התקדמות מפורט</Text>
-          <Text style={styles.headerSubtitle}>ניתוח ביצועי ילד לפי תרגילי השחיה</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-          <Text style={styles.searchLabel}>חיפוש</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}

@@ -9,10 +9,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerCenterSettings.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { managerMenuItems, managerMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import AquaticBackground from '../components/ui/AquaticBackground';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 const ToggleRow = ({ label, value, onValueChange, disabled = false }) => (
   <View style={styles.toggleRow}>
@@ -37,33 +39,13 @@ export default function ManagerCenterSettings({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-      <LinearGradient
-        colors={['#E4F6FF', '#CFEAFB', '#B9DFF5', '#AAD8F2']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="manager" />
+      <RoleHeader
+        title="הגדרות מרכז"
+        subtitle="ניהול פרטי המרכז והעדפות המערכת"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
       />
-      <View style={styles.waterGlowLarge} pointerEvents="none" />
-      <View style={styles.waterGlowSmall} pointerEvents="none" />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>הגדרות מרכז</Text>
-          <Text style={styles.headerSubtitle}>ניהול פרטי המרכז והעדפות המערכת</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
@@ -114,16 +96,13 @@ export default function ManagerCenterSettings({ navigation }) {
             onValueChange={setShowKidsAdvanced}
           />
 
-          <TouchableOpacity activeOpacity={0.85} style={styles.saveButtonShell}>
-            <LinearGradient
-              colors={['#31A5EA', '#2A8FD9']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.saveButton}
-            >
-              <Text style={styles.saveButtonText}>שמירת הגדרות</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <PrimaryButton
+            label="שמירת הגדרות"
+            style={styles.saveButtonShell}
+            gradientStyle={styles.saveButton}
+            textStyle={styles.saveButtonText}
+            colorsOverride={['#2E77BC', '#255E97']}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

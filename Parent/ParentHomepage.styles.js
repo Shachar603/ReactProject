@@ -1,90 +1,23 @@
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { spacing, radius, typography } from '../theme/tokens';
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#D8EEFB',
-  },
-  aquaticBackground: {
-    ...StyleSheet.absoluteFillObject,
-  },
-
-  headerWaveBack: {
-    position: 'absolute',
-    top: 88,
-    left: -12,
-    right: -12,
-    height: 95,
-    borderRadius: 55,
-    backgroundColor: 'rgba(131, 190, 232, 0.30)',
-  },
-  headerWaveFront: {
-    position: 'absolute',
-    top: 102,
-    left: -22,
-    right: -18,
-    height: 82,
-    borderRadius: 55,
-    backgroundColor: 'rgba(149, 207, 244, 0.45)',
-  },
-
-  header: {
-    paddingTop: (StatusBar.currentHeight || 0) + 14,
-    paddingHorizontal: 18,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  iconButton: {
-    minWidth: 48,
-    alignItems: 'center',
-  },
-  headerIcon: {
-    fontSize: 32,
-    color: '#1789CD',
-    lineHeight: 34,
-    fontWeight: '700',
-  },
-  searchLabel: {
-    color: '#517796',
-    fontSize: 15,
-    marginTop: 2,
-    textAlign: 'center',
-    writingDirection: 'rtl',
-  },
-  headerCenter: {
-    alignItems: 'center',
-  },
-  headerTitle: {
-    color: '#1E7FC0',
-    fontSize: 40,
-    fontWeight: '700',
-    textAlign: 'center',
-    writingDirection: 'rtl',
-  },
-  headerSubtitle: {
-    color: '#5E7B95',
-    marginTop: 6,
-    fontSize: 15,
-    textAlign: 'center',
-    writingDirection: 'rtl',
+    backgroundColor: '#F2F6FA',
   },
 
   scrollContent: {
-    paddingHorizontal: 22,
-    paddingBottom: 34,
-    paddingTop: 22,
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.xl,
+    paddingTop: spacing.lg,
   },
   mainCard: {
-    backgroundColor: '#F2F5F8',
-    borderRadius: 36,
-    borderWidth: 2,
-    borderColor: '#A5D4F6',
-    padding: 18,
-    shadowColor: '#5AADE0',
-    shadowOpacity: 0.14,
-    shadowRadius: 10,
-    elevation: 2,
+    backgroundColor: '#FFFFFF',
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: 'rgba(51, 110, 163, 0.12)',
+    padding: spacing.lg,
   },
 
   topInfoRow: {
@@ -94,66 +27,68 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   bellIcon: {
-    fontSize: 40,
-    marginTop: -8,
+    fontSize: 30,
+    marginTop: -4,
   },
   greetingWrap: {
     flex: 1,
   },
   greeting: {
-    color: '#1A5F99',
-    fontSize: 34,
+    color: '#1F5E9B',
+    fontSize: 24,
     textAlign: 'right',
     writingDirection: 'rtl',
+    fontWeight: '700',
   },
   childName: {
     color: '#0F2E4A',
     fontWeight: '800',
   },
   greetingSub: {
-    color: '#6F8296',
+    color: '#607286',
     marginTop: 4,
     textAlign: 'right',
-    fontSize: 16,
+    fontSize: 14,
     writingDirection: 'rtl',
   },
 
   sectionTitle: {
-    color: '#1E7FC0',
-    fontSize: 34,
+    color: '#204A78',
+    fontSize: typography.title,
     textAlign: 'right',
-    marginTop: 28,
-    marginBottom: 14,
+    marginTop: spacing.lg,
+    marginBottom: spacing.md,
     writingDirection: 'rtl',
   },
 
   activityCard: {
-    backgroundColor: '#E7EBF1',
-    borderRadius: 24,
-    paddingVertical: 18,
-    paddingHorizontal: 16,
+    backgroundColor: '#F8FBFF',
+    borderRadius: radius.md,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.md,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 12,
   },
   activityDate: {
-    color: '#131B29',
-    fontSize: 22,
-    fontWeight: '500',
+    color: '#30495F',
+    fontSize: 14,
+    fontWeight: '600',
   },
   activityTextWrap: {
     flex: 1,
     marginLeft: 14,
   },
   activityTitle: {
-    color: '#1A67A8',
+    color: '#1F5E9B',
     textAlign: 'right',
-    fontSize: 30,
+    fontSize: 18,
     writingDirection: 'rtl',
+    fontWeight: '700',
   },
   activityDesc: {
-    color: '#76889A',
+    color: '#607286',
     textAlign: 'right',
     marginTop: 2,
     fontSize: 14,
@@ -161,18 +96,18 @@ const styles = StyleSheet.create({
   },
 
   instructorText: {
-    color: '#1E5F95',
+    color: '#1E5086',
     textAlign: 'right',
     marginTop: 8,
     marginBottom: 14,
-    fontSize: 24,
+    fontSize: 16,
     writingDirection: 'rtl',
   },
 
   actionButtonShell: {
-    borderRadius: 30,
+    borderRadius: radius.md,
     overflow: 'hidden',
-    marginBottom: 10,
+    marginBottom: spacing.sm,
   },
   actionButton: {
     alignItems: 'center',
@@ -182,8 +117,8 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     color: '#EFF9FF',
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 16,
+    fontWeight: '700',
     writingDirection: 'rtl',
   },
 });

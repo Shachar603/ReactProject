@@ -4,14 +4,15 @@ import {
   ScrollView,
   StatusBar,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentHomepage.styles';
 import RoleMenuModal from '../RoleMenuModal';
 import { parentMenuItems, parentMenuTitle } from '../roleMenus';
+import RoleHeader from '../components/ui/RoleHeader';
+import PrimaryButton from '../components/ui/PrimaryButton';
+import AquaticBackground from '../components/ui/AquaticBackground';
 
 const recentActivities = [
   {
@@ -43,16 +44,14 @@ const ActivityCard = ({ date, title, desc }) => (
 );
 
 const ActionButton = ({ label, onPress }) => (
-  <TouchableOpacity activeOpacity={0.86} style={styles.actionButtonShell} onPress={onPress}>
-    <LinearGradient
-      colors={['#38AEEF', '#2E95E3']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.actionButton}
-    >
-      <Text style={styles.actionButtonText}>{label}</Text>
-    </LinearGradient>
-  </TouchableOpacity>
+  <PrimaryButton
+    label={label}
+    onPress={onPress}
+    style={styles.actionButtonShell}
+    gradientStyle={styles.actionButton}
+    textStyle={styles.actionButtonText}
+    colorsOverride={['#38AEEF', '#2E95E3']}
+  />
 );
 
 export default function ParentHomepage() {
@@ -63,31 +62,15 @@ export default function ParentHomepage() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-      <LinearGradient
-        colors={['#E3F6FF', '#D7EFFC', '#C5E7FA']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.aquaticBackground}
+      <AquaticBackground variant="parent" />
+
+      <RoleHeader
+        title="לוח הורה"
+        subtitle="מעקב אחרי התקדמות הילד"
+        onMenuPress={() => setShowNavMenu(true)}
+        rightIcon="⌕"
+        rightLabel="חיפוש"
       />
-
-      <View style={styles.headerWaveBack} />
-      <View style={styles.headerWaveFront} />
-
-      <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
-          <Text style={styles.headerIcon}>☰</Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>לוח הורה</Text>
-          <Text style={styles.headerSubtitle}>מעקב אחרי התקדמות הילד</Text>
-        </View>
-
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
-          <Text style={styles.headerIcon}>⌕</Text>
-          <Text style={styles.searchLabel}>חיפוש</Text>
-        </TouchableOpacity>
-      </View>
 
       <RoleMenuModal
         visible={showNavMenu}
