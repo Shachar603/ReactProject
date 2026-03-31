@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj": {}
+    "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj": {}
   },
   "projects": {
-    "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj": {
+    "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj",
+        "projectUniqueName": "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj",
         "projectName": "ReactServerSide",
-        "projectPath": "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj",
+        "projectPath": "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\ReactServerSide.csproj",
         "packagesPath": "C:\\Users\\אור\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\obj\\",
+        "outputPath": "C:\\Users\\אור\\Desktop\\Third Year Coding!\\פיתוח אפליקציות\\React Final Project\\ReactProject\\ReactProject\\ReactProject\\ServerSide\\ReactServerSide\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
