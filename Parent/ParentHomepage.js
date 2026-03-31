@@ -10,6 +10,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentHomepage.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { parentMenuItems, parentMenuTitle } from '../roleMenus';
 
 const recentActivities = [
   {
@@ -55,6 +57,7 @@ const ActionButton = ({ label, onPress }) => (
 
 export default function ParentHomepage() {
   const navigation = useNavigation();
+  const [showNavMenu, setShowNavMenu] = React.useState(false);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -71,7 +74,7 @@ export default function ParentHomepage() {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
@@ -85,6 +88,14 @@ export default function ParentHomepage() {
           <Text style={styles.searchLabel}>חיפוש</Text>
         </TouchableOpacity>
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={parentMenuTitle}
+        items={parentMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>
