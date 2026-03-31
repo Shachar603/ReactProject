@@ -11,6 +11,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ParentScheduleMeetingNew.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { parentMenuItems, parentMenuTitle } from '../roleMenus';
 
 const formatToday = () => {
   const now = new Date();
@@ -23,6 +25,7 @@ const formatToday = () => {
 export default function ParentScheduleMeetingNew({ route }) {
   const navigation = useNavigation();
   const [meetingNotes, setMeetingNotes] = useState('');
+  const [showNavMenu, setShowNavMenu] = useState(false);
 
   const selectedDate = useMemo(() => route?.params?.selectedDate || formatToday(), [route?.params?.selectedDate]);
   const selectedDay = useMemo(() => {
@@ -77,14 +80,22 @@ export default function ParentScheduleMeetingNew({ route }) {
       <View style={styles.bigCircleRight} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.backButtonIcon}>‹</Text>
+        <TouchableOpacity activeOpacity={0.8} style={styles.backButton} onPress={() => setShowNavMenu(true)}>
+          <Text style={styles.backButtonIcon}>☰</Text>
         </TouchableOpacity>
 
         <View style={styles.headerCenter}>
           <Text style={styles.headerTitle}>קביעת מפגש חדש</Text>
         </View>
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={parentMenuTitle}
+        items={parentMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>

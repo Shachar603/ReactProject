@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './ManagerManageChildren.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { managerMenuItems, managerMenuTitle } from '../roleMenus';
 
 const children = [
   { id: '1', name: 'אורי לוי', group: 'קבוצת דולפינים', initial: 'א' },
@@ -33,7 +35,9 @@ const ChildRow = ({ name, group, initial }) => (
   </View>
 );
 
-export default function ManagerManageChildren() {
+export default function ManagerManageChildren({ navigation }) {
+  const [showNavMenu, setShowNavMenu] = React.useState(false);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -51,7 +55,7 @@ export default function ManagerManageChildren() {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity activeOpacity={0.75} style={styles.iconButton} onPress={() => setShowNavMenu(true)}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
 
@@ -64,6 +68,14 @@ export default function ManagerManageChildren() {
           <Text style={styles.headerIcon}>⌕</Text>
         </TouchableOpacity>
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={managerMenuTitle}
+        items={managerMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mainCard}>

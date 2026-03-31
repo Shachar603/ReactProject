@@ -11,6 +11,8 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Circle, Line, Text as SvgText } from 'react-native-svg';
 import styles from './ParentScheduleMeeting.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { parentMenuItems, parentMenuTitle } from '../roleMenus';
 
 const weekdayHeaders = ['ש', 'ו', 'ה', 'ד', 'ג', 'ב', 'א'];
 const dayPalette = ['#F2DDDE', '#EEE9BD', '#BFE6D8'];
@@ -95,10 +97,11 @@ export default function ParentScheduleMeeting({ route }) {
   const [selectedDay, setSelectedDay] = useState(route?.params?.selectedDay || null);
   const [selectedTime, setSelectedTime] = useState(route?.params?.selectedTime || '10:00');
   const [showTimeOptions, setShowTimeOptions] = useState(false);
+  const [showNavMenu, setShowNavMenu] = useState(false);
 
   const onBackPress = () => {
     setShowTimeOptions(false);
-    navigation.goBack();
+    setShowNavMenu(true);
   };
 
   const onDayPress = (day) => {
@@ -206,7 +209,7 @@ export default function ParentScheduleMeeting({ route }) {
 
       <View style={styles.headerTime}>
         <TouchableOpacity activeOpacity={0.8} style={styles.backButton} onPress={onBackPress}>
-          <Text style={styles.backButtonIcon}>‹</Text>
+          <Text style={styles.backButtonIcon}>☰</Text>
         </TouchableOpacity>
 
         <View style={styles.timeHeaderCenter}>
@@ -281,6 +284,14 @@ export default function ParentScheduleMeeting({ route }) {
       />
 
       {mode === 'date' ? renderDateStep() : renderTimeStep()}
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={parentMenuTitle}
+        items={parentMenuItems}
+        navigation={navigation}
+      />
     </SafeAreaView>
   );
 }

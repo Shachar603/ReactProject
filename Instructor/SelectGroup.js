@@ -1,6 +1,8 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import styles from './InstructorHomepage.styles';
+import RoleMenuModal from '../RoleMenuModal';
+import { instructorMenuItems, instructorMenuTitle } from '../roleMenus';
 
 const groups = [
   { title: 'קבוצת השיטור', subtitle: 'יום ב׳ וש׳, 10:00 - 11:00' },
@@ -11,6 +13,8 @@ const groups = [
 ];
 
 export default function SelectGroup({ navigation }) {
+  const [showNavMenu, setShowNavMenu] = React.useState(false);
+
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: '#F2F8FF' }]}> 
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -19,7 +23,7 @@ export default function SelectGroup({ navigation }) {
       <View style={styles.headerWaveFront} />
 
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('InstructorHomepage')} activeOpacity={0.75} style={styles.iconButton}>
+        <TouchableOpacity onPress={() => setShowNavMenu(true)} activeOpacity={0.75} style={styles.iconButton}>
           <Text style={styles.headerIcon}>☰</Text>
         </TouchableOpacity>
         <View style={styles.headerCenter}>
@@ -28,6 +32,14 @@ export default function SelectGroup({ navigation }) {
         </View>
         <View style={styles.iconButton} />
       </View>
+
+      <RoleMenuModal
+        visible={showNavMenu}
+        onClose={() => setShowNavMenu(false)}
+        title={instructorMenuTitle}
+        items={instructorMenuItems}
+        navigation={navigation}
+      />
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 24 }}>
         {groups.map((g) => (
