@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useMemo } from "react";
 import {
   StyleSheet, Text, View, Animated, Dimensions, TouchableOpacity,
-  StatusBar, Easing, Platform
+  TextInput, StatusBar, Easing, KeyboardAvoidingView, Platform
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
@@ -185,7 +185,7 @@ const Bubble = () => {
 export default function Homepage() {
   const navigation = useNavigation();
   const scrollY = useRef(new Animated.Value(0)).current;
-
+  const [showPassword, setShowPassword] = useState(false);
 
   // Mount a smaller fixed pool so fewer bubbles are visible at once.
   const bubblePool = useMemo(
@@ -292,11 +292,34 @@ export default function Homepage() {
             הבריחה השקטה שלכם מחכה.
           </Text>
           <PrimaryButton
-            label="🔑  התחברות"
+            label="גלה תכונות"
             style={styles.primaryBtn}
             gradientStyle={styles.btnGradient}
             textStyle={styles.primaryBtnText}
+          />
+
+          <PrimaryButton
+            label="לוח מדריך"
+            style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
+            onPress={() => navigation.navigate("InstructorHomepage")}
+          />
+
+          <PrimaryButton
+            label="התחברות מנהל"
+            style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
             onPress={() => navigation.navigate("Login")}
+          />
+
+          <PrimaryButton
+            label="לוח הורה"
+            style={[styles.primaryBtn, styles.secondaryHeroBtn]}
+            gradientStyle={styles.btnGradient}
+            textStyle={styles.primaryBtnText}
+            onPress={() => navigation.navigate("ParentHomepage")}
           />
         </View>
 
@@ -343,7 +366,65 @@ export default function Homepage() {
           </View>
         </View>
 
+        {/* LOGIN SECTION */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.section}
+        >
+          <AppCard useBlur blurIntensity={40} blurTint="dark" style={styles.loginCard}>
+            <View style={styles.loginIconContainer}>
+              <LinearGradient
+                colors={["#00d4ff", "#0099cc"]}
+                style={styles.loginIconGradient}
+              >
+                <Text style={styles.loginEmoji}>🐚</Text>
+              </LinearGradient>
+            </View>
+            <Text style={styles.loginHeader}>ברוכים השבים</Text>
+            <Text style={styles.loginSub}>
+              התחברו לחשבון שלכם ב־Aqua Oasis
+            </Text>
 
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>כתובת אימייל</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="הכניסו אימייל"
+                placeholderTextColor="rgba(255,255,255,0.4)"
+                textAlign="right"
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+            </View>
+
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>סיסמה</Text>
+              <View style={styles.passwordRow}>
+                <TextInput
+                  style={[styles.input, { flex: 1, borderBottomWidth: 0 }]}
+                  placeholder="הכניסו סיסמה"
+                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  textAlign="right"
+                  secureTextEntry={!showPassword}
+                />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                >
+                  <Text style={styles.eyeIcon}>
+                    {showPassword ? "🙈" : "👁️"}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <PrimaryButton
+              label="כניסה"
+              style={styles.loginBtn}
+              gradientStyle={styles.btnGradient}
+              textStyle={styles.primaryBtnText}
+            />
+          </AppCard>
+        </KeyboardAvoidingView>
 
         {/* FOOTER */}
         <View style={styles.footer}>
@@ -531,7 +612,63 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  loginCard: {
+    borderRadius: 30,
+    padding: 40,
+    marginTop: 40,
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.18)",
+    overflow: "hidden",
+  },
+  loginIconContainer: { alignItems: "center", marginBottom: 20 },
+  loginIconGradient: {
+    width: 70,
+    height: 70,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#00d4ff",
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+  },
+  loginEmoji: { fontSize: 32 },
+  loginHeader: {
+    color: "#fff",
+    fontSize: 24,
+    fontWeight: "700",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  loginSub: {
+    color: "rgba(255, 255, 255, 0.7)",
+    textAlign: "center",
+    marginBottom: 35,
+    fontSize: 14,
+  },
 
+  inputGroup: { marginBottom: 25 },
+  label: {
+    color: "rgba(255, 255, 255, 0.5)",
+    fontSize: 12,
+    marginBottom: 8,
+    paddingLeft: 2,
+  },
+  input: {
+    color: "#fff",
+    fontSize: 16,
+    paddingVertical: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(255, 255, 255, 0.2)",
+  },
+  passwordRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(255, 255, 255, 0.2)",
+  },
+  eyeIcon: { fontSize: 18, padding: 10, opacity: 0.8 },
+  loginBtn: { borderRadius: 30, overflow: "hidden", marginTop: 10 },
 
   footer: {
     marginTop: 80,
