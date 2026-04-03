@@ -291,35 +291,13 @@ export default function Homepage() {
             חוו את השילוב המושלם בין עומק הים לבין חוויית בריכה חלומית.
             הבריחה השקטה שלכם מחכה.
           </Text>
-          <PrimaryButton
-            label="גלה תכונות"
-            style={styles.primaryBtn}
-            gradientStyle={styles.btnGradient}
-            textStyle={styles.primaryBtnText}
-          />
 
           <PrimaryButton
-            label="לוח מדריך"
-            style={[styles.primaryBtn, styles.secondaryHeroBtn]}
-            gradientStyle={styles.btnGradient}
-            textStyle={styles.primaryBtnText}
-            onPress={() => navigation.navigate("InstructorHomepage")}
-          />
-
-          <PrimaryButton
-            label="התחברות מנהל"
+            label="התחברות"
             style={[styles.primaryBtn, styles.secondaryHeroBtn]}
             gradientStyle={styles.btnGradient}
             textStyle={styles.primaryBtnText}
             onPress={() => navigation.navigate("Login")}
-          />
-
-          <PrimaryButton
-            label="לוח הורה"
-            style={[styles.primaryBtn, styles.secondaryHeroBtn]}
-            gradientStyle={styles.btnGradient}
-            textStyle={styles.primaryBtnText}
-            onPress={() => navigation.navigate("ParentHomepage")}
           />
         </View>
 
@@ -366,65 +344,7 @@ export default function Homepage() {
           </View>
         </View>
 
-        {/* LOGIN SECTION */}
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.section}
-        >
-          <AppCard useBlur blurIntensity={40} blurTint="dark" style={styles.loginCard}>
-            <View style={styles.loginIconContainer}>
-              <LinearGradient
-                colors={["#00d4ff", "#0099cc"]}
-                style={styles.loginIconGradient}
-              >
-                <Text style={styles.loginEmoji}>🐚</Text>
-              </LinearGradient>
-            </View>
-            <Text style={styles.loginHeader}>ברוכים השבים</Text>
-            <Text style={styles.loginSub}>
-              התחברו לחשבון שלכם ב־Aqua Oasis
-            </Text>
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>כתובת אימייל</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="הכניסו אימייל"
-                placeholderTextColor="rgba(255,255,255,0.4)"
-                textAlign="right"
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>סיסמה</Text>
-              <View style={styles.passwordRow}>
-                <TextInput
-                  style={[styles.input, { flex: 1, borderBottomWidth: 0 }]}
-                  placeholder="הכניסו סיסמה"
-                  placeholderTextColor="rgba(255,255,255,0.4)"
-                  textAlign="right"
-                  secureTextEntry={!showPassword}
-                />
-                <TouchableOpacity
-                  onPress={() => setShowPassword(!showPassword)}
-                >
-                  <Text style={styles.eyeIcon}>
-                    {showPassword ? "🙈" : "👁️"}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <PrimaryButton
-              label="כניסה"
-              style={styles.loginBtn}
-              gradientStyle={styles.btnGradient}
-              textStyle={styles.primaryBtnText}
-            />
-          </AppCard>
-        </KeyboardAvoidingView>
 
         {/* FOOTER */}
         <View style={styles.footer}>

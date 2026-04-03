@@ -13,11 +13,12 @@ export const instructorMenuItems = [
   { label: 'רשימת ילדים', screen: 'ChildList' },
   { label: 'פרופיל ילד', screen: 'ChildProfile', params: { child: { name: 'עידו כהן' } } },
   { label: 'עריכת הישג', screen: 'EditAchievement' },
+  { label: "צ'אט עם הורה", screen: 'ChatPage', params: { fromInstructor: true } },
 ];
 
 export const parentMenuItems = [
   { label: 'לוח הורה', screen: 'ParentHomepage' },
-  { label: "צ'אט עם מדריך", screen: 'ParentChat' },
+  { label: "צ'אט עם מדריך", screen: 'ChatPage' },
   { label: 'דו"ח התקדמות של הילד', screen: 'ParentProgressReport' },
   { label: 'קביעת מפגש חדש', screen: 'ParentScheduleMeetingNew' },
 ];

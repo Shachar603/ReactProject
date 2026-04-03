@@ -120,7 +120,7 @@ export default function ChildProfile() {
         <View style={{ marginTop: 16, gap: 10 }}>
           <PrimaryButton
             label="צ׳אט עם ההורה"
-            onPress={() => navigation.navigate('ParentChat', { child, fromInstructor: true })}
+            onPress={() => navigation.navigate('ChatPage', { child, fromInstructor: true })}
             style={{ borderRadius: 18 }}
             textStyle={{ color: '#FFFFFF', fontSize: 17, fontWeight: '700', writingDirection: 'rtl' }}
             colorsOverride={['#1F5E9B', '#184C7D']}

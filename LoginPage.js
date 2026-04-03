@@ -1,52 +1,202 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-  StatusBar,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+  StyleSheet, Text, View, Animated, Dimensions, TouchableOpacity,
+  TextInput, StatusBar, Easing, KeyboardAvoidingView, Platform, Alert, Switch
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
+import Svg, { Path } from 'react-native-svg';
 import PrimaryButton from './components/ui/PrimaryButton';
 import AppCard from './components/ui/AppCard';
-import { colors, radius } from './theme/tokens';
-import AquaticBackground from './components/ui/AquaticBackground';
+import { colors, radius, shadows } from './theme/tokens';
+
+const { width, height } = Dimensions.get('window');
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
 const API_BASE_URL = Platform.OS === 'android'
   ? 'http://10.0.2.2:5202/api'
   : 'http://localhost:5202/api';
 
+// ========================================
+// 1. SEAMLESS ANIMATED WAVES
+// ========================================
+const Wave = ({ color, duration, startPosition, d }) => {
+  const translateX = useRef(new Animated.Value(startPosition)).current;
+
+  useEffect(() => {
+    const toPosition = startPosition === 0 ? -600 : 0;
+
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(translateX, {
+          toValue: toPosition,
+          duration: duration / 2,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateX, {
+          toValue: startPosition,
+          duration: duration / 2,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+  }, [duration, startPosition]);
+
+  return (
+    <Animated.View
+      style={[styles.waveContainer, { transform: [{ translateX }] }]}
+    >
+      <Svg
+        width={2400}
+        height={150}
+        viewBox="0 0 2400 150"
+        preserveAspectRatio="none"
+      >
+        <Path fill={color} d={d} />
+      </Svg>
+    </Animated.View>
+  );
+};
+
+// ========================================
+// 2. TRULY INFINITE REINCARNATING BUBBLES
+// ========================================
+const Bubble = () => {
+  const progress = useRef(new Animated.Value(0)).current;
+  const sway = useRef(new Animated.Value(0)).current;
+
+  const [config, setConfig] = useState({
+    size: Math.random() * 30 + 10,
+    left: Math.random() * width,
+  });
+
+  const durationRef = useRef(Math.random() * 16000 + 14000);
+  const isFirstRun = useRef(true);
+
+  const startFloat = () => {
+    progress.setValue(0);
+    const delay = isFirstRun.current ? Math.random() * 30000 : 0;
+    isFirstRun.current = false;
+
+    Animated.sequence([
+      Animated.delay(delay),
+      Animated.timing(progress, {
+        toValue: 1,
+        duration: durationRef.current,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
+    ]).start(({ finished }) => {
+      if (finished) {
+        durationRef.current = Math.random() * 16000 + 14000;
+        setConfig({
+          size: Math.random() * 30 + 10,
+          left: Math.random() * width,
+        });
+        startFloat();
+      }
+    });
+  };
+
+  useEffect(() => {
+    startFloat();
+    const swayAnim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(sway, {
+          toValue: 1,
+          duration: 2000,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+        Animated.timing(sway, {
+          toValue: -1,
+          duration: 4000,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+        Animated.timing(sway, {
+          toValue: 0,
+          duration: 2000,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    swayAnim.start();
+
+    return () => {
+      progress.stopAnimation();
+      sway.stopAnimation();
+    };
+  }, []);
+
+  const translateY = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [height + 50, -150],
+  });
+
+  const opacity = progress.interpolate({
+    inputRange: [0, 0.1, 0.8, 1],
+    outputRange: [0, 1, 1, 0],
+  });
+
+  const translateX = sway.interpolate({
+    inputRange: [-1, 1],
+    outputRange: [-20, 20],
+  });
+
+  return (
+    <Animated.View
+      style={[
+        styles.bubbleWrapper,
+        {
+          width: config.size,
+          height: config.size,
+          borderRadius: config.size / 2,
+          left: config.left,
+          transform: [{ translateY }, { translateX }],
+          opacity,
+        },
+      ]}
+    >
+      <LinearGradient
+        colors={["rgba(255, 255, 255, 0.95)", "rgba(255, 255, 255, 0.1)"]}
+        style={{
+          flex: 1,
+          borderRadius: config.size / 2,
+          borderWidth: 1,
+          borderColor: "rgba(255, 255, 255, 0.4)",
+        }}
+      />
+    </Animated.View>
+  );
+};
+
 export default function LoginPage({ navigation }) {
+  const scrollY = useRef(new Animated.Value(0)).current;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const bubblePool = useMemo(() => Array.from({ length: 6 }).map((_, i) => i), []);
+
   const isFormValid = useMemo(() => email.trim().length > 0 && password.length > 0, [email, password]);
 
   const handleLogin = async () => {
     const normalizedEmail = email.trim().toLowerCase();
-    if (!normalizedEmail || !password) {
-      return;
-    }
+    if (!normalizedEmail || !password) return;
 
     try {
       setIsSubmitting(true);
-
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: normalizedEmail,
-          password,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: normalizedEmail, password }),
       });
 
       const payload = await response.json();
@@ -59,25 +209,17 @@ export default function LoginPage({ navigation }) {
       const role = (payload?.role ?? '').toLowerCase();
 
       if (role === 'manager') {
-        navigation.replace('ManagerHomepage', {
-          managerAuth: {
-            email: normalizedEmail,
-            password,
-          },
-        });
+        navigation.replace('ManagerHomepage', { managerAuth: { email: normalizedEmail, password } });
         return;
       }
-
       if (role === 'instructor') {
         navigation.replace('InstructorHomepage');
         return;
       }
-
       if (role === 'parent') {
         navigation.replace('ParentHomepage');
         return;
       }
-
       Alert.alert('שגיאה', 'לא זוהתה הרשאת משתמש מתאימה.');
     } catch (error) {
       Alert.alert(
@@ -89,51 +231,60 @@ export default function LoginPage({ navigation }) {
     }
   };
 
+  const navBg = scrollY.interpolate({
+    inputRange: [0, 50],
+    outputRange: ["rgba(0, 21, 41, 0.4)", "rgba(0, 21, 41, 0.85)"],
+    extrapolate: "clamp",
+  });
+
   return (
-    <View style={styles.screen}>
-      <StatusBar barStyle="dark-content" backgroundColor="#d8e6f2" />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true} />
 
-      <AquaticBackground variant="auth" />
+      {/* Deep Ocean Base */}
+      <LinearGradient colors={["#003d5c", "#002a4d", colors.bgDeep]} style={StyleSheet.absoluteFill} />
 
-      <View style={styles.headerRow}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.hamburgerBtn}>
-          <View style={styles.hamburgerLine} />
-          <View style={styles.hamburgerLine} />
-          <View style={styles.hamburgerLine} />
-        </TouchableOpacity>
-
-        <Text style={styles.headerText}>ברוכים השבים!</Text>
+      {/* Surface Water */}
+      <View style={[StyleSheet.absoluteFill]}>
+        <LinearGradient colors={["#0099cc", "#006994", "#003d5c"]} style={StyleSheet.absoluteFill} />
       </View>
 
-<<<<<<< HEAD
+      {/* INFINITE BUBBLE POOL */}
+      {bubblePool.map((id) => (
+        <Bubble key={id} />
+      ))}
+
+      {/* Bottom Aligned Waves */}
+      <Wave
+        color="rgba(0, 153, 204, 0.3)"
+        duration={8000}
+        startPosition={0}
+        d="M0,75 C200,45 400,105 600,75 C800,45 1000,105 1200,75 L1200,150 L0,150 Z M1200,75 C1400,45 1600,105 1800,75 C2000,45 2200,105 2400,75 L2400,150 L1200,150 Z"
+      />
+      <Wave
+        color="rgba(0, 212, 255, 0.25)"
+        duration={6000}
+        startPosition={-600}
+        d="M0,100 C300,60 500,130 800,90 C1000,60 1100,120 1200,100 L1200,150 L0,150 Z M1200,100 C1500,60 1700,130 2000,90 C2200,60 2300,120 2400,100 L2400,150 L1200,150 Z"
+      />
+
       {/* NAVBAR */}
-      <AnimatedBlurView
-        intensity={20}
-        tint="dark"
-        style={[styles.navbar, { backgroundColor: navBg }]}
-      >
+      <AnimatedBlurView intensity={20} tint="dark" style={[styles.navbar, { backgroundColor: navBg }]}>
         <View style={styles.navBrand}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.backArrow}>→</Text>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+            <Text style={styles.backArrow}>×</Text>
           </TouchableOpacity>
-          <LinearGradient
-            colors={["#00d4ff", "#0099cc"]}
-            style={styles.logoIcon}
-          >
+          <LinearGradient colors={["#00d4ff", "#0099cc"]} style={styles.logoIcon}>
             <Text style={styles.logoEmoji}>🐚</Text>
           </LinearGradient>
           <Text style={styles.logoText}>ACM</Text>
         </View>
       </AnimatedBlurView>
 
-      {/* MAIN SCROLL CONTENT */}
-=======
->>>>>>> 08033713c1a1efe11528b415f5c67ac5ef0c4572
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={styles.centerWrap}
+        style={styles.keyboardWrap}
       >
-<<<<<<< HEAD
         <Animated.ScrollView
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: scrollY } } }],
@@ -145,149 +296,90 @@ export default function LoginPage({ navigation }) {
           keyboardShouldPersistTaps="handled"
         >
           {/* LOGIN CARD */}
-          <AppCard useBlur blurIntensity={30} blurTint="default" style={styles.loginCard}>
+          <AppCard useBlur blurIntensity={30} blurTint="dark" style={styles.loginCard}>
             <View style={styles.loginIconContainer}>
-              <LinearGradient
-                colors={["#00d4ff", "#0099cc"]}
-                style={styles.loginIconGradient}
-              >
+              <LinearGradient colors={["#00d4ff", "#0099cc"]} style={styles.loginIconGradient}>
                 <Text style={styles.loginEmoji}>🐚</Text>
               </LinearGradient>
             </View>
             <Text style={styles.loginHeader}>ברוכים השבים</Text>
-            <Text style={styles.loginSub}>
-              התחברו לחשבון שלכם ב־ACM
-            </Text>
-=======
-        <AppCard style={styles.card}>
-          <Text style={styles.title}>התחברות</Text>
->>>>>>> 08033713c1a1efe11528b415f5c67ac5ef0c4572
+            <Text style={styles.loginSub}>התחברו לחשבון שלכם ב־ACM</Text>
 
-          <Text style={styles.label}>אימייל</Text>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            style={styles.input}
-            placeholder="you@example.com"
-            placeholderTextColor="#a6afbe"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            textAlign="left"
-          />
-
-          <Text style={styles.label}>סיסמה</Text>
-          <View style={styles.passwordRow}>
-            <TextInput
-              value={password}
-              onChangeText={setPassword}
-              style={styles.passwordInput}
-              placeholder="••••••••"
-              placeholderTextColor="#a6afbe"
-              secureTextEntry={!isPasswordVisible}
-              textAlign="left"
-            />
-            <TouchableOpacity
-              onPress={() => setIsPasswordVisible((prev) => !prev)}
-              style={styles.eyeButton}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.eyeText}>{isPasswordVisible ? 'הסתר' : 'הצג'}</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.metaRow}>
-            <View style={styles.toggleRow}>
-              <Switch
-                value={rememberMe}
-                onValueChange={setRememberMe}
-                trackColor={{ false: '#c9d0dd', true: '#9cc8ed' }}
-                thumbColor={rememberMe ? '#5ea8df' : '#f1f5fb'}
-                ios_backgroundColor="#c9d0dd"
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>כתובת אימייל</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="הכניסו אימייל"
+                placeholderTextColor="rgba(255,255,255,0.4)"
+                textAlign="right"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={setEmail}
               />
-              <Text style={styles.metaText}>זכור אותי</Text>
             </View>
 
-            <TouchableOpacity activeOpacity={0.8}>
-              <Text style={styles.forgotText}>שכחת סיסמה?</Text>
-            </TouchableOpacity>
-          </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>סיסמה</Text>
+              <View style={styles.passwordRow}>
+                <TextInput
+                  style={[styles.input, { flex: 1, borderBottomWidth: 0 }]}
+                  placeholder="הכניסו סיסמה"
+                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  textAlign="right"
+                  secureTextEntry={!isPasswordVisible}
+                  value={password}
+                  onChangeText={setPassword}
+                />
+                <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+                  <Text style={styles.eyeIcon}>{isPasswordVisible ? '🙈' : '👁️'}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
-          <PrimaryButton
-            style={styles.loginBtn}
-            onPress={handleLogin}
-            disabled={!isFormValid || isSubmitting}
-            label={isSubmitting ? 'מתחבר...' : 'התחברות'}
-            textStyle={styles.loginText}
-            gradientStyle={styles.loginBtnGradient}
-            colorsOverride={isFormValid && !isSubmitting ? ['#3aa8eb', '#2d94dd'] : ['#91bddd', '#84b4d6']}
-          />
+            <View style={styles.metaRow}>
+              <View style={styles.toggleRow}>
+                <Switch
+                  value={rememberMe}
+                  onValueChange={setRememberMe}
+                  trackColor={{ false: 'rgba(255,255,255,0.2)', true: '#00d4ff' }}
+                  thumbColor={rememberMe ? '#fff' : 'rgba(255,255,255,0.4)'}
+                />
+                <Text style={styles.metaText}>זכור אותי</Text>
+              </View>
+              <TouchableOpacity activeOpacity={0.8}>
+                <Text style={styles.forgotText}>שכחת סיסמה?</Text>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.mascot}>
-            <Text style={styles.mascotFace}>☺</Text>
-          </View>
-        </AppCard>
+            <PrimaryButton
+              label={isSubmitting ? 'מתחבר...' : 'התחברות'}
+              style={styles.loginBtn}
+              gradientStyle={styles.btnGradient}
+              textStyle={styles.primaryBtnText}
+              onPress={handleLogin}
+              disabled={!isFormValid || isSubmitting}
+              colorsOverride={
+                (!isFormValid || isSubmitting) ? ['rgba(0,212,255,0.3)', 'rgba(0,153,204,0.3)'] : null
+              }
+            />
+          </AppCard>
+        </Animated.ScrollView>
       </KeyboardAvoidingView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: '#d8e6f2',
-  },
-  waveTopBack: {
-    position: 'absolute',
-    top: 88,
-    left: -10,
-    right: -10,
-    height: 48,
-    backgroundColor: '#b6d9f4',
-    borderBottomLeftRadius: 28,
-    borderBottomRightRadius: 28,
-    opacity: 0.9,
-  },
-  waveTopFront: {
-    position: 'absolute',
-    top: 96,
-    left: -10,
-    right: -10,
-    height: 42,
-    backgroundColor: '#a7cfee',
-    borderBottomLeftRadius: 26,
-    borderBottomRightRadius: 26,
-    opacity: 0.8,
-  },
-  headerRow: {
-    marginTop: Platform.OS === 'ios' ? 56 : 28,
-    marginHorizontal: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    zIndex: 2,
-  },
-  headerText: {
-    color: '#7892ad',
-    fontSize: 13,
-  },
-  hamburgerBtn: {
-    width: 28,
-    height: 24,
-    justifyContent: 'space-between',
-    paddingVertical: 2,
-  },
-  hamburgerLine: {
-    height: 3,
-    borderRadius: 2,
-    backgroundColor: '#131d2a',
-  },
-  centerWrap: {
-    flex: 1,
+  container: { flex: 1, backgroundColor: colors.bgDeep },
+  keyboardWrap: { flex: 1 },
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'center',
-    paddingHorizontal: 14,
-    paddingBottom: 42,
+    paddingTop: 100,
+    paddingBottom: 60,
+    paddingHorizontal: "5%",
   },
-<<<<<<< HEAD
   waveContainer: {
     position: "absolute",
     bottom: 0,
@@ -304,8 +396,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    paddingTop:
-      Platform.OS === "ios" ? 50 : (StatusBar.currentHeight || 20) + 15,
+    paddingTop: Platform.OS === "ios" ? 50 : (StatusBar.currentHeight || 20) + 15,
     paddingBottom: 15,
     paddingHorizontal: 20,
     flexDirection: "row",
@@ -313,14 +404,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     zIndex: 100,
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(255,255,255,0.15)",
+    borderBottomColor: "rgba(255,255,255,0.1)",
   },
   navBrand: { flexDirection: "row", alignItems: "center" },
+  backButton: {
+    marginRight: 15,
+    padding: 5,
+  },
   backArrow: {
     color: '#fff',
-    fontSize: 22,
-    fontWeight: '700',
-    marginRight: 12,
+    fontSize: 28,
+    lineHeight: 30,
+    opacity: 0.8,
   },
   logoIcon: {
     width: 34,
@@ -339,73 +434,70 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
 
-  // --- LOGIN CARD (lighter glassmorphism) ---
+  // --- LOGIN CARD ---
   loginCard: {
     borderRadius: 30,
     padding: 40,
-    backgroundColor: "rgba(255, 255, 255, 0.12)",
-=======
-  card: {
-    borderRadius: radius.lg,
-    backgroundColor: colors.loginSurface,
->>>>>>> 08033713c1a1efe11528b415f5c67ac5ef0c4572
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderWidth: 1,
-    borderColor: '#9bc7ea',
-    paddingHorizontal: 18,
-    paddingTop: 24,
-    paddingBottom: 76,
-    minHeight: 520,
+    borderColor: "rgba(255, 255, 255, 0.18)",
+    overflow: "hidden",
+    zIndex: 10,
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 48,
-    color: '#1e63a1',
-    fontWeight: '300',
-    marginBottom: 16,
+  loginIconContainer: { alignItems: "center", marginBottom: 20 },
+  loginIconGradient: {
+    width: 70,
+    height: 70,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#00d4ff",
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
   },
-  label: {
-    color: '#7c8fa8',
-    textAlign: 'right',
+  loginEmoji: { fontSize: 32 },
+  loginHeader: {
+    color: "#fff",
+    fontSize: 24,
+    fontWeight: "700",
+    textAlign: "center",
     marginBottom: 8,
-    marginTop: 6,
+  },
+  loginSub: {
+    color: "rgba(255, 255, 255, 0.7)",
+    textAlign: "center",
+    marginBottom: 35,
     fontSize: 14,
   },
+
+  inputGroup: { marginBottom: 25 },
+  label: {
+    color: "rgba(255, 255, 255, 0.5)",
+    fontSize: 12,
+    marginBottom: 8,
+    paddingRight: 2,
+    textAlign: 'right',
+  },
   input: {
-    backgroundColor: colors.loginField,
-    borderRadius: 14,
-    paddingHorizontal: 14,
-    height: 44,
-    color: colors.loginText,
-    marginBottom: 4,
+    color: "#fff",
+    fontSize: 16,
+    paddingVertical: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(255, 255, 255, 0.2)",
   },
   passwordRow: {
-    backgroundColor: colors.loginField,
-    borderRadius: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: 12,
-    marginBottom: 2,
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(255, 255, 255, 0.2)",
   },
-  passwordInput: {
-    flex: 1,
-    height: 44,
-    color: colors.loginText,
-    paddingRight: 8,
-  },
-  eyeButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 4,
-  },
-  eyeText: {
-    color: '#7f8fa5',
-    fontSize: 11,
-  },
+  eyeIcon: { fontSize: 18, padding: 10, opacity: 0.8 },
+
   metaRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 12,
-    marginBottom: 20,
+    marginBottom: 40,
   },
   toggleRow: {
     flexDirection: 'row',
@@ -413,40 +505,19 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   metaText: {
-    color: '#6f839c',
+    color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 12,
   },
   forgotText: {
-    color: '#2c79b8',
+    color: '#00d4ff',
     fontSize: 13,
   },
-  loginBtn: {
-    borderRadius: 20,
-    overflow: 'hidden',
+
+  loginBtn: { borderRadius: 30, overflow: "hidden" },
+  btnGradient: {
+    paddingVertical: 16,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  loginBtnGradient: {
-    height: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loginText: {
-    color: '#ffffff',
-    fontSize: 32,
-    fontWeight: '300',
-  },
-  mascot: {
-    position: 'absolute',
-    right: 22,
-    bottom: 18,
-    width: 40,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#f1b9cf',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mascotFace: {
-    color: '#7a4760',
-    fontSize: 18,
-  },
+  primaryBtnText: { color: "#001529", fontWeight: "bold", fontSize: 16 },
 });

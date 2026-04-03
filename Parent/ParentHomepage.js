@@ -242,7 +242,7 @@ const recentActivities = [
 ];
 
 const actionButtons = [
-  { label: "צ'אט עם מדריך", icon: '💬', screen: 'ParentChat', gradient: ['#00d4ff', '#0099cc'] },
+  { label: "צ'אט עם מדריך", icon: '💬', screen: 'ChatPage', gradient: ['#00d4ff', '#0099cc'] },
   { label: 'דו"ח התקדמות הילד', icon: '📊', screen: 'ParentProgressReport', gradient: ['#00b8d4', '#0088a0'] },
   { label: 'קביעת מפגש', icon: '📅', screen: 'ParentScheduleMeetingNew', gradient: ['#00897B', '#00695C'] },
 ];
@@ -425,7 +425,7 @@ export default function ParentHomepage() {
             <TouchableOpacity
               style={styles.chatBtn}
               activeOpacity={0.8}
-              onPress={() => navigation.navigate('ParentChat')}
+              onPress={() => navigation.navigate('ChatPage')}
             >
               <LinearGradient
                 colors={['#00d4ff', '#0099cc']}

@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReactServerSide")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85e26b53bcdc97aa0a2ad229c857e4317cbe9cbe")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6eee5a60cd0f024d0a02c3a8161f7911570549d4")]
->>>>>>> 08033713c1a1efe11528b415f5c67ac5ef0c4572
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+949878aa35aa1a592b5e1c23ea3d2c80a8e1b963")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReactServerSide")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReactServerSide")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
