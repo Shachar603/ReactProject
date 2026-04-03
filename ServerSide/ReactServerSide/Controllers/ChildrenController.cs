@@ -1,43 +1,83 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ReactServerSide.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ChildrenController : ControllerBase
+    public class ChildrenController : Controller
     {
-        // GET: api/<ChildrenController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // GET: ChildrenController
+        public ActionResult Index()
         {
-            return new string[] { "value1", "value2" };
+            return View();
         }
 
-        // GET api/<ChildrenController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET: ChildrenController/Details/5
+        public ActionResult Details(int id)
         {
-            return "value";
+            return View();
         }
 
-        // POST api/<ChildrenController>
+        // GET: ChildrenController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: ChildrenController/Create
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(IFormCollection collection)
         {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        // PUT api/<ChildrenController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // GET: ChildrenController/Edit/5
+        public ActionResult Edit(int id)
         {
+            return View();
         }
 
-        // DELETE api/<ChildrenController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // POST: ChildrenController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
         {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: ChildrenController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: ChildrenController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
