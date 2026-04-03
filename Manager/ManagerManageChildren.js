@@ -37,7 +37,7 @@ const ChildRow = ({ name, group, initial }) => (
   </View>
 );
 
-export default function ManagerManageChildren({ navigation }) {
+export default function ManagerManageChildren({ navigation, route }) {
   const [showNavMenu, setShowNavMenu] = React.useState(false);
 
   return (
@@ -57,6 +57,7 @@ export default function ManagerManageChildren({ navigation }) {
         title={managerMenuTitle}
         items={managerMenuItems}
         navigation={navigation}
+        routeParams={route?.params || {}}
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>

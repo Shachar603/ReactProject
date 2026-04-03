@@ -16,31 +16,77 @@ import AppCard from './components/ui/AppCard';
 import { colors, radius } from './theme/tokens';
 import AquaticBackground from './components/ui/AquaticBackground';
 
-const MANAGER_USER = {
-  email: 'manager@aqua.co.il',
-  password: 'Manager123!'
-};
+const API_BASE_URL = Platform.OS === 'android'
+  ? 'http://10.0.2.2:5202/api'
+  : 'http://localhost:5202/api';
 
 export default function LoginPage({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isFormValid = useMemo(() => email.trim().length > 0 && password.length > 0, [email, password]);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const normalizedEmail = email.trim().toLowerCase();
-
-    if (normalizedEmail === MANAGER_USER.email && password === MANAGER_USER.password) {
-      navigation.replace('ManagerHomepage');
+    if (!normalizedEmail || !password) {
       return;
     }
 
-    Alert.alert(
-      'פרטי התחברות שגויים',
-      'רק משתמש מנהל מורשה יכול להתחבר. בדקו את האימייל והסיסמה ונסו שוב.'
-    );
+    try {
+      setIsSubmitting(true);
+
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          password,
+        }),
+      });
+
+      const payload = await response.json();
+
+      if (!response.ok) {
+        Alert.alert('פרטי התחברות שגויים', payload?.message ?? 'אימייל או סיסמה שגויים.');
+        return;
+      }
+
+      const role = (payload?.role ?? '').toLowerCase();
+
+      if (role === 'manager') {
+        navigation.replace('ManagerHomepage', {
+          managerAuth: {
+            email: normalizedEmail,
+            password,
+          },
+        });
+        return;
+      }
+
+      if (role === 'instructor') {
+        navigation.replace('InstructorHomepage');
+        return;
+      }
+
+      if (role === 'parent') {
+        navigation.replace('ParentHomepage');
+        return;
+      }
+
+      Alert.alert('שגיאה', 'לא זוהתה הרשאת משתמש מתאימה.');
+    } catch (error) {
+      Alert.alert(
+        'שגיאת שרת',
+        'לא ניתן להתחבר לשרת כרגע. ודאו שה-ServerSide רץ וכתובת ה-API מתאימה לסביבה שלכם.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -118,11 +164,11 @@ export default function LoginPage({ navigation }) {
           <PrimaryButton
             style={styles.loginBtn}
             onPress={handleLogin}
-            disabled={!isFormValid}
-            label="התחברות"
+            disabled={!isFormValid || isSubmitting}
+            label={isSubmitting ? 'מתחבר...' : 'התחברות'}
             textStyle={styles.loginText}
             gradientStyle={styles.loginBtnGradient}
-            colorsOverride={isFormValid ? ['#3aa8eb', '#2d94dd'] : ['#91bddd', '#84b4d6']}
+            colorsOverride={isFormValid && !isSubmitting ? ['#3aa8eb', '#2d94dd'] : ['#91bddd', '#84b4d6']}
           />
 
           <View style={styles.mascot}>

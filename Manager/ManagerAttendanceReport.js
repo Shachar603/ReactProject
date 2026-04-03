@@ -44,7 +44,7 @@ const DailyRow = ({ date, status, tone }) => (
   </View>
 );
 
-export default function ManagerAttendanceReport({ navigation }) {
+export default function ManagerAttendanceReport({ navigation, route }) {
   const [showNavMenu, setShowNavMenu] = React.useState(false);
 
   return (
@@ -64,6 +64,7 @@ export default function ManagerAttendanceReport({ navigation }) {
         title={managerMenuTitle}
         items={managerMenuItems}
         navigation={navigation}
+        routeParams={route?.params || {}}
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>

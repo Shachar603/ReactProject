@@ -30,7 +30,7 @@ const ToggleRow = ({ label, value, onValueChange, disabled = false }) => (
   </View>
 );
 
-export default function ManagerCenterSettings({ navigation }) {
+export default function ManagerCenterSettings({ navigation, route }) {
   const [sendAutoReports, setSendAutoReports] = useState(true);
   const [receiveAlerts, setReceiveAlerts] = useState(true);
   const [showKidsAdvanced, setShowKidsAdvanced] = useState(false);
@@ -53,6 +53,7 @@ export default function ManagerCenterSettings({ navigation }) {
         title={managerMenuTitle}
         items={managerMenuItems}
         navigation={navigation}
+        routeParams={route?.params || {}}
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>

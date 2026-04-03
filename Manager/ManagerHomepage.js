@@ -43,11 +43,11 @@ const GroupRow = ({ title }) => (
   </View>
 );
 
-export default function ManagerHomepage({ navigation }) {
+export default function ManagerHomepage({ navigation, route }) {
   const [showNavMenu, setShowNavMenu] = useState(false);
 
   const navigateToSystemReports = () => {
-    navigation.navigate('ManagerSystemReports');
+    navigation.navigate('ManagerSystemReports', route?.params || {});
   };
 
   return (
@@ -69,6 +69,7 @@ export default function ManagerHomepage({ navigation }) {
         title={managerMenuTitle}
         items={managerMenuItems}
         navigation={navigation}
+        routeParams={route?.params || {}}
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>

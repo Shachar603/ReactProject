@@ -1,83 +1,147 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ReactServerSide.DAL;
 
 namespace ReactServerSide.Controllers
 {
-    public class ChildrenController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ChildrenController : ControllerBase
     {
-        // GET: ChildrenController
-        public ActionResult Index()
+        private readonly DBServices _db;
+
+        public ChildrenController(DBServices db)
         {
-            return View();
+            _db = db;
         }
 
-        // GET: ChildrenController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult GetChildren([FromQuery] bool includeInactive = false)
         {
-            return View();
+            List<ChildRecord> children = _db.GetChildren(includeInactive);
+            return Ok(children);
         }
 
-        // GET: ChildrenController/Create
-        public ActionResult Create()
+        [HttpGet("{id:int}")]
+        public IActionResult GetChildById(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "Invalid child id." });
+            }
+
+            ChildRecord? child = _db.GetChildById(id);
+            if (child == null)
+            {
+                return NotFound(new { message = "Child was not found." });
+            }
+
+            return Ok(child);
         }
 
-        // POST: ChildrenController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult CreateChild([FromBody] CreateChildRequest request)
         {
-            try
+            if (request == null)
             {
-                return RedirectToAction(nameof(Index));
+                return BadRequest(new { message = "Request body is required." });
             }
-            catch
+
+            if (request.ParentId <= 0 ||
+                string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.LastName))
             {
-                return View();
+                return BadRequest(new { message = "ParentId, first name and last name are required." });
             }
+
+            if (!_db.GetParentExists(request.ParentId))
+            {
+                return BadRequest(new { message = "Parent does not exist or is inactive." });
+            }
+
+            int newId = _db.PostCreateChild(
+                request.ParentId,
+                request.FirstName.Trim(),
+                request.LastName.Trim(),
+                request.BirthDate);
+
+            ChildRecord? created = _db.GetChildById(newId);
+            return CreatedAtAction(nameof(GetChildById), new { id = newId }, created);
         }
 
-        // GET: ChildrenController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPut("{id:int}")]
+        public IActionResult UpdateChild(int id, [FromBody] UpdateChildRequest request)
         {
-            return View();
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "Invalid child id." });
+            }
+
+            if (request == null)
+            {
+                return BadRequest(new { message = "Request body is required." });
+            }
+
+            if (request.ParentId <= 0 ||
+                string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.LastName))
+            {
+                return BadRequest(new { message = "ParentId, first name and last name are required." });
+            }
+
+            if (!_db.GetParentExists(request.ParentId))
+            {
+                return BadRequest(new { message = "Parent does not exist or is inactive." });
+            }
+
+            bool updated = _db.PutUpdateChild(
+                id,
+                request.ParentId,
+                request.FirstName.Trim(),
+                request.LastName.Trim(),
+                request.BirthDate,
+                request.IsActive);
+
+            if (!updated)
+            {
+                return NotFound(new { message = "Child was not found." });
+            }
+
+            ChildRecord? child = _db.GetChildById(id);
+            return Ok(child);
         }
 
-        // POST: ChildrenController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpDelete("{id:int}")]
+        public IActionResult DeactivateChild(int id)
         {
-            try
+            if (id <= 0)
             {
-                return RedirectToAction(nameof(Index));
+                return BadRequest(new { message = "Invalid child id." });
             }
-            catch
+
+            bool deleted = _db.DeleteDeactivateChild(id);
+            if (!deleted)
             {
-                return View();
+                return NotFound(new { message = "Child was not found." });
             }
+
+            return NoContent();
         }
 
-        // GET: ChildrenController/Delete/5
-        public ActionResult Delete(int id)
+        public class CreateChildRequest
         {
-            return View();
+            public int ParentId { get; set; }
+            public string FirstName { get; set; } = string.Empty;
+            public string LastName { get; set; } = string.Empty;
+            public DateTime? BirthDate { get; set; }
         }
 
-        // POST: ChildrenController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public class UpdateChildRequest
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            public int ParentId { get; set; }
+            public string FirstName { get; set; } = string.Empty;
+            public string LastName { get; set; } = string.Empty;
+            public DateTime? BirthDate { get; set; }
+            public bool IsActive { get; set; } = true;
         }
     }
 }

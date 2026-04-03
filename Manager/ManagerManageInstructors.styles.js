@@ -169,6 +169,64 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     writingDirection: 'rtl',
   },
+  createSectionTitle: {
+    marginTop: 18,
+    fontSize: 24,
+  },
+  accountTypeRow: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 10,
+  },
+  accountTypeChip: {
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#8EC4E8',
+    backgroundColor: '#EAF4FB',
+    minWidth: 86,
+    height: 34,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  accountTypeChipActive: {
+    backgroundColor: '#2F8FCE',
+    borderColor: '#2F8FCE',
+  },
+  accountTypeChipText: {
+    color: '#2F8FCE',
+    fontSize: 15,
+    fontWeight: '700',
+    writingDirection: 'rtl',
+  },
+  accountTypeChipTextActive: {
+    color: '#FFFFFF',
+  },
+  sessionWarning: {
+    marginTop: 12,
+    color: '#C95A4A',
+    fontSize: 13,
+    textAlign: 'right',
+    writingDirection: 'rtl',
+  },
+  fieldLabel: {
+    marginTop: 10,
+    color: '#6A8399',
+    fontSize: 14,
+    textAlign: 'right',
+    writingDirection: 'rtl',
+  },
+  input: {
+    marginTop: 6,
+    height: 44,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#BCD6E9',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 12,
+    color: '#213344',
+  },
 });
 
 export default styles;

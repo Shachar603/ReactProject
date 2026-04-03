@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using ReactServerSide.DAL;
 
 namespace ReactServerSide.Controllers
 {
@@ -8,36 +7,69 @@ namespace ReactServerSide.Controllers
     [ApiController]
     public class ParentController : ControllerBase
     {
-        // GET: api/<ParentController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly DBServices _db;
+
+        public ParentController(DBServices db)
         {
-            return new string[] { "value1", "value2" };
+            _db = db;
         }
 
-        // GET api/<ParentController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("manager-create")]
+        public IActionResult CreateParent([FromBody] CreateParentRequest request)
         {
-            return "value";
+            if (request == null)
+            {
+                return BadRequest(new { message = "Request body is required." });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.ManagerEmail) || string.IsNullOrWhiteSpace(request.ManagerPassword))
+            {
+                return Unauthorized(new { message = "Manager credentials are required." });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Email) ||
+                string.IsNullOrWhiteSpace(request.Password) ||
+                string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.LastName))
+            {
+                return BadRequest(new { message = "Email, password, first name and last name are required." });
+            }
+
+            string managerEmail = request.ManagerEmail.Trim().ToLowerInvariant();
+            string targetEmail = request.Email.Trim().ToLowerInvariant();
+            string firstName = request.FirstName.Trim();
+            string lastName = request.LastName.Trim();
+            string? phone = string.IsNullOrWhiteSpace(request.Phone) ? null : request.Phone.Trim();
+
+            if (!_db.PostIsManagerCredentialsValid(managerEmail, request.ManagerPassword))
+            {
+                return Unauthorized(new { message = "Only manager can create users." });
+            }
+
+            if (_db.PostEmailExists(targetEmail))
+            {
+                return Conflict(new { message = "Email already exists." });
+            }
+
+            int newId = _db.PostCreateParent(targetEmail, request.Password, firstName, lastName, phone);
+
+            return Created(string.Empty, new
+            {
+                id = newId,
+                email = targetEmail,
+                role = "Parent"
+            });
         }
 
-        // POST api/<ParentController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        public class CreateParentRequest
         {
-        }
-
-        // PUT api/<ParentController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ParentController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            public string ManagerEmail { get; set; } = string.Empty;
+            public string ManagerPassword { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
+            public string Password { get; set; } = string.Empty;
+            public string FirstName { get; set; } = string.Empty;
+            public string LastName { get; set; } = string.Empty;
+            public string? Phone { get; set; }
         }
     }
 }

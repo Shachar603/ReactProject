@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
-export default function RoleMenuModal({ visible, onClose, title, items, navigation }) {
+export default function RoleMenuModal({ visible, onClose, title, items, navigation, routeParams = {} }) {
   return (
     <Modal
       visible={visible}
@@ -47,7 +47,7 @@ export default function RoleMenuModal({ visible, onClose, title, items, navigati
                   item.action();
                   return;
                 }
-                navigation.navigate(item.screen, item.params || {});
+                navigation.navigate(item.screen, { ...routeParams, ...(item.params || {}) });
               }}
               style={{
                 paddingVertical: 12,

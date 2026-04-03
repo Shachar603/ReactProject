@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using ReactServerSide.DAL;
 
 namespace ReactServerSide.Controllers
 {
@@ -8,36 +7,67 @@ namespace ReactServerSide.Controllers
     [ApiController]
     public class InstructorController : ControllerBase
     {
-        // GET: api/<InstructorController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly DBServices _db;
+
+        public InstructorController(DBServices db)
         {
-            return new string[] { "value1", "value2" };
+            _db = db;
         }
 
-        // GET api/<InstructorController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("manager-create")]
+        public IActionResult CreateInstructor([FromBody] CreateInstructorRequest request)
         {
-            return "value";
+            if (request == null)
+            {
+                return BadRequest(new { message = "Request body is required." });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.ManagerEmail) || string.IsNullOrWhiteSpace(request.ManagerPassword))
+            {
+                return Unauthorized(new { message = "Manager credentials are required." });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Email) ||
+                string.IsNullOrWhiteSpace(request.Password) ||
+                string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.LastName))
+            {
+                return BadRequest(new { message = "Email, password, first name and last name are required." });
+            }
+
+            string managerEmail = request.ManagerEmail.Trim().ToLowerInvariant();
+            string targetEmail = request.Email.Trim().ToLowerInvariant();
+            string firstName = request.FirstName.Trim();
+            string lastName = request.LastName.Trim();
+
+            if (!_db.PostIsManagerCredentialsValid(managerEmail, request.ManagerPassword))
+            {
+                return Unauthorized(new { message = "Only manager can create users." });
+            }
+
+            if (_db.PostEmailExists(targetEmail))
+            {
+                return Conflict(new { message = "Email already exists." });
+            }
+
+            int newId = _db.PostCreateInstructor(targetEmail, request.Password, firstName, lastName);
+
+            return Created(string.Empty, new
+            {
+                id = newId,
+                email = targetEmail,
+                role = "Instructor"
+            });
         }
 
-        // POST api/<InstructorController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        public class CreateInstructorRequest
         {
-        }
-
-        // PUT api/<InstructorController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<InstructorController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            public string ManagerEmail { get; set; } = string.Empty;
+            public string ManagerPassword { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
+            public string Password { get; set; } = string.Empty;
+            public string FirstName { get; set; } = string.Empty;
+            public string LastName { get; set; } = string.Empty;
         }
     }
 }

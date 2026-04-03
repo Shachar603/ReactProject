@@ -48,7 +48,7 @@ const ReportCard = ({ title, subtitle, onOpen }) => (
   </View>
 );
 
-export default function ManagerSystemReports({ navigation }) {
+export default function ManagerSystemReports({ navigation, route }) {
   const [showNavMenu, setShowNavMenu] = React.useState(false);
 
   return (
@@ -68,6 +68,7 @@ export default function ManagerSystemReports({ navigation }) {
         title={managerMenuTitle}
         items={managerMenuItems}
         navigation={navigation}
+        routeParams={route?.params || {}}
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -79,7 +80,7 @@ export default function ManagerSystemReports({ navigation }) {
               key={card.title}
               title={card.title}
               subtitle={card.subtitle}
-              onOpen={() => card.route && navigation.navigate(card.route)}
+              onOpen={() => card.route && navigation.navigate(card.route, route?.params || {})}
             />
           ))}
         </View>
