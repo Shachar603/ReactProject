@@ -337,7 +337,7 @@ export default function ParentHomepage() {
 
         <View style={styles.navCenter}>
           <LinearGradient colors={['#00d4ff', '#0099cc']} style={styles.navLogo}>
-            <Text style={styles.navLogoEmoji}>🐬</Text>
+            <Text style={styles.navLogoEmoji}>🐚</Text>
           </LinearGradient>
           <Text style={styles.navTitle}>לוח הורה</Text>
         </View>
@@ -463,13 +463,13 @@ export default function ParentHomepage() {
         {/* ── FOOTER ── */}
         <View style={styles.footer}>
           <View style={styles.footerBrand}>
-            <Text style={styles.footerEmoji}>🌊</Text>
-            <Text style={styles.footerBrandText}>Aqua Oasis</Text>
+            <Text style={styles.footerEmoji}>🐚</Text>
+            <Text style={styles.footerBrandText}>ACM</Text>
           </View>
           <Text style={styles.footerText}>
             נבנה באהבה 💙 לכל אוהבי המים
           </Text>
-          <Text style={styles.footerCopy}>© 2024 Aqua Oasis. כל הזכויות שמורות.</Text>
+          <Text style={styles.footerCopy}>© 2024 ACM. כל הזכויות שמורות.</Text>
         </View>
       </Animated.ScrollView>
     </View>

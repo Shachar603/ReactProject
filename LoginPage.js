@@ -311,9 +311,9 @@ export default function LoginPage({ navigation }) {
             colors={["#00d4ff", "#0099cc"]}
             style={styles.logoIcon}
           >
-            <Text style={styles.logoEmoji}>🌊</Text>
+            <Text style={styles.logoEmoji}>🐚</Text>
           </LinearGradient>
-          <Text style={styles.logoText}>Aqua Oasis</Text>
+          <Text style={styles.logoText}>ACM</Text>
         </View>
       </AnimatedBlurView>
 
@@ -344,7 +344,7 @@ export default function LoginPage({ navigation }) {
             </View>
             <Text style={styles.loginHeader}>ברוכים השבים</Text>
             <Text style={styles.loginSub}>
-              התחברו לחשבון שלכם ב־Aqua Oasis
+              התחברו לחשבון שלכם ב־ACM
             </Text>
 
             {/* Email Input */}
@@ -477,9 +477,10 @@ const styles = StyleSheet.create({
   logoEmoji: { fontSize: 18, includeFontPadding: false },
   logoText: {
     color: "#fff",
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 28,
+    fontWeight: "900",
     includeFontPadding: false,
+    letterSpacing: 2,
   },
 
   // --- LOGIN CARD (lighter glassmorphism) ---

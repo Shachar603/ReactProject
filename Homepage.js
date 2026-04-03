@@ -259,9 +259,9 @@ export default function Homepage() {
             colors={["#00d4ff", "#0099cc"]}
             style={styles.logoIcon}
           >
-            <Text style={styles.logoEmoji}>🌊</Text>
+            <Text style={styles.logoEmoji}>🐚</Text>
           </LinearGradient>
-          <Text style={styles.logoText}>Aqua Oasis</Text>
+          <Text style={styles.logoText}>ACM</Text>
         </View>
 
         <TouchableOpacity style={styles.hamburger}>
@@ -348,14 +348,14 @@ export default function Homepage() {
         {/* FOOTER */}
         <View style={styles.footer}>
           <View style={styles.footerBrand}>
-            <Text style={styles.footerEmoji}>🌊</Text>
-            <Text style={styles.footerBrandText}>Aqua Oasis</Text>
+            <Text style={styles.footerEmoji}>🐚</Text>
+            <Text style={styles.footerBrandText}>ACM</Text>
           </View>
           <Text style={styles.footerText}>
             נבנה באהבה 💙 לכל אוהבי המים
           </Text>
           <Text style={styles.copyright}>
-            © 2024 Aqua Oasis. כל הזכויות שמורות.
+            © 2024 ACM. כל הזכויות שמורות.
           </Text>
         </View>
       </Animated.ScrollView>
@@ -414,9 +414,10 @@ const styles = StyleSheet.create({
   logoEmoji: { fontSize: 18, includeFontPadding: false }, // Reduced from 22
   logoText: {
     color: "#fff",
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 28, // Increased from 20 for 'big' look
+    fontWeight: "900", // Bolder for logo feel
     includeFontPadding: false,
+    letterSpacing: 2, // Spaced logo look
   }, // Reduced from 25
 
   hamburger: { flexDirection: "column", justifyContent: "center" },
