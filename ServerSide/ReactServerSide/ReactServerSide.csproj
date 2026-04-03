@@ -10,8 +10,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="9.0.7" />
-    <PackageReference Include="System.Security.Permissions" Version="9.0.7" />
   </ItemGroup>
 
 </Project>
