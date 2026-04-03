@@ -10,9 +10,9 @@ using ReactServerSide.Controllers;
 
 namespace ReactServerSide.DAL
 {
-    public class DBGet
+    public class DBServices
     {
-        public DBGet()
+        public DBServices()
         {
 
         }
